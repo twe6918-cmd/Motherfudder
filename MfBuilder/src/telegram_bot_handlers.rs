@@ -37,11 +37,11 @@ pub async fn handle_my_subscription(
         if session.subscription_active {
             format!(
                 "**Your Subscription Status**\n\n\
-                ????????????????????????\n\n\
+                ================================\n\n\
                 **Status**: ACTIVE\n\
                 **Expires**: {}\n\
                 **Builds**: Unlimited\n\n\
-                ????????????????????????\n\n\
+                ================================\n\n\
                 **You have full access to all features:**\n\n\
                 ? AMSI/ETW Bypass\n\
                 ? UAC Bypass\n\
@@ -53,10 +53,10 @@ pub async fn handle_my_subscription(
             )
         } else {
             "**Your Subscription Status**\n\n\
-            ????????????????????????\n\n\
+            ================================\n\n\
             **Status**: INACTIVE\n\n\
             You don't have an active subscription.\n\n\
-            ????????????????????????\n\n\
+            ================================\n\n\
             Use the **Redeem Code** button to activate your subscription.\n\n\
             Need help? Contact support!".to_string()
         }
@@ -118,13 +118,13 @@ pub async fn handle_crypt_file(
     bot.send_message(
         chat_id,
         "**Crypt Your File**\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         **Please upload your executable file**\n\n\
         Supported formats:\n\
         ? Native x86/x64 (.exe)\n\
         ? .NET x86/x64 (.exe)\n\n\
         Maximum file size: 50 MB\n\n\
-        ????????????????????????"
+        ================================"
     ).await?;
     
     // Set awaiting_binary flag
@@ -143,7 +143,7 @@ pub async fn handle_faq(
     chat_id: ChatId,
 ) -> ResponseResult<()> {
     let faq_text = "**Frequently Asked Questions**\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         **Q: What file types are supported?**\n\
         A: Native x86/x64 and .NET x86/x64 executables\n\n\
         **Q: Does it work with packed executables?**\n\
@@ -160,7 +160,7 @@ pub async fn handle_faq(
         A: Usually 30-60 seconds depending on file size\n\n\
         **Q: What output formats are available?**\n\
         A: BAT (batch wrapper) and EXE (direct executable)\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         Need more help? Click Support below!";
     
     let keyboard = InlineKeyboardMarkup::new(vec![
@@ -183,7 +183,7 @@ pub async fn handle_support(
     chat_id: ChatId,
 ) -> ResponseResult<()> {
     let support_text = "**Support & Contact**\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         **Need Help?**\n\n\
         ? Contact: @YourSupportBot\n\
         ? GitHub: github.com/backdoorskid/Motherfudder\n\
@@ -197,7 +197,7 @@ pub async fn handle_support(
         ? Original: backdoorskid\n\
         ? Enhanced: Florin\n\
         ? AMSI Bypass: Chainski\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         Please star the repo if this helps you!";
     
     let keyboard = InlineKeyboardMarkup::new(vec![
@@ -234,7 +234,7 @@ pub async fn handle_main_menu(
 
     let welcome_text = format!(
         "**MOTHERFUDDER CRYPTER BOT**\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         **Professional Windows Crypter Service**\n\
         Enhanced by Florin | Original by backdoorskid\n\n\
         **Supported Formats**:\n\
@@ -247,7 +247,7 @@ pub async fn handle_main_menu(
         ? Anti-Debug & Anti-VM\n\
         ? Persistence (Auto-Start)\n\
         ? Interactive Configuration{}\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         Choose an option below to get started:",
         update_notice
     );
@@ -297,10 +297,10 @@ pub async fn handle_view_updates(
     
     let update_text = format!(
         "**Available Updates**\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         **Latest Changes**:\n\n\
         ```\n{}\n```\n\n\
-        ????????????????????????\n\n\
+        ================================\n\n\
         **To install updates**:\n\
         Run `MOTHERFUDDER.bat` ? Press '5' ? Install\n\n\
         **Note**: Bot will need to restart after update.",
