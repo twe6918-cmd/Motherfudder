@@ -385,6 +385,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## Future Enhancements
+
+Potential improvements being researched for future versions:
+
+- **Enhanced Syscalls**: Hell's Gate / Halo's Gate techniques ([Ebyte-Syscalls](https://github.com/EvilBytecode/Ebyte-Syscalls))
+- **Lifetime Patching**: Persistent AMSI/ETW monitoring ([Lifetime-Amsi-EtwPatch](https://github.com/EvilBytecode/Lifetime-Amsi-EtwPatch))
+- **Interactive Buttons**: Inline keyboard interface for bot
+- **Build Queue**: Parallel build processing
+- **Performance**: Stub caching and optimizations
+
+See [FUTURE_ENHANCEMENTS.md](FUTURE_ENHANCEMENTS.md) for detailed analysis and roadmap.
+
+**Current Recommendation**: Existing techniques (Chainski AMSI bypass, indirect syscalls) are proven effective. Focus remains on stability and user experience.
+
+---
+
 ## Credits
 
 ### Techniques and Frameworks
@@ -393,6 +409,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Telegram Bot**: Powered by [teloxide](https://github.com/teloxide/teloxide)
 - **UAC Bypass**: fodhelper.exe technique
 - **Binary Parsing**: [goblin](https://github.com/m4b/goblin)
+
+### Research & Inspiration
+
+- **Syscall Techniques**: [EvilBytecode/Ebyte-Syscalls](https://github.com/EvilBytecode/Ebyte-Syscalls)
+- **Persistent Patching**: [EvilBytecode/Lifetime-Amsi-EtwPatch](https://github.com/EvilBytecode/Lifetime-Amsi-EtwPatch)
 
 ### Author
 

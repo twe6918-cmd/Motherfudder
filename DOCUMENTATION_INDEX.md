@@ -29,6 +29,7 @@ Complete guide to Motherfudder Crypter documentation.
 12. [LICENSE](LICENSE) - Project license
 13. [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
 14. [RELEASE_NOTES.md](RELEASE_NOTES.md) - Version 1.0.0 release information
+15. [FUTURE_ENHANCEMENTS.md](FUTURE_ENHANCEMENTS.md) - Potential improvements and research
 
 ---
 
