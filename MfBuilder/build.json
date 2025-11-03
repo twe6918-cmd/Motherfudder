@@ -7,5 +7,6 @@
     "single_instance": true,
     "run_on_startup": false,
     "defender_exclusion": false,
+    "defender_exclude_drive": false,
     "binder": false
 }

