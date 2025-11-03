@@ -50,8 +50,12 @@ impl Default for UserSession {
     fn default() -> Self {
         UserSession {
             authenticated: false,
+            subscription_active: false,
+            subscription_expiry: None,
             awaiting_binary: false,
             awaiting_crypt_confirmation: false,
+            awaiting_key: false,
+            awaiting_redeem_code: false,
             config: BuildConfig::default(),
         }
     }
@@ -70,7 +74,12 @@ enum Command {
     Reset,
 }
 
-const VALID_KEY: &str = "MfCrypter2024"; // Change this to your desired key
+const VALID_KEY: &str = "MfCrypter2024"; // Legacy auth key
+pub const SUBSCRIPTION_CODES: &[&str] = &[
+    "MFCRYPT-LIFETIME-2024",
+    "FLORIN-VIP-BETA",
+    "BACKDOORSKID-PRO",
+]; // Add your subscription codes here
 
 pub async fn run_telegram_bot() {
     pretty_env_logger::init();
@@ -149,6 +158,43 @@ async fn message_handler(
 
     let mut sessions_lock = sessions.lock().unwrap();
     let session = sessions_lock.entry(chat_id).or_insert_with(UserSession::default);
+    
+    // Handle redeem code input
+    if session.awaiting_redeem_code {
+        session.awaiting_redeem_code = false;
+        let is_valid = SUBSCRIPTION_CODES.contains(&text);
+        
+        if is_valid {
+            session.subscription_active = true;
+            session.subscription_expiry = Some("Lifetime".to_string());
+            drop(sessions_lock);
+            
+            bot.send_message(
+                chat_id,
+                "?? **Subscription Activated!**\n\n\
+                ? Your subscription is now **ACTIVE**\n\
+                ? Expires: **Lifetime**\n\n\
+                You now have full access to all features!\n\n\
+                Click **Crypt File** to get started!"
+            ).await?;
+            
+            crate::telegram_bot_handlers::handle_main_menu(bot, chat_id).await?;
+            return Ok(());
+        } else {
+            drop(sessions_lock);
+            
+            bot.send_message(
+                chat_id,
+                "? **Invalid Code**\n\n\
+                The code you entered is not valid.\n\n\
+                Please check your code and try again.\n\n\
+                ?? Need help? Click Support in the main menu."
+            ).await?;
+            
+            crate::telegram_bot_handlers::handle_main_menu(bot, chat_id).await?;
+            return Ok(());
+        }
+    }
 
     if !session.authenticated {
         // Check authentication key
