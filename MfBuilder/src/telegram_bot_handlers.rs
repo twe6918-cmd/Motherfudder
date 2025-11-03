@@ -1,5 +1,6 @@
 use teloxide::{prelude::*, types::InlineKeyboardMarkup, types::InlineKeyboardButton};
 use crate::telegram_bot::{Sessions, UserSession};
+use crate::update_checker;
 
 // Handler for "Redeem Code" button
 pub async fn handle_redeem_code(
@@ -265,5 +266,35 @@ pub async fn handle_main_menu(
     bot.send_message(msg_or_chat, welcome_text)
         .reply_markup(keyboard)
         .await?;
+    Ok(())
+}
+
+// Handler for "View Updates" button
+pub async fn handle_view_updates(
+    bot: Bot,
+    chat_id: ChatId,
+) -> ResponseResult<()> {
+    let changes = update_checker::get_latest_changes();
+    
+    let update_text = format!(
+        "🔄 **Available Updates**\n\n\
+        ━━━━━━━━━━━━━━━━━━━━━━━━\n\n\
+        **Latest Changes**:\n\n\
+        ```\n{}\n```\n\n\
+        ━━━━━━━━━━━━━━━━━━━━━━━━\n\n\
+        💡 **To install updates**:\n\
+        Run `MOTHERFUDDER.bat` → Press '5' → Install\n\n\
+        **Note**: Bot will need to restart after update.",
+        changes
+    );
+    
+    let keyboard = InlineKeyboardMarkup::new(vec![
+        vec![InlineKeyboardButton::callback("🏠 Main Menu", "main_menu")],
+    ]);
+    
+    bot.send_message(chat_id, update_text)
+        .reply_markup(keyboard)
+        .await?;
+    
     Ok(())
 }

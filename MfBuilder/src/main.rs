@@ -9,6 +9,9 @@ mod binary_arch;
 mod build_native;
 mod build_dotnet;
 mod telegram_bot;
+mod telegram_bot_callbacks;
+mod telegram_bot_handlers;
+mod update_checker;
 
 
 use std::{env, fs::{self, OpenOptions}, io::{BufRead, Write}, process::Command};

@@ -39,6 +39,9 @@ pub async fn callback_handler(
         "main_menu" => {
             crate::telegram_bot_handlers::handle_main_menu(bot, chat_id).await?;
         }
+        "view_updates" => {
+            crate::telegram_bot_handlers::handle_view_updates(bot, chat_id).await?;
+        }
         
         // Configuration toggle buttons
         "toggle_anti_debug" => {
