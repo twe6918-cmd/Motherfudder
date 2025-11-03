@@ -131,23 +131,28 @@ The `MOTHERFUDDER.bat` control panel provides:
 
 1. **Install Prerequisites** - One-click installation of all dependencies
 2. **Configure Bot** - Interactive wizard for bot setup
-3. **Host Bot** - Start bot in foreground or background
-4. **Build CLI** - Quick command-line builds
-5. **Check Updates** - Automatic update checking and installation
-6. **Documentation** - Quick access to all documentation
-7. **Help & Support** - Built-in troubleshooting guide
+3. **Manage Subscription Codes** - Add, remove, view, or reset codes
+4. **Host Bot** - Start bot in foreground or background
+5. **Build CLI** - Quick command-line builds
+6. **Check Updates** - Automatic update checking and installation
+7. **Documentation** - Quick access to all documentation
+8. **Help & Support** - Built-in troubleshooting guide
+9. **Exit** - Clean exit with credits
 
 **Example Session**:
 
 ```batch
 > MOTHERFUDDER.bat
-Choose an option [1-8]: 1
+Choose an option [1-9]: 1
 # Installs Chocolatey, Rust, .NET, VS Build Tools, OpenSSL, Git
 
-Choose an option [1-8]: 2
+Choose an option [1-9]: 2
 # Guides through bot token and authentication setup
 
-Choose an option [1-8]: 3
+Choose an option [1-9]: 3
+# Add, remove, or manage subscription codes
+
+Choose an option [1-9]: 4
 # Starts bot in selected mode
 ```
 
