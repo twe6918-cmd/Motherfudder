@@ -41,7 +41,7 @@
    - REPLACE_SID → Current user SID
    - REPLACE_COMMAND → PowerShell startup command
 5. Write XML to temp file
-6. Execute: schtasks /create /xml [file] /tn [taskname]
+6. Execute: schtasks /create /xml [file• /tn [taskname•
 7. Delete temp XML file
 ```
 
@@ -191,7 +191,7 @@
 
 ### Task Scheduler Enumeration
 ```powershell
-Get-ScheduledTask | Where-Object {$_.TaskName -match '^[a-f0-9]{8}-'}
+Get-ScheduledTask | Where-Object {$_.TaskName -match '^[a-f0-9•{8}-'}
 ```
 
 ### Event Log Analysis
@@ -201,7 +201,7 @@ Event ID 106 (new task)
 ```
 
 ### Forensic Artifacts
-- XML file: `C:\Windows\System32\Tasks\[GUID]`
+- XML file: `C:\Windows\System32\Tasks\[GUID•`
 - Registry: `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks`
 
 ---
@@ -242,7 +242,7 @@ Result:
 
 ---
 
-## Does It Work Like a Charm? 
+## Does It Work Like a Charm• 
 
 ### YES ✅
 
@@ -266,16 +266,16 @@ Result:
 
 ## Testing Checklist
 
-- [x] Creates task successfully
-- [x] Task triggers on logon
-- [x] Payload executes on boot
-- [x] Works with admin privileges
-- [x] Works without admin privileges
-- [x] Random task names generated
-- [x] Temp XML cleaned up
-- [x] No multiple instances
-- [x] Compatible with UAC bypass
-- [x] Compatible with Defender exclusion
+- [x• Creates task successfully
+- [x• Task triggers on logon
+- [x• Payload executes on boot
+- [x• Works with admin privileges
+- [x• Works without admin privileges
+- [x• Random task names generated
+- [x• Temp XML cleaned up
+- [x• No multiple instances
+- [x• Compatible with UAC bypass
+- [x• Compatible with Defender exclusion
 
 ---
 
@@ -318,7 +318,7 @@ Result:
 
 ## Conclusion
 
-**Does persistence work like a charm?**
+**Does persistence work like a charm•**
 
 ### ✅ YES!
 

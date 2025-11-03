@@ -38,16 +38,16 @@ Professional documentation suite for Motherfudder Crypter - Ready for public rel
 **New File**: `BOT_TECHNICAL.md` (800+ lines)
 
 Comprehensive technical guide covering:
-- ? Architecture overview with diagrams
-- ? Detailed "how it works" explanation
-- ? VPS deployment (DigitalOcean, Vultr, Linode, Hetzner)
-- ? 24/7 operation with systemd
-- ? Update process (stop ? update ? restart)
-- ? File access model
-- ? Session management (in-memory HashMap)
-- ? Build process flow
-- ? Security considerations
-- ? Performance optimization
+- • Architecture overview with diagrams
+- • Detailed "how it works" explanation
+- • VPS deployment (DigitalOcean, Vultr, Linode, Hetzner)
+- • 24/7 operation with systemd
+- • Update process (stop • update • restart)
+- • File access model
+- • Session management (in-memory HashMap)
+- • Build process flow
+- • Security considerations
+- • Performance optimization
 
 **VPS Deployment Section**:
 - Step-by-step VPS setup (Windows & Linux)
@@ -71,18 +71,18 @@ sudo systemctl restart mfbuilder-bot
 **Added to README.md and FEATURES.md**:
 
 Clear documentation of what this crypter does NOT implement:
-- ? Process Hollowing
-- ? Process Injection
-- ? Reflective DLL Injection
-- ? Thread Hijacking
-- ? APC Injection
+- • Process Hollowing
+- • Process Injection
+- • Reflective DLL Injection
+- • Thread Hijacking
+- • APC Injection
 
 **What it uses instead**:
-- ? Direct execution (.NET)
-- ? Indirect syscalls (Native)
-- ? AMSI/ETW patching
-- ? Defender exclusions
-- ? UAC bypass
+- • Direct execution (.NET)
+- • Indirect syscalls (Native)
+- • AMSI/ETW patching
+- • Defender exclusions
+- • UAC bypass
 
 **Comparison tables** added showing advantages vs injection/hollowing crypters.
 
@@ -107,10 +107,10 @@ Send '2' to toggle Anti VM
 
 Future with inline keyboards:
 ```
-[Anti Debug: OFF]  [Anti VM: OFF]  [CIS: OFF]
-[UAC Bypass: OFF]  [Single: OFF]   [Persist: OFF]
-[Defender: OFF]    [Format: BAT]
-          [?? BUILD]
+[Anti Debug: OFF•  [Anti VM: OFF•  [CIS: OFF•
+[UAC Bypass: OFF•  [Single: OFF•   [Persist: OFF•
+[Defender: OFF•    [Format: BAT•
+          [ BUILD•
 ```
 
 Implementation notes provided using teloxide's `InlineKeyboardButton`.
@@ -120,35 +120,35 @@ Implementation notes provided using teloxide's `InlineKeyboardButton`.
 ## Professional Standards Applied
 
 ### Tone & Style
-- ? Professional language throughout
-- ? No casual expressions
-- ? Consistent formatting
-- ? Clear technical explanations
-- ? Proper disclaimers
+- • Professional language throughout
+- • No casual expressions
+- • Consistent formatting
+- • Clear technical explanations
+- • Proper disclaimers
 
 ### Structure
-- ? Table of contents in long documents
-- ? Cross-references between documents
-- ? Logical organization
-- ? Progressive disclosure (basics ? advanced)
-- ? Code examples with syntax highlighting
+- • Table of contents in long documents
+- • Cross-references between documents
+- • Logical organization
+- • Progressive disclosure (basics • advanced)
+- • Code examples with syntax highlighting
 
 ### Completeness
-- ? Installation for all major platforms
-- ? Troubleshooting sections
-- ? Security considerations
-- ? Legal disclaimers
-- ? Best practices
-- ? Performance notes
-- ? Update procedures
+- • Installation for all major platforms
+- • Troubleshooting sections
+- • Security considerations
+- • Legal disclaimers
+- • Best practices
+- • Performance notes
+- • Update procedures
 
 ### Technical Accuracy
-- ? Diagrams of architecture
-- ? Data flow explanations
-- ? File structure documentation
-- ? Command examples tested
-- ? Configuration templates
-- ? Realistic timelines
+- • Diagrams of architecture
+- • Data flow explanations
+- • File structure documentation
+- • Command examples tested
+- • Configuration templates
+- • Realistic timelines
 
 ---
 
@@ -208,45 +208,45 @@ Implementation notes provided using teloxide's `InlineKeyboardButton`.
 ## Quality Assurance Checklist
 
 ### Content Quality
-- [x] All technical information accurate
-- [x] Code examples tested
-- [x] Commands verified
-- [x] Links functional
-- [x] Formatting consistent
-- [x] Spelling/grammar checked
+- [x• All technical information accurate
+- [x• Code examples tested
+- [x• Commands verified
+- [x• Links functional
+- [x• Formatting consistent
+- [x• Spelling/grammar checked
 
 ### Coverage
-- [x] Installation covered for all platforms
-- [x] Both CLI and bot modes documented
-- [x] Troubleshooting sections included
-- [x] Security considerations addressed
-- [x] Legal disclaimers present
-- [x] Update procedures documented
+- [x• Installation covered for all platforms
+- [x• Both CLI and bot modes documented
+- [x• Troubleshooting sections included
+- [x• Security considerations addressed
+- [x• Legal disclaimers present
+- [x• Update procedures documented
 
 ### User Experience
-- [x] Progressive disclosure (simple ? complex)
-- [x] Clear navigation between documents
-- [x] Quick reference sections
-- [x] Examples for common scenarios
-- [x] Visual diagrams where helpful
-- [x] Tables for structured data
+- [x• Progressive disclosure (simple • complex)
+- [x• Clear navigation between documents
+- [x• Quick reference sections
+- [x• Examples for common scenarios
+- [x• Visual diagrams where helpful
+- [x• Tables for structured data
 
 ### Professional Standards
-- [x] Consistent tone throughout
-- [x] Proper attribution and credits
-- [x] Version information included
-- [x] Date stamps on release docs
-- [x] Contact/support information
-- [x] Contributing guidelines
+- [x• Consistent tone throughout
+- [x• Proper attribution and credits
+- [x• Version information included
+- [x• Date stamps on release docs
+- [x• Contact/support information
+- [x• Contributing guidelines
 
 ---
 
 ## Files Removed (Cleanup)
 
 ### Casual/Development Files
-- ? FOR_FLORIN.md (personal, casual tone)
-- ? SUMMARY.md (internal development use)
-- ? Guide.txt (replaced with BUILD_GUIDE.md)
+- • FOR_FLORIN.md (personal, casual tone)
+- • SUMMARY.md (internal development use)
+- • Guide.txt (replaced with BUILD_GUIDE.md)
 
 ### Rationale
 Professional release should not include:
@@ -265,28 +265,28 @@ All information from removed files has been integrated into appropriate professi
 
 ```
 README_FIRST.md (Start Here)
-    ?
+    •
 README.md (Overview)
-    ?
-??? INSTALLATION.md (Setup)
-?       ?
-?   QUICKSTART.md (Usage)
-?       ?
-?   ??? CLI Mode (build.json)
-?   ??? Bot Mode
-?           ?
-?       BOT_SETUP.md (Configuration)
-?           ?
-?       BOT_TECHNICAL.md (VPS Deploy)
-?
-??? FEATURES.md (Details)
-?       ?
-?   ??? UAC_BYPASS_INFO.md
-?   ??? DEFENDER_EXCLUSION_INFO.md
-?
-??? BUILD_GUIDE.md (From Source)
-?
-??? CONTRIBUTING.md (Development)
+    •
+• INSTALLATION.md (Setup)
+•       •
+•   QUICKSTART.md (Usage)
+•       •
+•   • CLI Mode (build.json)
+•   • Bot Mode
+•           •
+•       BOT_SETUP.md (Configuration)
+•           •
+•       BOT_TECHNICAL.md (VPS Deploy)
+•
+• FEATURES.md (Details)
+•       •
+•   • UAC_BYPASS_INFO.md
+•   • DEFENDER_EXCLUSION_INFO.md
+•
+• BUILD_GUIDE.md (From Source)
+•
+• CONTRIBUTING.md (Development)
 ```
 
 ### Navigation Aids
@@ -335,32 +335,32 @@ README.md (Overview)
 ## Production Readiness
 
 ### Legal & Ethical
-- [x] Disclaimers on every major document
-- [x] MIT License clearly stated
-- [x] Ethical use emphasized
-- [x] Legal compliance notes
-- [x] Authorization requirements stated
+- [x• Disclaimers on every major document
+- [x• MIT License clearly stated
+- [x• Ethical use emphasized
+- [x• Legal compliance notes
+- [x• Authorization requirements stated
 
 ### Security
-- [x] Token protection documented
-- [x] Key security emphasized
-- [x] VPS hardening guides
-- [x] File permissions specified
-- [x] Update security procedures
+- [x• Token protection documented
+- [x• Key security emphasized
+- [x• VPS hardening guides
+- [x• File permissions specified
+- [x• Update security procedures
 
 ### Support
-- [x] Troubleshooting sections
-- [x] Common issues documented
-- [x] Error messages explained
-- [x] Support resources listed
-- [x] Community guidelines
+- [x• Troubleshooting sections
+- [x• Common issues documented
+- [x• Error messages explained
+- [x• Support resources listed
+- [x• Community guidelines
 
 ### Maintenance
-- [x] Update procedures documented
-- [x] Version control explained
-- [x] Changelog format established
-- [x] Contribution process clear
-- [x] Issue reporting guidelines
+- [x• Update procedures documented
+- [x• Version control explained
+- [x• Changelog format established
+- [x• Contribution process clear
+- [x• Issue reporting guidelines
 
 ---
 
@@ -380,16 +380,16 @@ README.md (Overview)
 
 ### Achievements
 
-? **15 comprehensive documents** covering all aspects  
-? **5,500+ lines** of professional content  
-? **VPS deployment** fully documented  
-? **Bot internals** technically explained  
-? **Update process** clearly outlined  
-? **Transparency** about what's NOT included  
-? **Multiple audiences** addressed  
-? **Professional standards** maintained throughout  
-? **Legal disclaimers** present  
-? **Ready for the world** ??  
+• **15 comprehensive documents** covering all aspects  
+• **5,500+ lines** of professional content  
+• **VPS deployment** fully documented  
+• **Bot internals** technically explained  
+• **Update process** clearly outlined  
+• **Transparency** about what's NOT included  
+• **Multiple audiences** addressed  
+• **Professional standards** maintained throughout  
+• **Legal disclaimers** present  
+• **Ready for the world**   
 
 ### Key Differentiators
 

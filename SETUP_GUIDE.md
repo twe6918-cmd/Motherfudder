@@ -1,170 +1,172 @@
-# ?? SETUP GUIDE - Motherfudder Crypter
+# Setup Guide - Motherfudder Crypter
 
-**Complete Setup Guide** | **30 Minutes Start to Finish** | **100% Automated**
-
----
-
-## ?? Table of Contents
-
-1. [Quick Start (5 min)](#quick-start)
-2. [Detailed Setup (30 min)](#detailed-setup)
-3. [Telegram Bot Setup](#telegram-bot-setup)
-4. [CLI Mode Setup](#cli-mode-setup)
-5. [Troubleshooting](#troubleshooting)
-6. [Advanced Configuration](#advanced-configuration)
+**Complete Setup Instructions** | **30 Minutes to Production** | **100% Automated**
 
 ---
 
-## ? Quick Start
+## Table of Contents
 
-### Windows (Recommended - Fully Automated!)
+1. [Quick Start](#quick-start)
+2. [Prerequisites](#prerequisites)
+3. [Automated Setup](#automated-setup)
+4. [Telegram Bot Setup](#telegram-bot-setup)
+5. [CLI Mode Setup](#cli-mode-setup)
+6. [Troubleshooting](#troubleshooting)
+7. [Next Steps](#next-steps)
+
+---
+
+## Quick Start
+
+### Windows (Recommended)
 
 ```batch
-# 1. Download the project
+# Step 1: Download the project
 git clone https://github.com/your-repo/motherfudder-enhanced
 cd motherfudder-enhanced
 
-# 2. Run the MEGA control panel (Right-click ? Run as Administrator)
-MOTHERFUDDER.bat
+# Step 2: Run control panel (as Administrator)
+Right-click MOTHERFUDDER.bat ? Run as Administrator
 
-# 3. Follow the menu:
-Press 1 ? Install Prerequisites (10-30 min)
-Press 2 ? Configure Telegram Bot (2 min)
-Press 3 ? Host Bot (instant)
+# Step 3: Follow the menu
+Press 1 ? Install Prerequisites (wait 30 mins)
+Press 2 ? Configure Bot
+Press 3 ? Host Bot
 
-# Done! ??
+# Done!
 ```
 
-**Total Time**: 30 minutes (mostly waiting for downloads)
+**Total Time**: Approximately 30 minutes (mostly automated)
 
 ---
 
-## ?? Detailed Setup
+## Prerequisites
 
-### Step 1: Install Prerequisites
+### System Requirements
 
-**Option A: Automated (Recommended)**
-```batch
-MOTHERFUDDER.bat ? Press 1
-```
+- **OS**: Windows 10/11 (64-bit)
+- **RAM**: 4 GB minimum
+- **Disk**: 2 GB free space
+- **Network**: Internet connection
 
-This installs:
-- ? Chocolatey (package manager)
-- ? Rust + Cargo
-- ? .NET SDK 6.0
-- ? Visual Studio Build Tools
-- ? OpenSSL
-- ? Git
+### Required Software (Auto-Installed)
 
-**Option B: Manual**
-See [INSTALLATION.md](docs/INSTALLATION.md) for manual installation steps.
+The control panel (`MOTHERFUDDER.bat`) installs:
+
+- Chocolatey (package manager)
+- Rust + Cargo (programming language)
+- .NET SDK 6.0 (runtime)
+- Visual Studio Build Tools (compiler)
+- OpenSSL (cryptography)
+- Git (version control)
+
+**No manual installation required.**
 
 ---
 
-### Step 2: Get Telegram Bot Token
+## Automated Setup
+
+### Option 1: MEGA Control Panel (Recommended)
+
+1. **Launch Control Panel**:
+   ```batch
+   Right-click MOTHERFUDDER.bat ? Run as Administrator
+   ```
+
+2. **Install Prerequisites** (Option 1):
+   - Installs all dependencies automatically
+   - Takes 10-30 minutes depending on internet speed
+   - Requires Administrator privileges
+   - Shows progress for each package
+
+3. **Important**: After installation completes, close the terminal and open a **new** Command Prompt. This ensures environment variables are loaded.
+
+### Option 2: Manual Installation
+
+See [docs/INSTALLATION.md](docs/INSTALLATION.md) for manual installation instructions.
+
+---
+
+## Telegram Bot Setup
+
+### Step 1: Create Bot
 
 1. Open Telegram
 2. Search for `@BotFather`
 3. Send `/newbot`
-4. Follow prompts:
-   - Bot name: `Motherfudder Crypter`
-   - Bot username: `YourName_MfCrypter_bot`
-5. Copy the bot token (looks like `1234567890:ABCdefGHIjklMNOpqrsTUVwxyz`)
+4. Follow the prompts:
+   - **Bot name**: Motherfudder Crypter
+   - **Bot username**: YourName_MfCrypter_bot
+5. Copy the bot token (format: `1234567890:ABCdefGHIjklMNOpqrsTUVwxyz`)
 
----
+### Step 2: Configure Bot
 
-### Step 3: Configure Bot
+**Using Control Panel** (Recommended):
 
-**Option A: Automated (Recommended)**
 ```batch
 MOTHERFUDDER.bat ? Press 2
+
+Enter bot token: [paste your token]
+Change authentication key? (Y/N): N
 ```
 
-Wizard will ask for:
-- Bot token (from Step 2)
-- Authentication key (custom or default)
+**Manual Configuration**:
 
-**Option B: Manual**
-```batch
-cd MfBuilder
-echo TELOXIDE_TOKEN=YOUR_BOT_TOKEN_HERE > .env
+Create `MfBuilder/.env`:
+```
+TELOXIDE_TOKEN=YOUR_BOT_TOKEN_HERE
 ```
 
----
+### Step 3: Customize Subscription Codes (Optional)
 
-### Step 4: Host the Bot
+Edit `MfBuilder/src/telegram_bot.rs`:
 
-**Option A: Via Control Panel (Recommended)**
+```rust
+pub const SUBSCRIPTION_CODES: &[&str] = &[
+    "YOUR-CODE-1",
+    "YOUR-CODE-2",
+    "YOUR-CODE-3",
+];
+```
+
+### Step 4: Host Bot
+
+**Using Control Panel**:
+
 ```batch
 MOTHERFUDDER.bat ? Press 3
+
+Choose hosting mode:
+  [1] Foreground (testing)
+  [2] Background (production)
+  [3] Back
+
+Choice [1-3]: 1
 ```
 
-**Option B: Manual**
+**Manual Hosting**:
+
 ```batch
 cd MfBuilder
 cargo run --release -- --bot
 ```
 
-**Option C: Background Service**
-```batch
-# Via control panel
-MOTHERFUDDER.bat ? Press 3 ? Choose "Background Mode"
-```
-
----
-
-## ?? Telegram Bot Setup
-
-### Configuration
-
-**Subscription Codes**:
-Edit `MfBuilder/src/telegram_bot.rs`:
-```rust
-pub const SUBSCRIPTION_CODES: &[&str] = &[
-    "MFCRYPT-LIFETIME-2024",    // Example code
-    "YOUR-CUSTOM-CODE",          // Add your codes here
-];
-```
-
-**Support Contact**:
-Edit `MfBuilder/src/telegram_bot_handlers.rs`:
-```rust
-// Change @YourSupportBot to your support contact
-"?? Contact: @YourSupportBot"
-```
-
-### Testing
+### Step 5: Test Bot
 
 1. Open Telegram
-2. Search for your bot (`@YourName_MfCrypter_bot`)
+2. Search for your bot
 3. Send `/start`
-4. You should see:
-
-```
-?? MOTHERFUDDER CRYPTER BOT
-
-[?? Redeem Code]  [?? My Subscription]
-[?? Crypt File]
-[? FAQ]  [?? Support]
-```
-
-5. Click "Redeem Code"
-6. Enter: `MFCRYPT-LIFETIME-2024`
-7. Subscription activated! ?
+4. Verify the interactive menu appears
+5. Test "Redeem Code" with your configured codes
 
 ---
 
-## ?? CLI Mode Setup
+## CLI Mode Setup
 
-### Quick Setup
+### Step 1: Configure Build Options
 
-```batch
-MOTHERFUDDER.bat ? Press 4
-```
+Edit `MfBuilder/build.json`:
 
-### Manual Setup
-
-**1. Configure** (`MfBuilder/build.json`):
 ```json
 {
     "file_extension": "BAT",
@@ -180,256 +182,260 @@ MOTHERFUDDER.bat ? Press 4
 }
 ```
 
-**2. Place payload**:
+### Step 2: Prepare Payload
+
 ```batch
+# Copy your payload to MfBuilder directory
 copy your_payload.exe MfBuilder\payload.exe
 ```
 
-**3. Build**:
+### Step 3: Build
+
+**Using Control Panel**:
+
+```batch
+MOTHERFUDDER.bat ? Press 4
+```
+
+**Manual Build**:
+
 ```batch
 cd MfBuilder
 cargo run --release
 ```
 
-**4. Get output**:
-- BAT mode: `out.bat`
-- EXE mode: `out.exe`
+### Step 4: Retrieve Output
+
+Output files are created in `MfBuilder/`:
+- **BAT mode**: `out.bat`
+- **EXE mode**: `out.exe`
 
 ---
 
-## ?? Troubleshooting
+## Troubleshooting
 
-### OpenSSL Error
+### OpenSSL Not Found
 
-**Error**: `Could not find OpenSSL`
+**Problem**: `Could not find OpenSSL installation`
 
-**Fix**:
+**Solution**:
 ```batch
-# Via control panel
-MOTHERFUDDER.bat ? Press 1 ? Reinstall
+MOTHERFUDDER.bat ? Press 1
+# Reinstall all prerequisites
+```
 
-# Or manually
+Or manually:
+```batch
 choco install openssl -y
 ```
 
 ### Bot Not Responding
 
-**Check 1**: Is bot running?
-```batch
-MOTHERFUDDER.bat ? Press 3
-```
+**Problem**: Bot doesn't reply to `/start`
 
-**Check 2**: Is token correct?
-```batch
-# Check MfBuilder/.env
-type MfBuilder\.env
-```
+**Checklist**:
+1. Is bot running? Check `MOTHERFUDDER.bat ? Press 3`
+2. Is token correct? Check `MfBuilder/.env`
+3. Is token valid? Verify in @BotFather
 
-**Check 3**: Is bot token valid?
-- Go to @BotFather
-- Send `/mybots`
-- Check if your bot exists
+**Solution**:
+```batch
+MOTHERFUDDER.bat ? Press 2
+# Reconfigure with correct token
+```
 
 ### Build Fails
 
-**Error**: `cargo: command not found`
+**Problem**: `cargo: command not found`
 
-**Fix**: Restart terminal after installing Rust
+**Solution**: Close terminal and open a **new** one
 ```batch
-# Close current terminal
-# Open NEW terminal (to refresh PATH)
-# Run again
+# Close current Command Prompt
+# Open NEW Command Prompt (as Admin)
+# Try again
 ```
 
-**Error**: `MSBuild not found`
+**Problem**: `MSBuild not found`
 
-**Fix**:
+**Solution**:
 ```batch
 MOTHERFUDDER.bat ? Press 1
-# Reinstall prerequisites
+# Reinstall Visual Studio Build Tools
 ```
 
-### Bot Token Issues
+### Subscription Code Invalid
 
-**Error**: `Invalid bot token`
+**Problem**: Bot says "Invalid Code"
 
-**Fix**:
-```batch
-# Reconfigure
-MOTHERFUDDER.bat ? Press 2
-# Enter correct token
-```
+**Solution**: Verify codes in `MfBuilder/src/telegram_bot.rs`:
 
----
-
-## ?? Advanced Configuration
-
-### Custom Subscription Codes
-
-**1. Edit codes**:
 ```rust
-// MfBuilder/src/telegram_bot.rs
 pub const SUBSCRIPTION_CODES: &[&str] = &[
-    "CODE1-LIFETIME-2024",
-    "CODE2-PREMIUM-2024",
-    "CODE3-TRIAL-2024",
+    "YOUR-CODE-HERE",  // Match this exactly
 ];
 ```
 
-**2. Rebuild**:
+Rebuild bot:
 ```batch
 cd MfBuilder
 cargo build --release
 ```
 
-### Custom FAQ
-
-Edit `MfBuilder/src/telegram_bot_handlers.rs`:
-```rust
-pub async fn handle_faq(...) {
-    let faq_text = "? **Your Custom FAQ**\n\n\
-        Q: Your question?\n\
-        A: Your answer!\n\n\
-        ...";
-}
-```
-
-### Custom Support Info
-
-Edit `MfBuilder/src/telegram_bot_handlers.rs`:
-```rust
-pub async fn handle_support(...) {
-    let support_text = "?? **Your Support Info**\n\n\
-        ?? Contact: @YourSupport\n\
-        ...";
-}
-```
-
-### Background Hosting (VPS)
-
-**Option 1: systemd** (Linux VPS):
-```bash
-# Via control panel (if on Linux)
-MOTHERFUDDER.bat ? Press 3 ? Background Mode
-
-# Or manually
-sudo systemctl enable mf-crypter-bot
-sudo systemctl start mf-crypter-bot
-```
-
-**Option 2: screen** (Linux):
-```bash
-screen -dmS mf-bot cargo run --release -- --bot
-# Detach: Ctrl+A, D
-# Reattach: screen -r mf-bot
-```
-
-**Option 3: Task Scheduler** (Windows):
+Restart bot:
 ```batch
-# Via control panel
-MOTHERFUDDER.bat ? Press 3 ? Schedule Task
+MOTHERFUDDER.bat ? Press 3
 ```
 
 ---
 
-## ?? Verification Checklist
+## Next Steps
 
-After setup, verify everything works:
-
-### Telegram Bot
-- [ ] Bot responds to `/start`
-- [ ] Buttons are clickable
-- [ ] Redeem code works
-- [ ] Subscription status shows
-- [ ] Can upload files
-- [ ] Configuration buttons toggle
-- [ ] Build process works
-- [ ] Receives crypted binary
-
-### CLI Mode
-- [ ] `cargo run --release` works
-- [ ] Binary is detected
-- [ ] Build completes
-- [ ] Output file created
-- [ ] Output file runs
-
-### Control Panel
-- [ ] All menu options work
-- [ ] Prerequisites install
-- [ ] Bot configuration works
-- [ ] Bot hosting works
-- [ ] Update check works
-
----
-
-## ?? Next Steps
-
-After setup:
+### After Setup
 
 1. **Test the Bot**:
-   - Redeem a test code
+   - Send `/start` command
+   - Redeem a test subscription code
    - Upload a test binary
-   - Configure options
-   - Build and download
+   - Configure options via buttons
+   - Build and download result
 
 2. **Customize**:
    - Add your subscription codes
-   - Update support contact
-   - Customize FAQ
-   - Brand the bot
+   - Update support contact info
+   - Customize FAQ responses
+   - Adjust build defaults
 
 3. **Deploy** (Optional):
-   - Host on VPS
-   - Set up systemd service
-   - Configure auto-restart
-   - Monitor logs
+   - Host bot on VPS for 24/7 operation
+   - Configure systemd service (Linux)
+   - Set up auto-restart on failure
 
-4. **Read Docs**:
+4. **Read Documentation**:
    - [Features Guide](docs/FEATURES.md)
-   - [Bot Technical](docs/BOT_TECHNICAL.md)
-   - [UAC Bypass](docs/UAC_BYPASS_INFO.md)
+   - [Bot Setup Details](docs/BOT_SETUP.md)
+   - [UAC Bypass Info](docs/UAC_BYPASS_INFO.md)
    - [Defender Exclusion](docs/DEFENDER_EXCLUSION_INFO.md)
 
 ---
 
-## ?? Need Help?
+## VPS Deployment (Optional)
 
-**Quick Help**:
-```batch
-MOTHERFUDDER.bat ? Press 7
+### For 24/7 Bot Hosting
+
+**Linux VPS**:
+
+```bash
+# Install dependencies
+sudo apt update
+sudo apt install -y pkg-config libssl-dev build-essential
+
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Clone project
+git clone https://github.com/your-repo/motherfudder-enhanced
+cd motherfudder-enhanced/MfBuilder
+
+# Configure
+nano .env  # Add TELOXIDE_TOKEN
+
+# Build and run
+cargo build --release
+cargo run --release -- --bot
 ```
 
-**Documentation**:
-- [Full Docs Index](docs/DOCUMENTATION_INDEX.md)
+**systemd Service** (Linux):
+
+Create `/etc/systemd/system/mf-bot.service`:
+
+```ini
+[Unit]
+Description=Motherfudder Crypter Bot
+After=network.target
+
+[Service]
+Type=simple
+User=your-user
+WorkingDirectory=/path/to/motherfudder-enhanced/MfBuilder
+ExecStart=/home/your-user/.cargo/bin/cargo run --release -- --bot
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Enable and start:
+
+```bash
+sudo systemctl enable mf-bot
+sudo systemctl start mf-bot
+sudo systemctl status mf-bot
+```
+
+---
+
+## Verification Checklist
+
+### Telegram Bot
+
+- [ ] Bot responds to `/start`
+- [ ] Interactive buttons are clickable
+- [ ] Redeem code system works
+- [ ] Subscription status displays correctly
+- [ ] File upload works
+- [ ] Configuration toggles function
+- [ ] Build process completes
+- [ ] Crypted binary downloads successfully
+
+### CLI Mode
+
+- [ ] `cargo run --release` executes
+- [ ] Binary type is detected
+- [ ] Build completes without errors
+- [ ] Output file is created
+- [ ] Output file runs correctly
+
+### Control Panel
+
+- [ ] All menu options are accessible
+- [ ] Prerequisites install successfully
+- [ ] Bot configuration wizard works
+- [ ] Bot hosting options function
+- [ ] Update checker works
+
+---
+
+## Support
+
+### Documentation
+
+- [Full Documentation Index](docs/DOCUMENTATION_INDEX.md)
 - [FAQ](docs/BOT_PREVIEW.md#faq)
 - [Troubleshooting](docs/INSTALLATION.md#troubleshooting)
 
-**Support**:
-- ?? Telegram: @YourSupportBot
-- ?? GitHub Issues
-- ?? Documentation
+### Contact
+
+- **Telegram**: @YourSupportBot
+- **GitHub Issues**: Report bugs and issues
+- **Documentation**: Check docs folder first
 
 ---
 
-## ? Setup Complete!
+## Summary
 
-If you've followed this guide, you now have:
-- ? Fully functional Telegram bot
-- ? CLI mode ready
-- ? All prerequisites installed
-- ? Documentation accessed
-- ? Control panel configured
+**Automated Setup**:
+1. Run `MOTHERFUDDER.bat` as Admin
+2. Press 1 ? Install everything (30 mins)
+3. Press 2 ? Configure bot (2 mins)
+4. Press 3 ? Host bot (instant)
+5. Done!
 
-**Start crypting!** ??
+**Manual Setup**: See [docs/INSTALLATION.md](docs/INSTALLATION.md)
 
-```
-?? MOTHERFUDDER CRYPTER BOT
+**Total Time**: 30 minutes (mostly automated)
 
-[?? Redeem Code]  [?? My Subscription]
-[?? Crypt File]
-[? FAQ]  [?? Support]
-```
+**Result**: Production-ready crypter with interactive Telegram bot
 
 ---
 
-**?? Enjoy your production-ready crypter!**
+**Version**: 1.0.0 | **Status**: Production Ready | **Support**: Full documentation available

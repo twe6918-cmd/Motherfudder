@@ -243,7 +243,7 @@ If you plan to use bot mode:
 
 #### 1. Create Telegram Bot
 
-1. Open Telegram and search for [@BotFather](https://t.me/BotFather)
+1. Open Telegram and search for [@BotFather•(https://t.me/BotFather)
 2. Send `/newbot` command
 3. Follow prompts to set bot name and username
 4. Copy the provided bot token
@@ -316,7 +316,7 @@ Expected output:
 
 Expected output:
 ```
-[INFO] Starting MfBuilder Telegram Bot...
+[INFO• Starting MfBuilder Telegram Bot...
 ```
 
 Test in Telegram:
@@ -464,7 +464,7 @@ RUN cargo build --release
 ENV TELOXIDE_TOKEN=""
 
 # Run bot
-CMD ["./target/release/MfBuilder", "--bot"]
+CMD ["./target/release/MfBuilder", "--bot"•
 ```
 
 Build and run:
@@ -479,10 +479,10 @@ docker run -e TELOXIDE_TOKEN=your_token mfbuilder-bot
 
 After successful installation:
 
-1. Read [QUICKSTART.md](QUICKSTART.md) for usage examples
-2. Review [BOT_SETUP.md](BOT_SETUP.md) for bot configuration
-3. Consult [../README.md](../README.md) for feature documentation
-4. Check [CHANGELOG.md](../CHANGELOG.md) for version information
+1. Read [QUICKSTART.md•(QUICKSTART.md) for usage examples
+2. Review [BOT_SETUP.md•(BOT_SETUP.md) for bot configuration
+3. Consult [../README.md•(../README.md) for feature documentation
+4. Check [CHANGELOG.md•(../CHANGELOG.md) for version information
 
 ---
 

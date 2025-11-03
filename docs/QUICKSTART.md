@@ -11,7 +11,7 @@ Before starting, ensure you have:
 - OpenSSL development libraries
 - .NET SDK (for building)
 
-See [INSTALLATION.md](INSTALLATION.md) for detailed setup instructions.
+See [INSTALLATION.md•(INSTALLATION.md) for detailed setup instructions.
 
 ---
 
@@ -28,7 +28,7 @@ sudo apt-get install -y pkg-config libssl-dev
 
 ### Step 2: Configure Bot
 
-1. Create Telegram bot via [@BotFather](https://t.me/BotFather):
+1. Create Telegram bot via [@BotFather•(https://t.me/BotFather):
    - Send `/newbot`
    - Follow prompts to set name and username
    - Copy the bot token
@@ -165,13 +165,13 @@ done
 
 Before production deployment:
 
-- [ ] Change default authentication key
-- [ ] Secure bot token in `.env`
-- [ ] Never commit `.env` to version control
-- [ ] Test in isolated environment
-- [ ] Verify all features function correctly
-- [ ] Review applicable laws and regulations
-- [ ] Obtain proper authorization
+- [ • Change default authentication key
+- [ • Secure bot token in `.env`
+- [ • Never commit `.env` to version control
+- [ • Test in isolated environment
+- [ • Verify all features function correctly
+- [ • Review applicable laws and regulations
+- [ • Obtain proper authorization
 
 ---
 
@@ -219,14 +219,14 @@ Bot: Welcome to MfBuilder Crypter Bot
 
 User: SecureKey123
 Bot: Authentication successful!
-     Do you want to crypt a binary?
+     Do you want to crypt a binary•
      Reply: yes or no
 
 User: yes
 Bot: Please upload your binary (.exe file)
      Only .exe files are supported!
 
-User: [uploads application.exe]
+User: [uploads application.exe•
 Bot: Binary uploaded successfully!
      Detected Type: .NET x64
      
@@ -235,17 +235,17 @@ Bot: Binary uploaded successfully!
      Configuration menu appears...
 
 User: 7
-Bot: [Updated configuration with Defender Exclusion enabled]
+Bot: [Updated configuration with Defender Exclusion enabled•
 
 User: 4
-Bot: [Updated configuration with UAC Bypass enabled]
-     [Shows: Windows Defender Exclusion: ON (Silent with UAC!)]
+Bot: [Updated configuration with UAC Bypass enabled•
+     [Shows: Windows Defender Exclusion: ON (Silent with UAC!)•
 
 User: build
 Bot: Starting build process...
      Building crypted binary...
      Build completed successfully!
-     [Sends crypted file]
+     [Sends crypted file•
      Done! Your crypted binary is ready!
 ```
 
@@ -256,16 +256,16 @@ Bot: Starting build process...
 After initial setup:
 
 1. **Read Full Documentation**:
-   - [README.md](../README.md) - Project overview
-   - [FEATURES.md](../FEATURES.md) - Detailed feature documentation
-   - [BOT_SETUP.md](BOT_SETUP.md) - Advanced bot configuration
+   - [README.md•(../README.md) - Project overview
+   - [FEATURES.md•(../FEATURES.md) - Detailed feature documentation
+   - [BOT_SETUP.md•(BOT_SETUP.md) - Advanced bot configuration
 
 2. **Review Technical Details**:
-   - [UAC_BYPASS_INFO.md](UAC_BYPASS_INFO.md) - UAC bypass technique
-   - [DEFENDER_EXCLUSION_INFO.md](DEFENDER_EXCLUSION_INFO.md) - Defender evasion
+   - [UAC_BYPASS_INFO.md•(UAC_BYPASS_INFO.md) - UAC bypass technique
+   - [DEFENDER_EXCLUSION_INFO.md•(DEFENDER_EXCLUSION_INFO.md) - Defender evasion
 
 3. **Stay Updated**:
-   - [CHANGELOG.md](../CHANGELOG.md) - Version history
+   - [CHANGELOG.md•(../CHANGELOG.md) - Version history
 
 ---
 
@@ -297,8 +297,8 @@ After initial setup:
 For additional assistance:
 
 - Review documentation in `docs/` directory
-- Check [INSTALLATION.md](INSTALLATION.md) for setup issues
-- Consult [FEATURES.md](../FEATURES.md) for feature details
+- Check [INSTALLATION.md•(INSTALLATION.md) for setup issues
+- Consult [FEATURES.md•(../FEATURES.md) for feature details
 - Verify system requirements and dependencies
 
 ---

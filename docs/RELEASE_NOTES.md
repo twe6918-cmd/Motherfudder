@@ -48,33 +48,33 @@
 ## Core Capabilities
 
 ### Binary Support
-- ? Native x86 executables
-- ? Native x64 executables
-- ? .NET x86 assemblies
-- ? .NET x64 assemblies
-- ? Automatic type detection
+- • Native x86 executables
+- • Native x64 executables
+- • .NET x86 assemblies
+- • .NET x64 assemblies
+- • Automatic type detection
 
 ### Anti-Analysis
-- ? Anti-Debug (thread-based detection)
-- ? Anti-VM (hardware fingerprinting)
-- ? Geographic restrictions (CIS blocking)
+- • Anti-Debug (thread-based detection)
+- • Anti-VM (hardware fingerprinting)
+- • Geographic restrictions (CIS blocking)
 
 ### Evasion Techniques
-- ? AMSI bypass (.NET only)
-- ? ETW patching (.NET only)
-- ? Windows Defender exclusions
-- ? Indirect syscalls (Native only)
-- ? String encryption (RC4)
+- • AMSI bypass (.NET only)
+- • ETW patching (.NET only)
+- • Windows Defender exclusions
+- • Indirect syscalls (Native only)
+- • String encryption (RC4)
 
 ### Privilege & Persistence
-- ? UAC bypass (fodhelper.exe)
-- ? Scheduled task persistence
-- ? Single instance management
-- ? Auto-start on boot
+- • UAC bypass (fodhelper.exe)
+- • Scheduled task persistence
+- • Single instance management
+- • Auto-start on boot
 
 ### Output Formats
-- ? BAT (batch wrapper - more evasive)
-- ? EXE (direct executable - cleaner)
+- • BAT (batch wrapper - more evasive)
+- • EXE (direct executable - cleaner)
 
 ---
 
@@ -118,23 +118,23 @@
 
 ```
 Rust Builder (MfBuilder)
-??? Binary Detection (goblin)
-??? Encryption (RC4, SHA-256)
-??? Stub Configuration
-??? Build Orchestration
+• Binary Detection (goblin)
+• Encryption (RC4, SHA-256)
+• Stub Configuration
+• Build Orchestration
 
 C# Stub (MfRunner)
-??? Payload Decryption
-??? Anti-Analysis
-??? Privilege Escalation
-??? AV Evasion
-??? Payload Execution
+• Payload Decryption
+• Anti-Analysis
+• Privilege Escalation
+• AV Evasion
+• Payload Execution
 
 .NET Obfuscator (MfObfDotNet)
-??? String Encryption
-??? Integer Obfuscation
-??? Method Renaming
-??? Control Flow Obfuscation
+• String Encryption
+• Integer Obfuscation
+• Method Renaming
+• Control Flow Obfuscation
 ```
 
 ### Encryption
@@ -155,9 +155,9 @@ C# Stub (MfRunner)
 2. Key Generation (random seeds)
 3. Stub Configuration (preprocessor symbols)
 4. Payload Encryption (RC4)
-5. Native Conversion (Donut + SGN) [if native]
+5. Native Conversion (Donut + SGN) [if native•
 6. Stub Compilation (MSBuild)
-7. .NET Obfuscation [if .NET stub]
+7. .NET Obfuscation [if .NET stub•
 8. Wrapper Generation (BAT/EXE)
 ```
 
@@ -214,7 +214,7 @@ cd MfBuilder
 cargo build --release
 ```
 
-See [INSTALLATION.md](MfBuilder/INSTALLATION.md) for detailed instructions.
+See [INSTALLATION.md•(MfBuilder/INSTALLATION.md) for detailed instructions.
 
 ---
 
@@ -246,10 +246,10 @@ cp .env.example .env
 ./MfBuilder --bot
 
 # Use via Telegram
-# /start ? authenticate ? upload ? configure ? build
+# /start • authenticate • upload • configure • build
 ```
 
-See [QUICKSTART.md](MfBuilder/QUICKSTART.md) for detailed usage.
+See [QUICKSTART.md•(MfBuilder/QUICKSTART.md) for detailed usage.
 
 ---
 
@@ -315,7 +315,7 @@ See [QUICKSTART.md](MfBuilder/QUICKSTART.md) for detailed usage.
 
 ### Legal & Ethical Use
 
-?? **This tool is for educational and authorized testing only**
+ **This tool is for educational and authorized testing only**
 
 Users must:
 - Obtain explicit authorization before testing
@@ -376,7 +376,7 @@ See documentation for complete troubleshooting guides.
 - Memory protection restoration added
 - Configuration validation enhanced
 
-See [CHANGELOG.md](CHANGELOG.md) for detailed history.
+See [CHANGELOG.md•(CHANGELOG.md) for detailed history.
 
 ---
 
@@ -386,7 +386,7 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed history.
 **Florin** - Project author and maintainer
 
 ### Techniques & Research
-- **AMSI Bypass**: Based on [Chainski/GlobalAMSIBypass](https://github.com/Chainski/GlobalAMSIBypass)
+- **AMSI Bypass**: Based on [Chainski/GlobalAMSIBypass•(https://github.com/Chainski/GlobalAMSIBypass)
 - **UAC Bypass**: fodhelper.exe registry hijacking technique
 - **Windows Internals**: Community research and documentation
 
@@ -406,7 +406,7 @@ Special thanks to the security research community for continuous work in underst
 
 ### Documentation
 - Complete documentation in repository
-- Indexed in [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
+- Indexed in [DOCUMENTATION_INDEX.md•(DOCUMENTATION_INDEX.md)
 - Platform-specific guides available
 - Troubleshooting sections included
 
@@ -418,13 +418,13 @@ For bugs or feature requests:
 4. Provide reproduction steps
 
 ### Contributing
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md•(CONTRIBUTING.md) for guidelines.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+This project is licensed under the MIT License - see [LICENSE•(LICENSE) file.
 
 Copyright (c) 2025 Florin
 
@@ -454,13 +454,13 @@ This tool is provided for educational and authorized security testing purposes o
 
 ## Next Steps
 
-1. **Read**: [README_FIRST.md](README_FIRST.md) for orientation
-2. **Install**: Follow [INSTALLATION.md](MfBuilder/INSTALLATION.md)
-3. **Quick Start**: Use [QUICKSTART.md](MfBuilder/QUICKSTART.md)
-4. **Explore**: Review [FEATURES.md](FEATURES.md)
+1. **Read**: [README_FIRST.md•(README_FIRST.md) for orientation
+2. **Install**: Follow [INSTALLATION.md•(MfBuilder/INSTALLATION.md)
+3. **Quick Start**: Use [QUICKSTART.md•(MfBuilder/QUICKSTART.md)
+4. **Explore**: Review [FEATURES.md•(FEATURES.md)
 
 ---
 
-? **If this project helps you, please consider leaving a star on the repository!**
+• **If this project helps you, please consider leaving a star on the repository!**
 
-**Version 1.0.0 - Production Release - Ready for the World** ??
+**Version 1.0.0 - Production Release - Ready for the World** 

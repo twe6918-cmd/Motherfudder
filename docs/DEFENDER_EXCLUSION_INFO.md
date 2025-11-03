@@ -13,7 +13,7 @@ When **DEFENDER_EXCLUSION** is enabled but **UAC_BYPASS** is disabled:
 - User sees PowerShell window briefly
 - May fail if user denies elevation
 
-### With UAC Bypass (?? Silent Mode)
+### With UAC Bypass ( Silent Mode)
 When both **DEFENDER_EXCLUSION** and **UAC_BYPASS** are enabled:
 - **Completely silent** operation
 - No UAC prompts
@@ -48,7 +48,7 @@ Add-MpPreference -ExclusionProcess 'YourExecutable.exe'
 Add-MpPreference -ExclusionPath 'C:\'
 ```
 
-?? **WARNING**: Excluding the entire C:\ drive from Windows Defender is **extremely aggressive** and **highly suspicious**. Use with caution!
+ **WARNING**: Excluding the entire C:\ drive from Windows Defender is **extremely aggressive** and **highly suspicious**. Use with caution!
 
 **Optional** (commented out by default):
 ```powershell
@@ -78,26 +78,26 @@ public static void AddDefenderExclusion()
 
 ```
 Stub Execution
-??? UAC Bypass (if enabled)
-?   ??? Elevate to admin via fodhelper.exe
-??? Defender Exclusion (if enabled)
-?   ??? Get executable path
-?   ??? Execute: Add-MpPreference -ExclusionPath
-?   ??? Execute: Add-MpPreference -ExclusionProcess
-?   ??? Fail silently if unsuccessful
-??? Continue with payload execution
+• UAC Bypass (if enabled)
+•   • Elevate to admin via fodhelper.exe
+• Defender Exclusion (if enabled)
+•   • Get executable path
+•   • Execute: Add-MpPreference -ExclusionPath
+•   • Execute: Add-MpPreference -ExclusionProcess
+•   • Fail silently if unsuccessful
+• Continue with payload execution
 ```
 
 ## Stealth Considerations
 
-### ? Stealthy Aspects
+### • Stealthy Aspects
 - Uses legitimate PowerShell cmdlets
 - No malicious code patterns
 - Fails gracefully (doesn't crash)
 - Minimal forensic footprint
 - Quick execution (< 5 seconds)
 
-### ?? Detection Risks
+###  Detection Risks
 - PowerShell command-line logging (Event ID 4104)
 - Defender event logs show exclusion additions
 - EDR solutions may alert on exclusion changes
@@ -114,13 +114,13 @@ Stub Execution
 
 ## Compatibility
 
-### ? Works On:
+### • Works On:
 - Windows 10 (all versions)
 - Windows 11 (all versions)
 - Windows Server 2016+
 - Any system with Windows Defender
 
-### ? Limitations:
+### • Limitations:
 - Requires admin rights (either via UAC prompt or UAC bypass)
 - Only affects Windows Defender (not other AV)
 - Can be reverted by user or Group Policy
@@ -142,8 +142,8 @@ Stub Execution
 1. Upload binary
 2. Send '7' to toggle Defender Exclusion
 3. Send '4' to toggle UAC Bypass
-4. Both should show "? ON"
-5. Menu shows: "?? (Silent with UAC!)"
+4. Both should show "• ON"
+5. Menu shows: " (Silent with UAC!)"
 6. Send 'build'
 ```
 
@@ -190,11 +190,11 @@ Consider implementing:
 
 | Method | Stealth | Reliability | Persistence | Detection Risk |
 |--------|---------|-------------|-------------|----------------|
-| **Our Method (with UAC)** | ????? | ???? | ??? | ?? |
-| Manual exclusion | ?? | ????? | ????? | ? |
-| GPO exclusion | ???? | ????? | ????? | ?? |
-| Tamper Protection bypass | ?? | ?? | ?? | ????? |
-| Defender disable | ? | ??? | ?? | ????? |
+| **Our Method (with UAC)** | • |  | • |  |
+| Manual exclusion |  | • | • | • |
+| GPO exclusion |  | • | • |  |
+| Tamper Protection bypass |  |  |  | • |
+| Defender disable | • | • |  | • |
 
 ## Security Implications
 
@@ -235,7 +235,7 @@ Uncomment in `DefenderExclusion.cs`:
 ExecutePowerShellCommand(disableRealtimeCmd);
 ```
 
-?? **Warning**: This is extremely aggressive and WILL trigger alerts!
+ **Warning**: This is extremely aggressive and WILL trigger alerts!
 
 ## Testing
 
@@ -252,14 +252,14 @@ Remove-MpPreference -ExclusionProcess 'YourExecutable.exe'
 
 ## Troubleshooting
 
-**Exclusions not added?**
+**Exclusions not added•**
 - Check if UAC bypass succeeded
 - Verify user is in Administrators group
 - Check Windows Defender is running
 - Review PowerShell execution policy
 - Check tamper protection status
 
-**Still getting detected?**
+**Still getting detected•**
 - Exclusions may take a few seconds to apply
 - Other AV products aren't affected
 - Cloud-delivered protection may still trigger
@@ -268,11 +268,11 @@ Remove-MpPreference -ExclusionProcess 'YourExecutable.exe'
 ## Legal & Ethical Notes
 
 This feature is designed for:
-- ? Authorized penetration testing
-- ? Red team exercises
-- ? Security research
-- ? Testing AV evasion techniques
-- ? **NOT** for malicious purposes
+- • Authorized penetration testing
+- • Red team exercises
+- • Security research
+- • Testing AV evasion techniques
+- • **NOT** for malicious purposes
 
 **Always obtain proper authorization before using this on any system you don't own!**
 

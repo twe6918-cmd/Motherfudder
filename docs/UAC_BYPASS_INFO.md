@@ -23,15 +23,15 @@ The UAC bypass implemented in this crypter uses the **fodhelper.exe** technique,
 ```csharp
 // In UacBypass.cs
 PerformUacBypass(string powershellCommand)
-??? Check if already elevated ? exit
-??? Check if user is administrator ? exit if not
-??? Generate random class name
-??? Create registry entries:
-?   ??? HKCU\Software\Classes\<RandomName>\Shell\Open\command
-?   ??? HKCU\Software\Classes\ms-settings\CurVer
-??? Execute fodhelper.exe
-??? Wait and cleanup registry
-??? Exit process (elevated instance continues)
+• Check if already elevated • exit
+• Check if user is administrator • exit if not
+• Generate random class name
+• Create registry entries:
+•   • HKCU\Software\Classes\<RandomName>\Shell\Open\command
+•   • HKCU\Software\Classes\ms-settings\CurVer
+• Execute fodhelper.exe
+• Wait and cleanup registry
+• Exit process (elevated instance continues)
 ```
 
 ## Integration with Defender Exclusion
@@ -53,16 +53,16 @@ This creates a **silent defender exclusion** - the holy grail of AV evasion!
 
 ## Compatibility
 
-? **Works on**:
+• **Works on**:
 - Windows 10 (all versions)
 - Windows 11 21H2, 22H2, 23H2
 
-?? **Requirements**:
+ **Requirements**:
 - User must be in Administrators group
 - UAC must be enabled (ironically!)
 - User account must not be already elevated
 
-? **Does NOT work**:
+• **Does NOT work**:
 - Standard user (non-admin)
 - Already elevated process
 - Windows 7/8/8.1 (different technique needed)
@@ -70,10 +70,10 @@ This creates a **silent defender exclusion** - the holy grail of AV evasion!
 ## Detection Status
 
 **As of 2024**:
-- ? Still works on most systems
-- ?? Some EDR solutions detect this
-- ?? Microsoft Defender may flag the registry manipulation
-- ? Most AV products don't detect it when properly obfuscated
+- • Still works on most systems
+-  Some EDR solutions detect this
+-  Microsoft Defender may flag the registry manipulation
+- • Most AV products don't detect it when properly obfuscated
 
 **Evasion techniques used**:
 - Random class names (prevents signature detection)
@@ -81,7 +81,7 @@ This creates a **silent defender exclusion** - the holy grail of AV evasion!
 - Quick cleanup (minimizes forensic artifacts)
 - Combined with other features (blends in)
 
-## Why fodhelper.exe?
+## Why fodhelper.exe•
 
 `fodhelper.exe` is a legitimate Windows binary that:
 - **Auto-elevates**: Marked with `autoElevate="true"` in its manifest

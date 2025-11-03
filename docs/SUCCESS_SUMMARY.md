@@ -65,7 +65,7 @@ motherfudder-enhanced/
 │   ├── MEGA_CONTROL_PANEL_PREVIEW.md
 │   ├── DEPLOYMENT_READY.md
 │   ├── FINAL_STATS.txt
-│   └── [12 more professional docs]
+│   └── [12 more professional docs•
 │
 ├── MfBuilder/
 │   ├── src/
@@ -73,7 +73,7 @@ motherfudder-enhanced/
 │   │   ├── telegram_bot_callbacks.rs
 │   │   ├── telegram_bot_handlers.rs
 │   │   ├── update_checker.rs          ← NEW!
-│   │   └── [other modules]
+│   │   └── [other modules•
 │   └── MfRunner/
 └── MfObfDotNet/
 ```
@@ -87,14 +87,14 @@ motherfudder-enhanced/
  ║           🔮 MOTHERFUDDER CRYPTER - v1.0.0 🔮                ║
  ╚══════════════════════════════════════════════════════════════╝
 
-  [1] 🔧 Install Prerequisites          (One-Click Setup)
-  [2] 🤖 Configure Telegram Bot         (Quick Wizard)
-  [3] 🚀 Host Telegram Bot              (Start/Stop)
-  [4] 💻 Build CLI Mode                 (Manual Build)
-  [5] 🔄 Check for Updates              (Auto-Update)
-  [6] 📚 Open Documentation             (Quick Access)
-  [7] ❓ Help & Support                 (Troubleshooting)
-  [8] 🚪 Exit
+  [1• 🔧 Install Prerequisites          (One-Click Setup)
+  [2• 🤖 Configure Telegram Bot         (Quick Wizard)
+  [3• 🚀 Host Telegram Bot              (Start/Stop)
+  [4• 💻 Build CLI Mode                 (Manual Build)
+  [5• 🔄 Check for Updates              (Auto-Update)
+  [6• 📚 Open Documentation             (Quick Access)
+  [7• ❓ Help & Support                 (Troubleshooting)
+  [8• 🚪 Exit
 ```
 
 ---
@@ -119,9 +119,9 @@ Features:
 ...
 🔥 NEW UPDATE AVAILABLE! (3 new commits)  ← AUTOMATIC!
 
-[🔑 Redeem Code]  [👤 My Subscription]
-[🔨 Crypt File]
-[🔄 View Updates]  ← NEW BUTTON!
+[🔑 Redeem Code•  [👤 My Subscription•
+[🔨 Crypt File•
+[🔄 View Updates•  ← NEW BUTTON!
 ```
 
 Clicking "View Updates":
@@ -184,7 +184,7 @@ Note: Bot will need to restart after update.
 ### Daily Use (Bot)
 ```
 1. User: /start
-2. Bot: [Shows main menu with update notification if available]
+2. Bot: [Shows main menu with update notification if available•
 3. User: Clicks "Redeem Code" → Enters code
 4. User: Clicks "Crypt File" → Uploads binary
 5. User: Clicks buttons to configure

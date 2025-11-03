@@ -1,6 +1,6 @@
 # Aggressive Mode Warning - C:\ Drive Exclusion
 
-## ?? IMPORTANT NOTICE ??
+##  IMPORTANT NOTICE 
 
 The **C:\ Drive Exclusion** feature is an **extremely aggressive** option that should be used with great caution.
 
@@ -19,32 +19,32 @@ Add-MpPreference -ExclusionPath 'C:\'
 
 ## Effectiveness vs Risk
 
-### Effectiveness: ?????
+### Effectiveness: •
 
 **Advantages**:
-- ? **Maximum protection** - Defender won't scan anything on C:\
-- ? **Complete evasion** - No Defender detection possible
-- ? **Payload freedom** - Any file anywhere on C:\ is excluded
-- ? **Drop additional files** - Can drop tools/files anywhere
+- • **Maximum protection** - Defender won't scan anything on C:\
+- • **Complete evasion** - No Defender detection possible
+- • **Payload freedom** - Any file anywhere on C:\ is excluded
+- • **Drop additional files** - Can drop tools/files anywhere
 
 **This is the nuclear option for Defender evasion.**
 
-### Risk: ??????????
+### Risk: 
 
 **Disadvantages**:
-- ?? **Extremely suspicious** - No legitimate reason for this
-- ?? **Highly visible** - Shows in Windows Security settings
-- ?? **Event logs** - Logged as Event ID 5007
-- ?? **User notification** - User may see Defender warnings
-- ?? **EDR alerts** - Will trigger behavioral detection
-- ?? **GPO override** - Enterprise policy may revert
-- ?? **SOC detection** - Security teams will investigate
+-  **Extremely suspicious** - No legitimate reason for this
+-  **Highly visible** - Shows in Windows Security settings
+-  **Event logs** - Logged as Event ID 5007
+-  **User notification** - User may see Defender warnings
+-  **EDR alerts** - Will trigger behavioral detection
+-  **GPO override** - Enterprise policy may revert
+-  **SOC detection** - Security teams will investigate
 
 ---
 
 ## When to Use
 
-### ? Acceptable Use Cases
+### • Acceptable Use Cases
 
 **Testing Environments**:
 - Your own test systems
@@ -57,7 +57,7 @@ Add-MpPreference -ExclusionPath 'C:\'
 - Proof of concept demonstrations
 - Immediate execution scenarios
 
-### ? DO NOT Use For
+### • DO NOT Use For
 
 **Stealth Operations**:
 - Long-term deployments
@@ -134,8 +134,8 @@ In monitored environments:
 
 ```json
 {
-    "defender_exclusion": true,       // ? Use this
-    "defender_exclude_drive": false,  // ? Usually avoid this
+    "defender_exclusion": true,       // • Use this
+    "defender_exclude_drive": false,  // • Usually avoid this
     "uac_bypass": true
 }
 ```
@@ -193,7 +193,7 @@ In monitored environments:
 3. Elevated instance starts
 4. Add directory exclusion (silent)
 5. Add process exclusion (silent)
-6. Add C:\ exclusion (silent) ? If enabled
+6. Add C:\ exclusion (silent) • If enabled
 7. Continue execution (fully excluded)
 ```
 
@@ -338,32 +338,32 @@ public static void RemoveDefenderExclusions()
 ```json
 {
     "defender_exclusion": true,
-    "defender_exclude_drive": false,  // ? Keep this FALSE
+    "defender_exclude_drive": false,  // • Keep this FALSE
     "uac_bypass": true
 }
 ```
 
 **Provides**:
-- ? Excellent evasion (95%+ success)
-- ? Low suspicion
-- ? Silent with UAC
-- ? Suitable for operations
+- • Excellent evasion (95%+ success)
+- • Low suspicion
+- • Silent with UAC
+- • Suitable for operations
 
 ### Aggressive Mode (Testing Only)
 
 ```json
 {
     "defender_exclusion": true,
-    "defender_exclude_drive": true,   // ? Use with extreme caution
+    "defender_exclude_drive": true,   // • Use with extreme caution
     "uac_bypass": true
 }
 ```
 
 **Provides**:
-- ? Maximum evasion (100%)
-- ?? Maximum suspicion
-- ?? Will be detected in monitored environments
-- ?? Only for testing/lab use
+- • Maximum evasion (100%)
+-  Maximum suspicion
+-  Will be detected in monitored environments
+-  Only for testing/lab use
 
 ---
 
@@ -381,4 +381,4 @@ public static void RemoveDefenderExclusions()
 
 ---
 
-**?? Use responsibly and only with proper authorization ??**
+** Use responsibly and only with proper authorization **

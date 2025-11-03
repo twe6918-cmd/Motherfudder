@@ -14,18 +14,18 @@
 
  ══════════════════════════════════════════════════════════════
 
-  [1] 🔧 Install Prerequisites          (One-Click Setup)
-  [2] 🤖 Configure Telegram Bot         (Quick Wizard)
-  [3] 🚀 Host Telegram Bot              (Start/Stop)
-  [4] 💻 Build CLI Mode                 (Manual Build)
-  [5] 🔄 Check for Updates              (Auto-Update)
-  [6] 📚 Open Documentation             (Quick Access)
-  [7] ❓ Help & Support                 (Troubleshooting)
-  [8] 🚪 Exit
+  [1• 🔧 Install Prerequisites          (One-Click Setup)
+  [2• 🤖 Configure Telegram Bot         (Quick Wizard)
+  [3• 🚀 Host Telegram Bot              (Start/Stop)
+  [4• 💻 Build CLI Mode                 (Manual Build)
+  [5• 🔄 Check for Updates              (Auto-Update)
+  [6• 📚 Open Documentation             (Quick Access)
+  [7• ❓ Help & Support                 (Troubleshooting)
+  [8• 🚪 Exit
 
  ══════════════════════════════════════════════════════════════
 
- Choose an option [1-8]:
+ Choose an option [1-8•:
 ```
 
 ---
@@ -49,7 +49,7 @@
 
  ⏱️  Estimated time: 10-30 minutes (depending on internet speed)
 
- Continue? (Y/N):
+ Continue• (Y/N):
 ```
 
 Then:
@@ -64,7 +64,7 @@ Then:
  ⚙️  Installing Rust + Cargo...
  ══════════════════════════════════════════════════════════════
 
- [Progress...]
+ [Progress...•
 
  ✅ Rust installed!
 
@@ -91,7 +91,7 @@ Then:
  This wizard will help you set up the Telegram bot.
 
  ══════════════════════════════════════════════════════════════
- [STEP 1/2] Telegram Bot Token
+ [STEP 1/2• Telegram Bot Token
  ══════════════════════════════════════════════════════════════
 
  How to get a bot token:
@@ -105,12 +105,12 @@ Then:
  ✅ Bot token saved!
 
  ══════════════════════════════════════════════════════════════
- [STEP 2/2] Authentication Key (Optional)
+ [STEP 2/2• Authentication Key (Optional)
  ══════════════════════════════════════════════════════════════
 
  Current authentication key: MfCrypter2024
 
- Do you want to change it? (Y/N): N
+ Do you want to change it• (Y/N): N
 
  ╔══════════════════════════════════════════════════════════════╗
  ║                                                              ║
@@ -132,11 +132,11 @@ Then:
 
  Choose hosting mode:
 
-  [1] 🔥 Foreground (Current window - Easy testing)
-  [2] 🌙 Background (Hidden - Production use)
-  [3] 🔙 Back to main menu
+  [1• 🔥 Foreground (Current window - Easy testing)
+  [2• 🌙 Background (Hidden - Production use)
+  [3• 🔙 Back to main menu
 
- Choice [1-3]:
+ Choice [1-3•:
 ```
 
 **Foreground Mode**:
@@ -149,7 +149,7 @@ Then:
 
  ══════════════════════════════════════════════════════════════
 
- [Bot logs appear here...]
+ [Bot logs appear here...•
 ```
 
 **Background Mode**:
@@ -193,7 +193,7 @@ Then:
  🔨 Building crypter...
  ══════════════════════════════════════════════════════════════
 
- [Build logs...]
+ [Build logs...•
 
  ✅ Build successful!
  📦 Output: MfBuilder/out.bat
@@ -226,7 +226,7 @@ Then:
 
  ══════════════════════════════════════════════════════════════
 
- Install update now? (Y/N): Y
+ Install update now• (Y/N): Y
 
  📥 Downloading update...
 
@@ -256,15 +256,15 @@ Then:
 
  Available documentation:
 
-  [1] 📄 Setup Guide (SETUP_GUIDE.md)
-  [2] 📖 Features Guide (docs/FEATURES.md)
-  [3] 🤖 Bot Setup (docs/BOT_SETUP.md)
-  [4] 🔧 Installation Guide (docs/INSTALLATION.md)
-  [5] ❓ FAQ (docs/BOT_PREVIEW.md)
-  [6] 📚 Full Documentation Index (docs/DOCUMENTATION_INDEX.md)
-  [7] 🔙 Back to main menu
+  [1• 📄 Setup Guide (SETUP_GUIDE.md)
+  [2• 📖 Features Guide (docs/FEATURES.md)
+  [3• 🤖 Bot Setup (docs/BOT_SETUP.md)
+  [4• 🔧 Installation Guide (docs/INSTALLATION.md)
+  [5• ❓ FAQ (docs/BOT_PREVIEW.md)
+  [6• 📚 Full Documentation Index (docs/DOCUMENTATION_INDEX.md)
+  [7• 🔙 Back to main menu
 
- Choose [1-7]: 1
+ Choose [1-7•: 1
 
  📖 Opening documentation...
 ```
@@ -431,7 +431,7 @@ Then:
   ├── BUILD_GUIDE.md
   ├── CHANGELOG.md
   ├── FEATURES.md
-  ├── [18 more .md files cluttering root]
+  ├── [18 more .md files cluttering root•
   ├── setup.bat
   ├── host.bat
   ├── install-prerequisites.bat
@@ -449,7 +449,7 @@ Then:
   │   ├── FEATURES.md
   │   ├── BOT_SETUP.md
   │   ├── INSTALLATION.md
-  │   └── [21 more docs]
+  │   └── [21 more docs•
   └── MfBuilder/
 ```
 

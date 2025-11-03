@@ -6,15 +6,15 @@ Comprehensive guide for deploying and configuring the Motherfudder Crypter Teleg
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Prerequisites](#prerequisites)
-3. [Initial Setup](#initial-setup)
-4. [Configuration](#configuration)
-5. [Deployment](#deployment)
-6. [Usage](#usage)
-7. [Advanced Configuration](#advanced-configuration)
-8. [Security Considerations](#security-considerations)
-9. [Troubleshooting](#troubleshooting)
+1. [Overview•(#overview)
+2. [Prerequisites•(#prerequisites)
+3. [Initial Setup•(#initial-setup)
+4. [Configuration•(#configuration)
+5. [Deployment•(#deployment)
+6. [Usage•(#usage)
+7. [Advanced Configuration•(#advanced-configuration)
+8. [Security Considerations•(#security-considerations)
+9. [Troubleshooting•(#troubleshooting)
 
 ---
 
@@ -54,12 +54,12 @@ The Telegram bot interface provides an interactive method for crypting binaries 
   - Network connectivity
   - Telegram account
 
-**Why VPS?**
-- ? Bot runs 24/7 without your PC
-- ? Remote access from anywhere
-- ? Professional uptime and reliability
-- ? Serve multiple users simultaneously
-- ? Easy updates and maintenance
+**Why VPS•**
+- • Bot runs 24/7 without your PC
+- • Remote access from anywhere
+- • Professional uptime and reliability
+- • Serve multiple users simultaneously
+- • Easy updates and maintenance
 
 ### Software Dependencies
 
@@ -79,7 +79,7 @@ sudo dnf install pkg-config openssl-devel
 
 ### Step 1: Create Telegram Bot
 
-1. Open Telegram and search for [@BotFather](https://t.me/BotFather)
+1. Open Telegram and search for [@BotFather•(https://t.me/BotFather)
 
 2. Send the `/newbot` command
 
@@ -147,13 +147,13 @@ The bot supports the following commands:
 
 ```
 User sends /start
-    ?
+    •
 Bot requests authentication key
-    ?
+    •
 User provides key
-    ?
+    •
 Bot validates against configured key
-    ?
+    •
 If valid: Grant access
 If invalid: Deny access with error message
 ```
@@ -179,7 +179,7 @@ cargo run -- --bot
 
 Expected output:
 ```
-[INFO] Starting MfBuilder Telegram Bot...
+[INFO• Starting MfBuilder Telegram Bot...
 ```
 
 Keep terminal open while bot is running.
@@ -215,11 +215,11 @@ Reattach: `tmux attach -t mfbuilder-bot`
 Create service file: `/etc/systemd/system/mfbuilder-bot.service`
 
 ```ini
-[Unit]
+[Unit•
 Description=MfBuilder Telegram Bot
 After=network.target
 
-[Service]
+[Service•
 Type=simple
 User=youruser
 WorkingDirectory=/path/to/MfBuilder
@@ -228,7 +228,7 @@ ExecStart=/path/to/MfBuilder/target/release/MfBuilder --bot
 Restart=on-failure
 RestartSec=10
 
-[Install]
+[Install•
 WantedBy=multi-user.target
 ```
 
@@ -265,7 +265,7 @@ RUN cargo build --release
 
 ENV TELOXIDE_TOKEN=""
 
-CMD ["./target/release/MfBuilder", "--bot"]
+CMD ["./target/release/MfBuilder", "--bot"•
 ```
 
 Build and run:
@@ -306,7 +306,7 @@ Bot responds:
 ```
 Authentication successful!
 
-Do you want to crypt a binary?
+Do you want to crypt a binary•
 Reply: yes or no
 ```
 
@@ -381,7 +381,7 @@ Build completed successfully!
 
 Sending your crypted binary...
 
-[File sent]
+[File sent•
 
 Done! Your crypted binary is ready!
 
@@ -403,7 +403,7 @@ fn is_valid_key(key: &str, user_id: UserId) -> bool {
     let valid_keys: HashMap<i64, &str> = HashMap::from([
         (123456789, "UserAKey"),
         (987654321, "UserBKey"),
-    ]);
+    •);
     
     valid_keys.get(&user_id.0).map_or(false, |&k| k == key)
 }
@@ -414,7 +414,7 @@ fn is_valid_key(key: &str, user_id: UserId) -> bool {
 Limit bot access to specific Telegram user IDs:
 
 ```rust
-const ALLOWED_USERS: &[i64] = &[123456789, 987654321];
+const ALLOWED_USERS: &[i64• = &[123456789, 987654321•;
 
 fn is_authorized(user_id: UserId) -> bool {
     ALLOWED_USERS.contains(&user_id.0)
@@ -597,7 +597,7 @@ Regular checks:
 
 For in-depth technical information about how the bot works:
 
-- **Architecture**: See [BOT_TECHNICAL.md](BOT_TECHNICAL.md)
+- **Architecture**: See [BOT_TECHNICAL.md•(BOT_TECHNICAL.md)
 - **VPS Deployment**: Detailed VPS setup and management
 - **File Access Model**: How bot accesses and manages files
 - **Session Management**: In-memory session storage
@@ -617,11 +617,11 @@ For in-depth technical information about how the bot works:
 **File Structure on VPS**:
 ```
 /home/user/MfBuilder/
-??? MfBuilder (bot executable)
-??? MfRunner.exe
-??? MfObfDotNet.exe
-??? .env (bot token)
-??? [temp files - auto-cleaned]
+• MfBuilder (bot executable)
+• MfRunner.exe
+• MfObfDotNet.exe
+• .env (bot token)
+• [temp files - auto-cleaned•
 ```
 
 **Update Process**:
@@ -651,19 +651,19 @@ Send 'build' to build
 
 **Enhanced with Buttons**:
 ```
-[Anti Debug: OFF]  [Anti VM: OFF]  [CIS: OFF]
-[UAC Bypass: OFF]  [Single: OFF]   [Persist: OFF]
-[Defender: OFF]    [Format: BAT]
-          [?? BUILD]
+[Anti Debug: OFF•  [Anti VM: OFF•  [CIS: OFF•
+[UAC Bypass: OFF•  [Single: OFF•   [Persist: OFF•
+[Defender: OFF•    [Format: BAT•
+          [ BUILD•
 ```
 
 **Implementation**: Using teloxide's `InlineKeyboardButton` feature.
 
 This would provide:
-- ? More intuitive interface
-- ? Visual feedback (buttons change on click)
-- ? Cleaner chat history
-- ? Mobile-friendly operation
+- • More intuitive interface
+- • Visual feedback (buttons change on click)
+- • Cleaner chat history
+- • Mobile-friendly operation
 
 See teloxide documentation for inline keyboard implementation.
 
@@ -673,10 +673,10 @@ See teloxide documentation for inline keyboard implementation.
 
 For additional help:
 
-- [QUICKSTART.md](QUICKSTART.md) - Quick start guide
-- [INSTALLATION.md](INSTALLATION.md) - Installation instructions
-- [README.md](../README.md) - Project overview
-- [FEATURES.md](../FEATURES.md) - Feature documentation
+- [QUICKSTART.md•(QUICKSTART.md) - Quick start guide
+- [INSTALLATION.md•(INSTALLATION.md) - Installation instructions
+- [README.md•(../README.md) - Project overview
+- [FEATURES.md•(../FEATURES.md) - Feature documentation
 
 ---
 

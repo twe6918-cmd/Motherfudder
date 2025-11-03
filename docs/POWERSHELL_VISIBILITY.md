@@ -46,7 +46,7 @@ powershell.exe (payload loader)
 
 ---
 
-## Is This a Problem?
+## Is This a Problem•
 
 ### NO - Here's Why:
 
@@ -132,7 +132,7 @@ conhost.exe       User    Running    Medium/High
 
 ## Stealth Comparison
 
-| Method | Process Name | Window Visible | Suspicious? | AV Detection |
+| Method | Process Name | Window Visible | Suspicious• | AV Detection |
 |--------|--------------|----------------|-------------|--------------|
 | **PowerShell (current)** | `powershell.exe` | ❌ Hidden | Low | Low |
 | **PowerShell + conhost** | `conhost.exe` | ❌ Hidden | Very Low | Very Low |
@@ -158,7 +158,7 @@ conhost.exe --headless powershell.exe -ep bypass -command ...
 
 ---
 
-## Can We Eliminate PowerShell?
+## Can We Eliminate PowerShell•
 
 ### Option 1: Pure C# Stub (Not Recommended)
 ```csharp

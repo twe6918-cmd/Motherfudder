@@ -26,10 +26,10 @@ Features:
 
 👇 Choose an option below to get started!
 
-[🔑 Redeem Code]  [👤 My Subscription]
-[🔨 Crypt File]
-[❓ FAQ]  [💬 Support]
-[📚 Documentation]
+[🔑 Redeem Code•  [👤 My Subscription•
+[🔨 Crypt File•
+[❓ FAQ•  [💬 Support•
+[📚 Documentation•
 ```
 
 ---
@@ -49,9 +49,9 @@ You don't have an active subscription.
 
 🔑 Use the Redeem Code button to activate your subscription.
 
-💬 Need help? Contact support!
+💬 Need help• Contact support!
 
-[🔑 Redeem Code]  [🏠 Main Menu]
+[🔑 Redeem Code•  [🏠 Main Menu•
 ```
 
 ---
@@ -79,7 +79,7 @@ Features Available:
 • Persistence
 • Interactive Configuration
 
-[🏠 Main Menu]
+[🏠 Main Menu•
 ```
 
 ---
@@ -93,7 +93,7 @@ Please enter your subscription code:
 
 Format: `MFCRYPT-XXXXX-XXXX`
 
-💡 Don't have a code? Contact @YourSupportBot
+💡 Don't have a code• Contact @YourSupportBot
 ```
 
 User enters code → Success:
@@ -108,7 +108,7 @@ You now have full access to all features!
 
 Click Crypt File to get started!
 
-[Main Menu appears]
+[Main Menu appears•
 ```
 
 ---
@@ -122,7 +122,7 @@ You need an active subscription to use the crypter.
 
 🔑 Click Redeem Code to activate your subscription.
 
-[🔑 Redeem Code]  [🏠 Main Menu]
+[🔑 Redeem Code•  [🏠 Main Menu•
 ```
 
 ---
@@ -154,7 +154,7 @@ User uploads file → Binary detected:
 📦 Type: .NET x64
 📊 Size: 2.5 MB
 
-[Configuration menu with interactive buttons appears]
+[Configuration menu with interactive buttons appears•
 ```
 
 ---
@@ -167,12 +167,12 @@ User uploads file → Binary detected:
 Click the buttons below to toggle options:
 ✅ = Enabled | ❌ = Disabled
 
-[✅ Anti Debug]  [❌ Anti VM]
-[❌ Blacklist CIS]  [✅ UAC Bypass]
-[✅ Single Instance]  [✅ Persistence]
-[✅ Defender 🔥]  [❌ C:\ Drive]
-[📦 Output: BAT]
-[🔨 BUILD NOW]
+[✅ Anti Debug•  [❌ Anti VM•
+[❌ Blacklist CIS•  [✅ UAC Bypass•
+[✅ Single Instance•  [✅ Persistence•
+[✅ Defender 🔥•  [❌ C:\ Drive•
+[📦 Output: BAT•
+[🔨 BUILD NOW•
 
 Current Settings:
 • Anti Debug: ✅ ON
@@ -213,7 +213,7 @@ Then:
 
 Sending your crypted binary...
 
-[File sent]
+[File sent•
 
 🎉 Done! Your crypted binary is ready!
 
@@ -229,35 +229,35 @@ Send /start to crypt another binary.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-Q: What file types are supported?
+Q: What file types are supported•
 A: Native x86/x64 and .NET x86/x64 executables
 
-Q: Does it work with packed executables?
+Q: Does it work with packed executables•
 A: Yes, but unpacked binaries work best
 
-Q: What features does it include?
+Q: What features does it include•
 A: AMSI/ETW bypass, UAC bypass, Defender exclusion, Anti-Debug, Anti-VM, Persistence, and more!
 
-Q: Is persistence safe?
+Q: Is persistence safe•
 A: Yes! Uses Windows Task Scheduler (works like a charm)
 
-Q: Will PowerShell show in Task Manager?
+Q: Will PowerShell show in Task Manager•
 A: Yes, but it's hidden and uses conhost.exe wrapper with UAC bypass. This is intentional and provides the best AV evasion.
 
-Q: What's C:\ Drive Exclusion?
+Q: What's C:\ Drive Exclusion•
 A: Aggressive mode that excludes entire C: drive from Defender. ⚠️ Very effective but highly suspicious - testing only!
 
-Q: How long does building take?
+Q: How long does building take•
 A: Usually 30-60 seconds depending on file size
 
-Q: What output formats are available?
+Q: What output formats are available•
 A: BAT (batch wrapper) and EXE (direct executable)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-Need more help? Click Support below!
+Need more help• Click Support below!
 
-[💬 Support]  [🏠 Main Menu]
+[💬 Support•  [🏠 Main Menu•
 ```
 
 ---
@@ -269,7 +269,7 @@ Need more help? Click Support below!
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-Need Help?
+Need Help•
 
 📧 Contact: @YourSupportBot
 🌐 GitHub: github.com/backdoorskid/Motherfudder
@@ -290,8 +290,8 @@ Credits:
 
 ⭐ Please star the repo if this helps you!
 
-[⭐ Star Original Repo]
-[❓ FAQ]  [🏠 Main Menu]
+[⭐ Star Original Repo•
+[❓ FAQ•  [🏠 Main Menu•
 ```
 
 ---
@@ -320,13 +320,13 @@ Subscription Codes:
 Contact support for subscription codes.
 Test codes are available for beta users.
 
-Need Help?:
+Need Help•:
 Click the FAQ button for common questions
 Click Support to contact us
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-[🏠 Main Menu]
+[🏠 Main Menu•
 ```
 
 ---
@@ -345,8 +345,8 @@ Send 'build' to build
 
 ### After (Interactive Buttons)
 ```
-[✅ Anti Debug]  [❌ Anti VM]
-[🔨 BUILD NOW]
+[✅ Anti Debug•  [❌ Anti VM•
+[🔨 BUILD NOW•
 ```
 ✅ Click to toggle
 ✅ Real-time visual feedback (✅/❌)
@@ -365,10 +365,10 @@ Send 'build' to build
 ### Custom Codes
 Add your own in `telegram_bot.rs`:
 ```rust
-pub const SUBSCRIPTION_CODES: &[&str] = &[
+pub const SUBSCRIPTION_CODES: &[&str• = &[
     "YOUR-CUSTOM-CODE-1",
     "YOUR-CUSTOM-CODE-2",
-];
+•;
 ```
 
 ### Features

@@ -6,13 +6,13 @@ Comprehensive guide for building Motherfudder Crypter from source.
 
 ## Table of Contents
 
-1. [Prerequisites](#prerequisites)
-2. [Building Core Components](#building-core-components)
-3. [Native Payload Requirements](#native-payload-requirements)
-4. [Deployment Structure](#deployment-structure)
-5. [Building Process](#building-process)
-6. [Verification](#verification)
-7. [Troubleshooting](#troubleshooting)
+1. [Prerequisites•(#prerequisites)
+2. [Building Core Components•(#building-core-components)
+3. [Native Payload Requirements•(#native-payload-requirements)
+4. [Deployment Structure•(#deployment-structure)
+5. [Building Process•(#building-process)
+6. [Verification•(#verification)
+7. [Troubleshooting•(#troubleshooting)
 
 ---
 
@@ -153,16 +153,16 @@ Create deployment directory with the following structure:
 
 ```
 MfBuilder-Deploy/
-??? MfBuilder.exe              # Main builder (from cargo build)
-??? MfObfDotNet.exe           # .NET obfuscator (from VS build)
-??? MfRunner.exe              # C# stub (from VS build)
-??? build.json                # Configuration file
-??? payload.exe               # Target binary to crypt
-?
-??? [Native Payload Tools - Optional]
-    ??? donut.exe
-    ??? sgn.exe
-    ??? keystone.dll
+• MfBuilder.exe              # Main builder (from cargo build)
+• MfObfDotNet.exe           # .NET obfuscator (from VS build)
+• MfRunner.exe              # C# stub (from VS build)
+• build.json                # Configuration file
+• payload.exe               # Target binary to crypt
+•
+• [Native Payload Tools - Optional•
+    • donut.exe
+    • sgn.exe
+    • keystone.dll
 ```
 
 ### Required Files
@@ -402,14 +402,14 @@ cargo build --release --jobs 8
 
 Before deploying built crypter:
 
-- [ ] All components built successfully
-- [ ] MfBuilder.exe tested with sample payload
-- [ ] Configuration validated
-- [ ] Native tools installed (if needed)
-- [ ] Bot token configured (if using bot mode)
-- [ ] Authentication key changed from default
-- [ ] .env file not committed to repository
-- [ ] Output tested on target system
+- [ • All components built successfully
+- [ • MfBuilder.exe tested with sample payload
+- [ • Configuration validated
+- [ • Native tools installed (if needed)
+- [ • Bot token configured (if using bot mode)
+- [ • Authentication key changed from default
+- [ • .env file not committed to repository
+- [ • Output tested on target system
 
 ---
 
@@ -424,19 +424,19 @@ Create `build-all.bat`:
 echo Building Motherfudder Crypter Components...
 
 echo.
-echo [1/3] Building .NET Obfuscator...
+echo [1/3• Building .NET Obfuscator...
 cd MfObfDotNet
 msbuild MfObfDotNet.sln /p:Configuration=Release /v:quiet
 if errorlevel 1 goto :error
 
 echo.
-echo [2/3] Building C# Stub...
+echo [2/3• Building C# Stub...
 cd ..\MfBuilder\MfRunner
 msbuild MfRunner.sln /p:Configuration=Release /v:quiet
 if errorlevel 1 goto :error
 
 echo.
-echo [3/3] Building Rust Builder...
+echo [3/3• Building Rust Builder...
 cd ..
 cargo build --release --quiet
 if errorlevel 1 goto :error
@@ -462,10 +462,10 @@ exit /b 1
 
 ## See Also
 
-- [INSTALLATION.md](MfBuilder/INSTALLATION.md) - Installation guide
-- [QUICKSTART.md](MfBuilder/QUICKSTART.md) - Usage guide
-- [README.md](README.md) - Project overview
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Development guidelines
+- [INSTALLATION.md•(MfBuilder/INSTALLATION.md) - Installation guide
+- [QUICKSTART.md•(MfBuilder/QUICKSTART.md) - Usage guide
+- [README.md•(README.md) - Project overview
+- [CONTRIBUTING.md•(CONTRIBUTING.md) - Development guidelines
 
 ---
 

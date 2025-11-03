@@ -6,14 +6,14 @@ Comprehensive technical guide to the Telegram bot implementation, deployment, an
 
 ## Table of Contents
 
-1. [Architecture Overview](#architecture-overview)
-2. [How the Bot Works](#how-the-bot-works)
-3. [VPS Deployment](#vps-deployment)
-4. [Update Process](#update-process)
-5. [File Access & Permissions](#file-access--permissions)
-6. [Session Management](#session-management)
-7. [Security Model](#security-model)
-8. [Performance Considerations](#performance-considerations)
+1. [Architecture Overview•(#architecture-overview)
+2. [How the Bot Works•(#how-the-bot-works)
+3. [VPS Deployment•(#vps-deployment)
+4. [Update Process•(#update-process)
+5. [File Access & Permissions•(#file-access--permissions)
+6. [Session Management•(#session-management)
+7. [Security Model•(#security-model)
+8. [Performance Considerations•(#performance-considerations)
 
 ---
 
@@ -23,25 +23,25 @@ Comprehensive technical guide to the Telegram bot implementation, deployment, an
 
 ```
 Telegram Servers (Cloud)
-        ?
+        •
     Bot API
-        ?
+        •
 VPS/Server (Your Infrastructure)
-        ?
+        •
 MfBuilder Bot Process
-        ?
-?????????????????????????????????????
-?  Bot Runtime Components           ?
-?????????????????????????????????????
-?  ? teloxide Framework             ?
-?  ? Session Manager (HashMap)      ?
-?  ? File Handler (Upload/Download) ?
-?  ? Build Orchestrator             ?
-?  ? MfBuilder Core                 ?
-?  ? MfRunner Compiler              ?
-?  ? MfObfDotNet                    ?
-?????????????????????????????????????
-        ?
+        •
+•
+•  Bot Runtime Components           •
+•
+•  • teloxide Framework             •
+•  • Session Manager (HashMap)      •
+•  • File Handler (Upload/Download) •
+•  • Build Orchestrator             •
+•  • MfBuilder Core                 •
+•  • MfRunner Compiler              •
+•  • MfObfDotNet                    •
+•
+        •
 Temporary File System
 ```
 
@@ -49,22 +49,22 @@ Temporary File System
 
 ```
 User Message
-    ?
-Telegram API ? Bot Process
-    ?
+    •
+Telegram API • Bot Process
+    •
 teloxide Framework
-    ?
+    •
 Message Handler
-    ?
+    •
 Session Lookup (HashMap)
-    ?
+    •
 State Machine Processing
-    ?
+    •
 Action Execution
-    ?
+    •
 Response Generation
-    ?
-Telegram API ? User
+    •
+Telegram API • User
 ```
 
 ---
@@ -77,9 +77,9 @@ When you run `./MfBuilder --bot`:
 
 ```rust
 // In main.rs
-#[tokio::main]
+#[tokio::main•
 async fn main() {
-    if args[1] == "--bot" {
+    if args[1• == "--bot" {
         telegram_bot::run_telegram_bot().await;
     }
 }
@@ -103,12 +103,12 @@ The bot runs as a standard process and accesses files from:
 ```
 Bot Working Directory:
 /path/to/MfBuilder/
-    ??? MfBuilder (executable)
-    ??? MfRunner.exe
-    ??? MfObfDotNet.exe
-    ??? build.json
-    ??? .env (bot token)
-    ??? [temporary files]
+    • MfBuilder (executable)
+    • MfRunner.exe
+    • MfObfDotNet.exe
+    • build.json
+    • .env (bot token)
+    • [temporary files•
 ```
 
 **File Access Pattern**:
@@ -135,22 +135,22 @@ fs::read("out.bat" or "out.exe")    // Build output
 
 ```
 Bot Process
-    ?
+    •
 HTTPS (443)
-    ?
+    •
 api.telegram.org
-    ?
+    •
 Telegram Bot API
-    ?
+    •
 Telegram Servers
-    ?
+    •
 User's Telegram Client
 ```
 
 **What Gets Transmitted**:
 - Text messages (configuration, status)
-- File uploads (user's binary ? bot)
-- File downloads (crypted binary ? user)
+- File uploads (user's binary • bot)
+- File downloads (crypted binary • user)
 - Command updates (long polling or webhooks)
 
 **Bot Token Usage**:
@@ -183,12 +183,12 @@ Sessions {
 ```
 
 **Session Lifecycle**:
-1. User sends `/start` ? Session created in HashMap
-2. Authentication ? `authenticated = true`
-3. File upload ? `binary_path = Some(path)`
-4. Configuration ? `config` updated
-5. Build ? Process executes, file sent
-6. `/reset` or bot restart ? Session destroyed
+1. User sends `/start` • Session created in HashMap
+2. Authentication • `authenticated = true`
+3. File upload • `binary_path = Some(path)`
+4. Configuration • `config` updated
+5. Build • Process executes, file sent
+6. `/reset` or bot restart • Session destroyed
 
 **Important**: Sessions are **memory-only** and lost on bot restart.
 
@@ -203,12 +203,12 @@ When user sends `build`:
 4. Create MfBuilder config struct
 5. Write binary to payload.exe
 6. Spawn blocking task:
-   ??? build_with_config()
-       ??? Detect binary architecture
-       ??? Configure stub
-       ??? Encrypt payload
-       ??? Compile stub (MSBuild)
-       ??? Generate output (out.bat/out.exe)
+   • build_with_config()
+       • Detect binary architecture
+       • Configure stub
+       • Encrypt payload
+       • Compile stub (MSBuild)
+       • Generate output (out.bat/out.exe)
 7. Read output file
 8. Send as Telegram document
 9. Clean up temporary files
@@ -253,14 +253,14 @@ tokio::task::spawn_blocking(move || {
 
 ## VPS Deployment
 
-### Why Use a VPS?
+### Why Use a VPS•
 
 **Benefits**:
-- ? **24/7 Uptime**: Bot runs continuously
-- ? **Remote Access**: Crypt binaries from anywhere
-- ? **No Local Resources**: Your PC doesn't need to run
-- ? **Reliability**: Professional infrastructure
-- ? **Multiple Users**: Serve many users simultaneously
+- • **24/7 Uptime**: Bot runs continuously
+- • **Remote Access**: Crypt binaries from anywhere
+- • **No Local Resources**: Your PC doesn't need to run
+- • **Reliability**: Professional infrastructure
+- • **Multiple Users**: Serve many users simultaneously
 
 **Recommended Setup**:
 - VPS with Windows Server 2019/2022 (for MSBuild)
@@ -275,7 +275,7 @@ tokio::task::spawn_blocking(move || {
 1. **DigitalOcean** - $10-20/month, easy setup
 2. **Vultr** - $10-15/month, global locations
 3. **Linode** - $10/month, reliable
-4. **Hetzner** - ?5-10/month, Europe-based
+4. **Hetzner** - •5-10/month, Europe-based
 5. **AWS EC2** - Pay-as-you-go, scalable
 
 ### VPS Setup Process
@@ -340,11 +340,11 @@ nano .env  # Add TELOXIDE_TOKEN
 Create service file: `/etc/systemd/system/mfbuilder-bot.service`
 
 ```ini
-[Unit]
+[Unit•
 Description=MfBuilder Telegram Bot
 After=network.target
 
-[Service]
+[Service•
 Type=simple
 User=mfbuilder
 WorkingDirectory=/home/mfbuilder/MfBuilder
@@ -353,7 +353,7 @@ ExecStart=/home/mfbuilder/MfBuilder/target/release/MfBuilder --bot
 Restart=always
 RestartSec=10
 
-[Install]
+[Install•
 WantedBy=multi-user.target
 ```
 
@@ -528,17 +528,17 @@ sudo systemctl restart mfbuilder-bot
 ### Update Checklist
 
 Before updating:
-- [ ] Backup current binary
-- [ ] Test changes locally
-- [ ] Review dependencies
-- [ ] Plan for session loss (if applicable)
-- [ ] Notify users of downtime (if any)
+- [ • Backup current binary
+- [ • Test changes locally
+- [ • Review dependencies
+- [ • Plan for session loss (if applicable)
+- [ • Notify users of downtime (if any)
 
 After updating:
-- [ ] Verify bot responds to `/start`
-- [ ] Test full workflow (upload ? configure ? build)
-- [ ] Check logs for errors
-- [ ] Monitor for issues
+- [ • Verify bot responds to `/start`
+- [ • Test full workflow (upload • configure • build)
+- [ • Check logs for errors
+- [ • Monitor for issues
 
 ---
 
@@ -548,12 +548,12 @@ After updating:
 
 ```
 MfBuilder/
-??? MfBuilder               # Bot executable (must be executable)
-??? MfRunner.exe           # C# stub template (read access)
-??? MfObfDotNet.exe        # .NET obfuscator (read access)
-??? .env                   # Bot token (read access, 600 permissions)
-??? build.json             # Optional default config
-??? [temp files]           # Created/deleted during operation
+• MfBuilder               # Bot executable (must be executable)
+• MfRunner.exe           # C# stub template (read access)
+• MfObfDotNet.exe        # .NET obfuscator (read access)
+• .env                   # Bot token (read access, 600 permissions)
+• build.json             # Optional default config
+• [temp files•           # Created/deleted during operation
 ```
 
 ### File Permission Requirements
@@ -574,15 +574,15 @@ chmod 755 /home/mfbuilder/MfBuilder                           # Directory
 
 **File Lifecycle**:
 ```
-User uploads ? temp_{chatid}_{filename}
-    ?
-Copied to ? payload.exe
-    ?
-Build process creates ? out.bat or out.exe
-    ?
-Sent to user ? [file downloaded]
-    ?
-Cleanup ? All temp files deleted
+User uploads • temp_{chatid}_{filename}
+    •
+Copied to • payload.exe
+    •
+Build process creates • out.bat or out.exe
+    •
+Sent to user • [file downloaded•
+    •
+Cleanup • All temp files deleted
 ```
 
 **Automatic Cleanup**:
@@ -621,31 +621,31 @@ let session = sessions_lock.entry(chat_id).or_insert_with(UserSession::default);
 
 ```
 State: New User
-    ? /start
+    • /start
 State: Awaiting Auth
-    ? send key
+    • send key
 State: Authenticated
-    ? "yes"
+    • "yes"
 State: Awaiting Binary
-    ? upload file
+    • upload file
 State: Configuring
-    ? toggle options
+    • toggle options
 State: Ready to Build
-    ? "build"
+    • "build"
 State: Building
-    ? complete
+    • complete
 State: Done
 ```
 
 ### Session Persistence Limitations
 
 **Current Implementation**:
-- ? Multiple users simultaneously
-- ? Independent configurations
-- ? Fast in-memory access
-- ? Lost on bot restart
-- ? Not saved to disk
-- ? No session recovery
+- • Multiple users simultaneously
+- • Independent configurations
+- • Fast in-memory access
+- • Lost on bot restart
+- • Not saved to disk
+- • No session recovery
 
 **Workaround for Restarts**:
 Users simply need to:
@@ -660,9 +660,9 @@ Users simply need to:
 ```rust
 // Mutex ensures only one thread modifies sessions at a time
 Arc<Mutex<HashMap>>
-    ?      ?
-    |      ?? Lock for exclusive access
-    ?? Shared across threads
+    •      •
+    |       Lock for exclusive access
+     Shared across threads
 ```
 
 **Capacity**: Limited only by:
@@ -678,25 +678,25 @@ Arc<Mutex<HashMap>>
 
 ```
 User sends message
-    ?
+    •
 Check if authenticated in session
-    ?
-If NO ? Request key
-    ?
+    •
+If NO • Request key
+    •
 User sends key
-    ?
+    •
 Compare with VALID_KEY constant
-    ?
-If match ? Grant access
-If no match ? Deny + error message
+    •
+If match • Grant access
+If no match • Deny + error message
 ```
 
 **Security Considerations**:
-- ?? Key stored in source code (plaintext)
-- ?? Single key for all users
-- ?? No rate limiting on auth attempts
-- ? Per-session authentication
-- ? No key in network traffic (only once)
+-  Key stored in source code (plaintext)
+-  Single key for all users
+-  No rate limiting on auth attempts
+- • Per-session authentication
+- • No key in network traffic (only once)
 
 ### Recommended Security Enhancements
 
@@ -716,14 +716,14 @@ fn is_valid_key(key: &str, user_id: UserId) -> bool {
     let users = HashMap::from([
         (123456789, "UserAKey"),
         (987654321, "UserBKey"),
-    ]);
+    •);
     users.get(&user_id.0).map_or(false, |&k| k == key)
 }
 ```
 
 **3. User ID Whitelist**:
 ```rust
-const ALLOWED_USERS: &[i64] = &[123456789, 987654321];
+const ALLOWED_USERS: &[i64• = &[123456789, 987654321•;
 
 fn check_access(user_id: UserId) -> bool {
     ALLOWED_USERS.contains(&user_id.0)
@@ -743,7 +743,7 @@ fn check_access(user_id: UserId) -> bool {
 - Network: Minimal (only file uploads/downloads)
 
 **Per-Build Resources**:
-- Temporary disk: File size ? 3 (input, encrypted, output)
+- Temporary disk: File size • 3 (input, encrypted, output)
 - Build time: 10-60 seconds depending on payload size
 - Network: Upload + download size
 
@@ -759,9 +759,9 @@ tokio::task::spawn_blocking(move || {
 ```
 
 **Impact**:
-- User A starts build ? 30 seconds
-- User B starts build ? Waits until User A completes
-- User B's build starts ? 30 seconds
+- User A starts build • 30 seconds
+- User B starts build • Waits until User A completes
+- User B's build starts • 30 seconds
 - Total: 60 seconds for both
 
 **Potential Enhancement**:
@@ -865,5 +865,5 @@ rm -f temp_* payload.exe out.*
 
 ---
 
-**For deployment assistance, see [BOT_SETUP.md](BOT_SETUP.md)**  
+**For deployment assistance, see [BOT_SETUP.md•(BOT_SETUP.md)**  
 **For VPS security hardening, consult standard Linux hardening guides**

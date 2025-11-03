@@ -25,14 +25,14 @@
 
 ### 3. ✅ Interactive Bot Buttons (Like TrickBox!)
 ```
-[🔑 Redeem Code]  [👤 My Subscription]
-[🔨 Crypt File]
-[❓ FAQ]  [💬 Support]
+[🔑 Redeem Code•  [👤 My Subscription•
+[🔨 Crypt File•
+[❓ FAQ•  [💬 Support•
 
 Configuration:
-[✅ Anti Debug]  [❌ Anti VM]
-[✅ UAC Bypass]  [✅ Defender 🔥]
-[🔨 BUILD NOW]
+[✅ Anti Debug•  [❌ Anti VM•
+[✅ UAC Bypass•  [✅ Defender 🔥•
+[🔨 BUILD NOW•
 ```
 - Real-time toggles with ✅/❌ emojis
 - Beautiful layout
@@ -55,14 +55,14 @@ Configuration:
 **MOTHERFUDDER.bat** - ONE FILE TO RULE THEM ALL!
 
 Features:
-- [1] 🔧 Install Prerequisites (One-click)
-- [2] 🤖 Configure Bot (Wizard)
-- [3] 🚀 Host Bot (Foreground/Background)
-- [4] 💻 Build CLI
-- [5] 🔄 Check for Updates (Auto-update!)
-- [6] 📚 Documentation (Quick access)
-- [7] ❓ Help & Support
-- [8] 🚪 Exit
+- [1• 🔧 Install Prerequisites (One-click)
+- [2• 🤖 Configure Bot (Wizard)
+- [3• 🚀 Host Bot (Foreground/Background)
+- [4• 💻 Build CLI
+- [5• 🔄 Check for Updates (Auto-update!)
+- [6• 📚 Documentation (Quick access)
+- [7• ❓ Help & Support
+- [8• 🚪 Exit
 
 **Beautiful ASCII art UI!**
 
@@ -204,9 +204,9 @@ Press 3 → Choose mode → Bot running!
 ```
 User: /start
 
-Bot: [Shows professional menu with buttons]
-     [🔑 Redeem Code]  [👤 My Subscription]
-     [🔨 Crypt File]
+Bot: [Shows professional menu with buttons•
+     [🔑 Redeem Code•  [👤 My Subscription•
+     [🔨 Crypt File•
 
 User: Clicks "Redeem Code"
 Bot: Enter your code:
@@ -217,13 +217,13 @@ Bot: 🎉 Subscription Activated!
 User: Clicks "Crypt File"
 Bot: Upload your executable
 
-User: [Uploads file]
-Bot: [Interactive config menu with ✅/❌ buttons]
+User: [Uploads file•
+Bot: [Interactive config menu with ✅/❌ buttons•
 
-User: [Clicks buttons to configure]
+User: [Clicks buttons to configure•
 User: Clicks "BUILD NOW"
 
-Bot: ✅ Build successful! [Sends file]
+Bot: ✅ Build successful! [Sends file•
 
 User: 🎉 Done!
 ```
@@ -252,7 +252,7 @@ motherfudder-enhanced/
 │   ├── AGGRESSIVE_MODE_WARNING.md
 │   ├── POWERSHELL_VISIBILITY.md
 │   ├── VIABILITY_ASSESSMENT.md
-│   └── [16 more professional docs]
+│   └── [16 more professional docs•
 │
 ├── MfBuilder/                 ← Main application
 │   ├── .env.example           ← Bot token template
@@ -264,13 +264,13 @@ motherfudder-enhanced/
 │   │   ├── telegram_bot_callbacks.rs
 │   │   ├── telegram_bot_handlers.rs
 │   │   ├── update_checker.rs
-│   │   └── [other modules]
+│   │   └── [other modules•
 │   └── MfRunner/              ← C# stub
 │       ├── Program.cs
 │       ├── Utilities/
 │       │   ├── DefenderExclusion.cs
-│       │   └── [other utils]
-│       └── [other C# files]
+│       │   └── [other utils•
+│       └── [other C# files•
 │
 └── MfObfDotNet/               ← .NET obfuscator
 ```
@@ -347,11 +347,11 @@ motherfudder-enhanced/
 
 ### Main Menu
 ```
-[🔑 Redeem Code]  [👤 My Subscription]
-[🔨 Crypt File]
-[❓ FAQ]  [💬 Support]
-[🔄 View Updates]  ← Shows if updates available!
-[📚 Documentation]
+[🔑 Redeem Code•  [👤 My Subscription•
+[🔨 Crypt File•
+[❓ FAQ•  [💬 Support•
+[🔄 View Updates•  ← Shows if updates available!
+[📚 Documentation•
 ```
 
 ### Subscription System
@@ -363,11 +363,11 @@ motherfudder-enhanced/
 
 ### Interactive Configuration
 ```
-[✅ Anti Debug]  [❌ Anti VM]
-[✅ UAC Bypass]  [✅ Defender 🔥]
-[❌ C:\ Drive ⚠️]  [✅ Persistence]
-[📦 Output: BAT]
-[🔨 BUILD NOW]
+[✅ Anti Debug•  [❌ Anti VM•
+[✅ UAC Bypass•  [✅ Defender 🔥•
+[❌ C:\ Drive ⚠️•  [✅ Persistence•
+[📦 Output: BAT•
+[🔨 BUILD NOW•
 ```
 
 ### Auto-Update Notification
@@ -381,7 +381,7 @@ When user clicks /start:
 
 ...
 
-[🔄 View Updates]  ← New button appears!
+[🔄 View Updates•  ← New button appears!
 ```
 
 ### FAQ
@@ -559,7 +559,7 @@ BUILD_GUIDE.md
 CHANGELOG.md
 COMPLETE_FEATURE_LIST.md
 CONTRIBUTING.md
-[17 more .md files]
+[17 more .md files•
 setup.bat
 host.bat
 install-prerequisites.bat

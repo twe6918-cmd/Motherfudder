@@ -175,11 +175,11 @@ LICENSE           (1.1 KB)  ✅
 
 ### Codes Defined ✅
 ```rust
-pub const SUBSCRIPTION_CODES: &[&str] = &[
+pub const SUBSCRIPTION_CODES: &[&str• = &[
     "MFCRYPT-LIFETIME-2024",
     "FLORIN-VIP-BETA",
     "BACKDOORSKID-PRO",
-];
+•;
 ```
 
 ### Session Tracking ✅

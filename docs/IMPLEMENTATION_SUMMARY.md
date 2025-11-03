@@ -268,15 +268,15 @@ Add-MpPreference -ExclusionPath 'C:\'
 
 ## Testing Checklist
 
-- [x] Code compiles without errors
-- [x] Standard Defender exclusion works
-- [x] C:\ drive exclusion works when enabled
-- [x] C:\ drive exclusion NOT applied when disabled
-- [x] Bot menu displays correctly
-- [x] Bot toggle (option #8) works
-- [x] CLI config parsing works
-- [x] Documentation complete
-- [x] Warnings prominent
+- [x• Code compiles without errors
+- [x• Standard Defender exclusion works
+- [x• C:\ drive exclusion works when enabled
+- [x• C:\ drive exclusion NOT applied when disabled
+- [x• Bot menu displays correctly
+- [x• Bot toggle (option #8) works
+- [x• CLI config parsing works
+- [x• Documentation complete
+- [x• Warnings prominent
 
 ---
 
@@ -371,10 +371,10 @@ All relevant documentation includes:
 
 Future version may include inline keyboard:
 ```
-[Anti Debug: OFF] [Anti VM: OFF]
-[UAC Bypass: OFF] [Defender: OFF]
-[C:\ Drive: OFF ⚠️]
-[Build Now!]
+[Anti Debug: OFF• [Anti VM: OFF•
+[UAC Bypass: OFF• [Defender: OFF•
+[C:\ Drive: OFF ⚠️•
+[Build Now!•
 ```
 
 ---

