@@ -8,8 +8,12 @@ use crate::binary_arch::BinaryArch;
 #[derive(Clone, Debug)]
 pub struct UserSession {
     pub authenticated: bool,
+    pub subscription_active: bool,
+    pub subscription_expiry: Option<String>,
     pub awaiting_binary: bool,
     pub awaiting_crypt_confirmation: bool,
+    pub awaiting_key: bool,
+    pub awaiting_redeem_code: bool,
     pub config: BuildConfig,
 }
 
