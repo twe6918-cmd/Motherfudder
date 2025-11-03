@@ -1,102 +1,135 @@
 # Quick Start Guide
 
-## ?? Get Started in 5 Minutes
+Get operational with Motherfudder Crypter in under 5 minutes.
 
-### Option 1: Telegram Bot Mode (Easiest)
+---
 
-#### Step 1: Install Dependencies
+## Prerequisites
+
+Before starting, ensure you have:
+- Rust toolchain installed
+- OpenSSL development libraries
+- .NET SDK (for building)
+
+See [INSTALLATION.md](INSTALLATION.md) for detailed setup instructions.
+
+---
+
+## Option 1: Telegram Bot Mode
+
+### Step 1: Install Dependencies
+
 ```bash
 # Ubuntu/Debian
 sudo apt-get install -y pkg-config libssl-dev
 
-# Or see DEPENDENCIES.md for other platforms
+# For other platforms, see INSTALLATION.md
 ```
 
-#### Step 2: Setup Bot
+### Step 2: Configure Bot
+
+1. Create Telegram bot via [@BotFather](https://t.me/BotFather):
+   - Send `/newbot`
+   - Follow prompts to set name and username
+   - Copy the bot token
+
+2. Set up environment:
+
 ```bash
-# Get a bot token from @BotFather on Telegram
-# (Just message @BotFather and use /newbot command)
-
-# Configure your token
 cp .env.example .env
-nano .env  # Add your token here
+nano .env  # Add your TELOXIDE_TOKEN
 ```
 
-#### Step 3: Run Bot
+3. Configure authentication key in `src/telegram_bot.rs` (line 70):
+
+```rust
+const VALID_KEY: &str = "YourSecureKeyHere"; // Change this!
+```
+
+### Step 3: Start Bot
+
 ```bash
 cargo run -- --bot
 ```
 
-#### Step 4: Use Bot
+### Step 4: Use Bot
+
 1. Find your bot on Telegram
-2. Send `/start`
-3. Enter key: `MfCrypter2024` (change in src/telegram_bot.rs for production!)
-4. Upload your .exe file
-5. Configure options by sending numbers (1-6) or 'format'
-6. Send `build` when ready
-7. Receive your crypted binary! ??
+2. Send `/start` command
+3. Enter your authentication key
+4. Confirm crypting operation
+5. Upload `.exe` file
+6. Configure options (1-7) or change format
+7. Send `build` to initiate build process
+8. Receive crypted binary
 
 ---
 
-### Option 2: CLI Mode (Traditional)
+## Option 2: CLI Mode
 
-#### Step 1: Install Dependencies
+### Step 1: Install Dependencies
+
 ```bash
 # Ubuntu/Debian
 sudo apt-get install -y pkg-config libssl-dev
 ```
 
-#### Step 2: Configure
-```bash
-# Edit configuration
-nano build.json
+### Step 2: Configure Build
 
-# Example:
+Edit `build.json`:
+
+```json
 {
     "file_extension": "BAT",
     "anti_debug": true,
     "anti_virtual_machine": true,
-    "blacklist_cis_countries": true,
+    "blacklist_cis_countries": false,
     "uac_bypass": true,
     "single_instance": true,
     "run_on_startup": false,
+    "defender_exclusion": true,
     "binder": false
 }
 ```
 
-#### Step 3: Prepare Binary
+### Step 3: Prepare Payload
+
 ```bash
-# Copy your binary to crypt
-cp /path/to/your/binary.exe payload.exe
+cp /path/to/target.exe payload.exe
 ```
 
-#### Step 4: Build
+### Step 4: Build
+
 ```bash
 cargo run
 ```
 
-#### Step 5: Get Result
-Your crypted binary will be in `out.bat` or `out.exe`
+### Step 5: Retrieve Output
+
+Output file: `out.bat` or `out.exe` (based on configuration)
 
 ---
 
-## ?? Common Use Cases
+## Common Use Cases
 
-### Use Case 1: Quick Test with Bot
-**Scenario**: You want to quickly test crypting a binary with different configurations.
+### Remote Operation
 
-```
-1. Start bot: cargo run -- --bot
-2. Send binary to bot
-3. Toggle options to test different configs
-4. Get results immediately
-```
+**Scenario**: Provide crypting service to authorized users
 
-### Use Case 2: Batch Processing with CLI
-**Scenario**: You have multiple binaries to process with the same config.
+**Setup**: Deploy bot on server with secure authentication
 
+**Workflow**:
+1. Configure bot with secure key
+2. Share bot username with authorized users
+3. Users crypt binaries remotely
+4. Receive crypted files via Telegram
+
+### Batch Processing
+
+**Scenario**: Process multiple binaries with same configuration
+
+**Implementation**:
 ```bash
-# Create a script
 for binary in *.exe; do
     cp "$binary" payload.exe
     cargo run
@@ -104,130 +137,170 @@ for binary in *.exe; do
 done
 ```
 
-### Use Case 3: Remote Crypting Service
-**Scenario**: Provide crypting as a service to authorized users.
+### Quick Testing
 
-```
-1. Deploy bot on server
-2. Share bot username with authorized users
-3. Give them the auth key (change default!)
-4. Users can crypt binaries remotely 24/7
-```
+**Scenario**: Test different configurations rapidly
+
+**Approach**: Use Telegram bot for interactive configuration testing
 
 ---
 
-## ?? Configuration Quick Reference
+## Configuration Quick Reference
 
-| Feature | What It Does | When to Enable |
-|---------|--------------|----------------|
-| **Anti Debug** | Detects debuggers | Always recommended |
-| **Anti VM** | Detects virtual machines | If targets are real systems |
+| Feature | Description | Recommended For |
+|---------|-------------|-----------------|
+| **Anti Debug** | Detects debuggers | Production |
+| **Anti VM** | Detects virtual machines | Avoiding sandboxes |
 | **Blacklist CIS** | Blocks CIS countries | Geographic restrictions |
-| **UAC Bypass** | Attempts privilege escalation | If admin rights needed |
-| **Single Instance** | Prevents multiple instances | Avoid conflicts |
-| **Persistence** | Auto-start on boot | For persistent access |
-| **Output: BAT** | Batch file wrapper | More evasive |
-| **Output: EXE** | Direct executable | Cleaner, simpler |
+| **UAC Bypass** | Silent privilege escalation | Admin operations |
+| **Single Instance** | Prevents multiple instances | Resource management |
+| **Persistence** | Auto-start on boot | Long-term deployment |
+| **Defender Exclusion** | Windows Defender bypass | Maximum stealth |
+| **Output: BAT** | Batch file wrapper | Higher evasion |
+| **Output: EXE** | Direct executable | Simpler deployment |
 
 ---
 
-## ?? Security Checklist
+## Security Checklist
 
-Before deploying the bot:
+Before production deployment:
 
-- [ ] Change authentication key from default
-- [ ] Set strong `TELOXIDE_TOKEN`
-- [ ] Never commit `.env` file
-- [ ] Monitor bot logs
-- [ ] Consider user ID restrictions
-- [ ] Test in isolated environment first
-- [ ] Review legal implications
+- [ ] Change default authentication key
+- [ ] Secure bot token in `.env`
+- [ ] Never commit `.env` to version control
+- [ ] Test in isolated environment
+- [ ] Verify all features function correctly
+- [ ] Review applicable laws and regulations
+- [ ] Obtain proper authorization
 
 ---
 
-## ?? Troubleshooting
+## Troubleshooting
 
 ### "Could not find openssl"
+
+**Solution**:
 ```bash
 # Ubuntu/Debian
 sudo apt-get install libssl-dev pkg-config
 
-# See DEPENDENCIES.md for other platforms
+# See INSTALLATION.md for other platforms
 ```
 
-### "Invalid key" in bot
-- Make sure you're sending exactly: `MfCrypter2024`
-- Or check what key is set in `src/telegram_bot.rs`
+### "Invalid key" in Bot
+
+**Solution**:
+- Verify authentication key matches configuration in `src/telegram_bot.rs`
+- Ensure no extra whitespace in key
 
 ### "Build failed"
-- Ensure MSBuild is installed (for .NET binaries)
-- Check that payload.exe is valid
-- Review error logs
 
-### Bot not responding
-- Verify token in `.env` is correct
-- Check bot is running with `--bot` flag
-- Ensure network connectivity
+**Solution**:
+- Verify MSBuild is installed
+- Check that `payload.exe` is valid PE executable
+- Review error logs for specific issues
+
+### Bot Not Responding
+
+**Solution**:
+- Verify `TELOXIDE_TOKEN` in `.env` is correct
+- Ensure bot is running with `--bot` flag
+- Check network connectivity
+- Verify bot username is correct
 
 ---
 
-## ?? Bot Example Session
+## Example Bot Session
 
 ```
-You: /start
-Bot: ?? Welcome to MfBuilder Crypter Bot
+User: /start
+Bot: Welcome to MfBuilder Crypter Bot
      Please enter your authentication key to continue:
 
-You: MfCrypter2024
-Bot: ? Authentication successful!
+User: SecureKey123
+Bot: Authentication successful!
      Do you want to crypt a binary?
      Reply: yes or no
 
-You: yes
-Bot: ?? Please upload your binary (.exe file)
-     ?? Only .exe files are supported!
+User: yes
+Bot: Please upload your binary (.exe file)
+     Only .exe files are supported!
 
-You: [upload myapp.exe]
-Bot: ? Binary uploaded successfully!
-     ?? Detected Type: .NET x64
+User: [uploads application.exe]
+Bot: Binary uploaded successfully!
+     Detected Type: .NET x64
      
-     ?? Crypter Configuration
-     1. Anti Debug: ? OFF
-     2. Anti VM: ? OFF
-     ...
+     Now let's configure the crypter options...
+     
+     Configuration menu appears...
 
-You: 1
-Bot: [Shows updated menu with Anti Debug ON]
+User: 7
+Bot: [Updated configuration with Defender Exclusion enabled]
 
-You: 2
-Bot: [Shows updated menu with Anti VM ON]
+User: 4
+Bot: [Updated configuration with UAC Bypass enabled]
+     [Shows: Windows Defender Exclusion: ON (Silent with UAC!)]
 
-You: build
-Bot: ?? Starting build process...
-     ?? Building crypted binary...
-     ? Build completed successfully!
+User: build
+Bot: Starting build process...
+     Building crypted binary...
+     Build completed successfully!
      [Sends crypted file]
-     ?? Done! Your crypted binary is ready!
+     Done! Your crypted binary is ready!
 ```
 
 ---
 
-## ?? Next Steps
+## Next Steps
 
-- Read [BOT_SETUP.md](BOT_SETUP.md) for detailed bot configuration
-- Check [README.md](../README.md) for full feature list
-- Review [CHANGELOG.md](../CHANGELOG.md) for recent changes
-- See [DEPENDENCIES.md](DEPENDENCIES.md) for build requirements
+After initial setup:
 
-## ?? Tips
+1. **Read Full Documentation**:
+   - [README.md](../README.md) - Project overview
+   - [FEATURES.md](../FEATURES.md) - Detailed feature documentation
+   - [BOT_SETUP.md](BOT_SETUP.md) - Advanced bot configuration
 
-- Start with default settings, then customize
-- Test crypted binaries in safe environment
-- Use bot mode for quick iterations
-- Use CLI mode for automation/scripts
-- Keep authentication key secret
-- Monitor disk space (temp files)
+2. **Review Technical Details**:
+   - [UAC_BYPASS_INFO.md](UAC_BYPASS_INFO.md) - UAC bypass technique
+   - [DEFENDER_EXCLUSION_INFO.md](DEFENDER_EXCLUSION_INFO.md) - Defender evasion
+
+3. **Stay Updated**:
+   - [CHANGELOG.md](../CHANGELOG.md) - Version history
 
 ---
 
-**Ready to start? Pick your mode and follow the steps above! ??**
+## Best Practices
+
+### Configuration Management
+
+- Start with default settings and customize incrementally
+- Test configurations in safe environment before production
+- Document custom configurations for reproducibility
+
+### Deployment
+
+- Use bot mode for remote/multi-user scenarios
+- Use CLI mode for automation and batch processing
+- Maintain separate configurations for testing and production
+
+### Security
+
+- Rotate authentication keys periodically
+- Monitor bot access logs
+- Keep `.env` file secure
+- Review permissions on output files
+
+---
+
+## Support
+
+For additional assistance:
+
+- Review documentation in `docs/` directory
+- Check [INSTALLATION.md](INSTALLATION.md) for setup issues
+- Consult [FEATURES.md](../FEATURES.md) for feature details
+- Verify system requirements and dependencies
+
+---
+
+**For detailed information on all features and advanced configuration, consult the complete documentation suite.**

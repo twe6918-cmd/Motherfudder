@@ -113,4 +113,6 @@ If fodhelper fails, consider:
 
 ---
 
-**Created by Florin**
+---
+
+**For educational and authorized security testing purposes only.**

@@ -199,17 +199,6 @@ New security considerations with bot:
 - Consider restricting to specific Telegram user IDs
 - Be aware of legal implications
 
-### Author
-
-**Developed by Florin**
-
-Special features implemented:
-- Enhanced AMSI bypass with offset +33 patching
-- Windows Defender silent exclusions
-- UAC bypass integration (fodhelper.exe technique)
-- Telegram bot interface
-- Dual payload support (Native & .NET)
-
 ### Credits
 
 - AMSI Bypass technique based on: https://github.com/Chainski/GlobalAMSIBypass

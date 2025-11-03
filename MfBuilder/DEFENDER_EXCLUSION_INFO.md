@@ -260,4 +260,6 @@ This feature is designed for:
 
 ---
 
-**Feature developed by Florin**
+---
+
+**For educational and authorized security testing purposes only.**
