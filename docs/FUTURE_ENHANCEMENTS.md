@@ -751,7 +751,7 @@ The current implementation with:
 
 ### Philosophy
 
-> "Don't fix what isn't broken. The current AMSI bypass (Chainski) is good enough and proven effective. Focus on user experience (buttons) and stability rather than marginal evasion improvements that add complexity."
+The current AMSI bypass (Chainski technique) is proven effective. Priority should be on user experience enhancements and stability rather than marginal evasion improvements.
 
 ---
 
