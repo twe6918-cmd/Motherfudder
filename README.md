@@ -28,6 +28,25 @@ This tool is designed for **authorized security testing, penetration testing, an
 - **Silent Defender Exclusions**: Automatic Windows Defender exclusion with UAC bypass
 - **Multiple Output Formats**: BAT or EXE file generation
 
+### What This Crypter Does NOT Include
+
+For transparency, the following advanced techniques are **not implemented**:
+
+- ? **Process Hollowing** - Does not use process hollowing/RunPE techniques
+- ? **Process Injection** - No remote process injection
+- ? **Reflective DLL Injection** - Not implemented
+- ? **Thread Hijacking** - Does not hijack existing threads
+- ? **APC Injection** - No asynchronous procedure call injection
+
+**What it uses instead**:
+- ? Direct payload execution (for .NET assemblies)
+- ? Indirect syscalls (for native payloads)
+- ? Memory-based AMSI/ETW patching
+- ? Windows Defender exclusions
+- ? UAC bypass for privilege escalation
+
+This approach provides effective evasion while maintaining simplicity and reliability.
+
 ### Advanced Features
 
 #### AMSI Bypass (.NET Payloads)

@@ -17,16 +17,18 @@ Complete guide to Motherfudder Crypter documentation.
 
 ### Interface Guides
 6. [BOT_SETUP.md](MfBuilder/BOT_SETUP.md) - Telegram bot deployment and configuration
-7. [build.json](MfBuilder/build.json) - CLI mode configuration reference
+7. [BOT_TECHNICAL.md](MfBuilder/BOT_TECHNICAL.md) - Bot technical details and VPS deployment
+8. [build.json](MfBuilder/build.json) - CLI mode configuration reference
 
 ### Technical Documentation
-8. [UAC_BYPASS_INFO.md](MfBuilder/UAC_BYPASS_INFO.md) - UAC bypass technique details
-9. [DEFENDER_EXCLUSION_INFO.md](MfBuilder/DEFENDER_EXCLUSION_INFO.md) - Windows Defender evasion guide
-10. [DEPENDENCIES.md](MfBuilder/DEPENDENCIES.md) - System dependency installation
+9. [UAC_BYPASS_INFO.md](MfBuilder/UAC_BYPASS_INFO.md) - UAC bypass technique details
+10. [DEFENDER_EXCLUSION_INFO.md](MfBuilder/DEFENDER_EXCLUSION_INFO.md) - Windows Defender evasion guide
+11. [DEPENDENCIES.md](MfBuilder/DEPENDENCIES.md) - System dependency installation
 
 ### Project Information
-11. [LICENSE](LICENSE) - Project license
-12. [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+12. [LICENSE](LICENSE) - Project license
+13. [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+14. [RELEASE_NOTES.md](RELEASE_NOTES.md) - Version 1.0.0 release information
 
 ---
 
@@ -44,7 +46,8 @@ Complete guide to Motherfudder Crypter documentation.
 **Bot Deployment**:
 1. Complete installation per [INSTALLATION.md](MfBuilder/INSTALLATION.md)
 2. Follow [BOT_SETUP.md](MfBuilder/BOT_SETUP.md) for configuration
-3. Reference [QUICKSTART.md](MfBuilder/QUICKSTART.md) for usage
+3. Read [BOT_TECHNICAL.md](MfBuilder/BOT_TECHNICAL.md) for VPS deployment
+4. Reference [QUICKSTART.md](MfBuilder/QUICKSTART.md) for usage
 
 ### CLI Users
 
@@ -56,10 +59,11 @@ Complete guide to Motherfudder Crypter documentation.
 ### Advanced Users
 
 **Technical Details**:
-1. [FEATURES.md](FEATURES.md) - All features explained
-2. [UAC_BYPASS_INFO.md](MfBuilder/UAC_BYPASS_INFO.md) - Privilege escalation
-3. [DEFENDER_EXCLUSION_INFO.md](MfBuilder/DEFENDER_EXCLUSION_INFO.md) - AV evasion
-4. Source code in `MfBuilder/src/` and `MfBuilder/MfRunner/`
+1. [FEATURES.md](FEATURES.md) - All features explained (includes what's NOT included)
+2. [BOT_TECHNICAL.md](MfBuilder/BOT_TECHNICAL.md) - Bot internals and VPS deployment
+3. [UAC_BYPASS_INFO.md](MfBuilder/UAC_BYPASS_INFO.md) - Privilege escalation
+4. [DEFENDER_EXCLUSION_INFO.md](MfBuilder/DEFENDER_EXCLUSION_INFO.md) - AV evasion
+5. Source code in `MfBuilder/src/` and `MfBuilder/MfRunner/`
 
 ### Contributors
 

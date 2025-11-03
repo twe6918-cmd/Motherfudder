@@ -613,6 +613,107 @@ Send number to toggle, 'format' to change output, 'build' when ready
 
 ---
 
+## What This Crypter Does NOT Include
+
+For transparency and to set proper expectations:
+
+### Not Implemented
+
+#### Process Hollowing
+- ? No process hollowing (RunPE) techniques
+- ? No legitimate process spawning for injection
+
+**Why**: Process hollowing is easily detected by modern EDR solutions and adds significant complexity.
+
+**Instead**: Direct assembly loading (.NET) or indirect syscalls (native)
+
+#### Process Injection
+- ? No remote process injection
+- ? No DLL injection into existing processes
+- ? No reflective DLL loading
+- ? No thread hijacking
+- ? No APC queue injection
+
+**Why**: Injection techniques trigger behavioral detection and are high-risk.
+
+**Instead**: Standalone execution with evasion features (AMSI bypass, Defender exclusions)
+
+#### Advanced Obfuscation
+- ? No control flow flattening
+- ? No virtualization obfuscation
+- ? No polymorphic code generation
+
+**Why**: These techniques significantly increase file size and can degrade performance.
+
+**Instead**: String encryption, method obfuscation, API hashing
+
+### What It Uses Instead
+
+#### For .NET Payloads
+- ? Assembly.Load() with decryption
+- ? AMSI bypass (memory patching)
+- ? ETW patching (event blocking)
+- ? String encryption
+- ? Method renaming
+- ? Defender exclusions
+
+#### For Native Payloads
+- ? Indirect syscalls (no IAT entries)
+- ? Manual module loading
+- ? API hashing
+- ? Shellcode execution
+- ? Defender exclusions
+
+### Comparison with Other Crypters
+
+**vs. Process Injection Crypters**:
+
+| Feature | This Crypter | Injection Crypters |
+|---------|-------------|-------------------|
+| EDR Detection Risk | Lower | Higher |
+| Complexity | Moderate | High |
+| Stability | Excellent | Variable |
+| User Detection | Lower | Higher |
+| AV Detection | Lower | Variable |
+
+**vs. Process Hollowing Crypters**:
+
+| Feature | This Crypter | Hollowing Crypters |
+|---------|-------------|-------------------|
+| Process Creation | Minimal | Spawns legitimate process |
+| Memory Artifacts | Fewer | More suspicious |
+| Detection Risk | Lower | Moderate-High |
+| Implementation | Simpler | Complex |
+
+### Recommendation
+
+**When to use this crypter**:
+- ? Need reliable, stable operation
+- ? Want lower EDR detection risk
+- ? Prefer simplicity over complexity
+- ? Focus on AV evasion rather than process hiding
+- ? Silent Defender exclusions are priority
+
+**When you might need alternatives**:
+- Need process injection for specific use case
+- Require hiding within legitimate processes
+- Target environment with no Defender (other AV)
+- Need polymorphic capabilities
+
+### Best Practices
+
+As noted in similar crypter FAQs:
+
+> **AntiVM Usage**: Use when you don't need to run in virtual environments or RDP. Disable for testing in VMs.
+
+> **Injection vs. This Crypter**: Use injection-based crypters if user detection (Task Manager visibility) is a greater concern than AV/EDR detection. This crypter prioritizes AV evasion.
+
+> **Persistence**: If your payload has its own startup mechanism, don't enable both. Use one or the other to avoid conflicts.
+
+> **Defender Exclusions**: When combined with UAC bypass, provides silent operation - one of the strongest features of this crypter.
+
+---
+
 ## See Also
 
 - [README.md](README.md) - Project overview
