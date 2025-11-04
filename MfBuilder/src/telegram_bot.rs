@@ -302,22 +302,42 @@ async fn handle_document(
     session.config.binary_arch = Some(binary_arch.clone());
     session.awaiting_binary = false;
 
-    let arch_str = match binary_arch {
-        BinaryArch::X64 => "Native x64",
-        BinaryArch::X86 => "Native x86",
-        BinaryArch::NET64 => ".NET x64",
-        BinaryArch::NET86 => ".NET x86",
+    // Enhanced file info display (TrickBox-style)
+    let arch_display = match binary_arch {
+        BinaryArch::NET64 => "x86-64 (AMD64)",
+        BinaryArch::NET86 => "Intel 386 or later (x86)",
+        BinaryArch::X64 => "x86-64 (AMD64)",
+        BinaryArch::X86 => "Intel 386 or later (x86)",
         BinaryArch::Unknown => "Unknown",
     };
+
+    let type_display = match binary_arch {
+        BinaryArch::NET64 | BinaryArch::NET86 => ".NET Assembly",
+        BinaryArch::X64 | BinaryArch::X86 => "Native PE",
+        BinaryArch::Unknown => "Unknown",
+    };
+
+    let file_size_kb = file_bytes.len() / 1024;
 
     drop(sessions_lock);
 
     bot.send_message(
         chat_id,
-        format!("? **Binary uploaded successfully!**\n\
-            ?? Detected Type: **{}**\n\n\
-            Now let's configure the crypter options...",
-            arch_str
+        format!(
+            "================================\n\
+            **FILE PROTECT**\n\
+            ================================\n\n\
+            ?? **Name**: `{}`\n\
+            ?? **Arch**: {}\n\
+            ?? **Type**: {}\n\
+            ?? **Size**: {} KB\n\n\
+            ================================\n\n\
+            ? Binary analyzed successfully!\n\
+            Configure your protection options below:",
+            file_name,
+            arch_display,
+            type_display,
+            file_size_kb
         )
     )
     .await?;
