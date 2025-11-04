@@ -527,19 +527,9 @@ if %ERRORLEVEL% NEQ 0 (
     
     :: Install MinGW (choco requires admin, so if this works we have admin)
     echo  Installing MinGW via Chocolatey...
-    choco install mingw -y 2>&1 | findstr /C:"installed" /C:"already" >nul
-    if %ERRORLEVEL% NEQ 0 (
-        echo.
-        echo  WARNING: MinGW installation may have failed.
-        echo  This might be because:
-        echo    - You don't have admin rights
-        echo    - Chocolatey is not working properly
-        echo.
-        echo  Try running Option 1 (Install Prerequisites) instead.
-        echo.
-    ) else (
-        echo  MinGW installation command executed.
-    )
+    choco install mingw -y >nul 2>&1
+    
+    echo  MinGW installation command executed.
     
     :: Refresh PATH
     call refreshenv
