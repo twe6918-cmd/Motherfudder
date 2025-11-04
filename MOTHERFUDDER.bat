@@ -514,44 +514,64 @@ if %ERRORLEVEL% NEQ 0 (
     echo  Attempting to install MinGW...
     echo.
     
-    :: Check if we have admin rights
-    net session >nul 2>&1
+    :: Check if chocolatey is available (if it is, we probably have admin)
+    where choco >nul 2>&1
     if %ERRORLEVEL% NEQ 0 (
-        echo  ERROR: Administrator rights required to install MinGW!
+        echo  ERROR: Chocolatey not installed!
         echo.
-        echo  Please:
-        echo    1. Close this window
-        echo    2. Right-click MOTHERFUDDER.bat
-        echo    3. Select "Run as administrator"
-        echo    4. Press 1 to install prerequisites
+        echo  Please run Option 1 first to install prerequisites.
         echo.
         pause
         goto MAIN_MENU
     )
     
-    :: Install MinGW
-    choco install mingw -y
+    :: Install MinGW (choco requires admin, so if this works we have admin)
+    echo  Installing MinGW via Chocolatey...
+    choco install mingw -y 2>&1 | findstr /C:"installed" /C:"already" >nul
+    if %ERRORLEVEL% NEQ 0 (
+        echo.
+        echo  WARNING: MinGW installation may have failed.
+        echo  This might be because:
+        echo    - You don't have admin rights
+        echo    - Chocolatey is not working properly
+        echo.
+        echo  Try running Option 1 (Install Prerequisites) instead.
+        echo.
+    ) else (
+        echo  MinGW installation command executed.
+    )
     
     :: Refresh PATH
     call refreshenv
     
-    :: Check again
+    :: Check again after install
     where dlltool >nul 2>&1
     if %ERRORLEVEL% NEQ 0 (
         echo.
+        echo  ================================================================
         echo  MinGW installed but dlltool not in PATH yet.
+        echo  ================================================================
         echo.
-        echo  IMPORTANT: You MUST close this window and open a NEW terminal!
+        echo  This is NORMAL! The PATH updates after you restart the terminal.
         echo.
-        echo  Steps:
-        echo    1. Close this Command Prompt completely
-        echo    2. Open a NEW Command Prompt (as Administrator)
-        echo    3. Navigate back to this directory
-        echo    4. Run MOTHERFUDDER.bat again
-        echo    5. Press 4 to host bot
+        echo  WHAT TO DO NOW:
         echo.
+        echo    1. Type "exit" and press Enter to close this terminal
+        echo    2. Open a BRAND NEW Command Prompt (as Administrator)
+        echo    3. Navigate back to: %CD%
+        echo    4. Run: MOTHERFUDDER.bat
+        echo    5. Press 4 to host the bot
+        echo.
+        echo  OR manually add to PATH now:
+        echo    setx PATH "%%PATH%%;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin" /M
+        echo    (Then close and reopen terminal)
+        echo.
+        echo  ================================================================
         pause
-        exit /b 0
+        echo.
+        echo  Closing this terminal in 3 seconds...
+        timeout /t 3 >nul
+        exit
     )
     
     echo  SUCCESS: MinGW installed and dlltool is now available!
