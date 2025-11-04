@@ -243,19 +243,49 @@ impl MfStubCS {
             s2 = "\\bin\\x86\\Release\\MfRunner.exe";
         }
 
-        Command::new(r#"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe"#).args([
-            &(self.working_directory.clone() + "\\MfRunner.sln"), "/p:Configuration=Release", s1
-        ]).spawn().unwrap().wait().unwrap();
-        let success = fs::exists(self.working_directory.clone() + s2).unwrap();
-        if success {
-            self.mf_runner_exe_bytes = fs::read(self.working_directory.clone() + s2).unwrap();
-            println!("{}{}", h(), "Successfully compiled MfRunner.exe".color(Color::Yellow));
-        } else {
-            println!("{}{}", h(), "Failed to compile MfRunner.exe".color(Color::BrightRed));
+        // MSBuild command - captures stdout/stderr to diagnose dlltool.exe errors
+        // dlltool.exe is a MinGW tool that shouldn't be needed for pure C# projects
+        // If you see dlltool.exe errors, ensure MinGW/MSYS2 is not interfering with MSBuild
+        let output = Command::new(r#"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe"#)
+            .args([
+                &(self.working_directory.clone() + "\\MfRunner.sln"), 
+                "/p:Configuration=Release", 
+                s1,
+                "/nologo",
+                "/v:minimal"
+            ])
+            .output();
+        
+        match output {
+            Ok(output) => {
+                if !output.stdout.is_empty() {
+                    let stdout = String::from_utf8_lossy(&output.stdout);
+                    print!("{}", stdout);
+                }
+                if !output.stderr.is_empty() {
+                    let stderr = String::from_utf8_lossy(&output.stderr);
+                    eprint!("{}", stderr);
+                }
+                
+                let success = output.status.success() && fs::exists(self.working_directory.clone() + s2).unwrap();
+                if success {
+                    self.mf_runner_exe_bytes = fs::read(self.working_directory.clone() + s2).unwrap();
+                    println!("{}{}", h(), "Successfully compiled MfRunner.exe".color(Color::Yellow));
+                } else {
+                    println!("{}{}", h(), "Failed to compile MfRunner.exe".color(Color::BrightRed));
+                    if !output.status.success() {
+                        println!("{}{}{}", h(), "MSBuild exit code: ".color(Color::BrightRed), output.status.code().unwrap_or(-1).to_string().color(Color::BrightRed));
+                    }
+                }
+                println!("{}", "---".color(Color::White));
+                success
+            }
+            Err(e) => {
+                println!("{}{}{}", h(), "Failed to execute MSBuild: ".color(Color::BrightRed), e.to_string().color(Color::BrightRed));
+                println!("{}", "---".color(Color::White));
+                false
+            }
         }
-        println!("{}", "---".color(Color::White));
-
-        success
     }
 
     pub fn obfuscate_mf_runner(&mut self) {
