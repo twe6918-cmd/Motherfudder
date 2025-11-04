@@ -547,14 +547,14 @@ if %ERRORLEVEL% NEQ 0 (
         echo  WHAT TO DO NOW:
         echo.
         echo    1. Type "exit" and press Enter to close this terminal
-        echo    2. Open a BRAND NEW Command Prompt (as Administrator)
+        echo    2. Open a BRAND NEW Command Prompt ^(as Administrator^)
         echo    3. Navigate back to: %CD%
         echo    4. Run: MOTHERFUDDER.bat
         echo    5. Press 4 to host the bot
         echo.
         echo  OR manually add to PATH now:
         echo    setx PATH "%%PATH%%;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin" /M
-        echo    (Then close and reopen terminal)
+        echo    ^(Then close and reopen terminal^)
         echo.
         echo  ================================================================
         pause
