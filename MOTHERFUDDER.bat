@@ -115,8 +115,16 @@ echo.
 choco install visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.Windows10SDK --includeRecommended --includeOptional --passive --norestart" -y
 
 echo.
+echo  ================================================================
 echo  Installing MinGW (includes dlltool)...
+echo  ================================================================
+echo.
 choco install mingw -y
+
+:: Also ensure it's in PATH
+setx PATH "%PATH%;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin" /M >nul 2>&1
+echo.
+echo  MinGW installed! (dlltool.exe should now be available)
 
 echo.
 echo  ================================================================
@@ -255,13 +263,23 @@ echo  Current Subscription Codes:
 echo  ================================================================
 echo.
 
-:: Display current codes
-for /f "tokens=*" %%a in ('findstr /C:"\"MFCRYPT" /C:"\"FLORIN" /C:"\"BACKDOORSKID" /C:"\"PREMIUM" /C:"\"TRIAL" /C:"\"CUSTOM" /C:"\"PROMO" telegram_bot.rs') do (
-    set "line=%%a"
-    set "line=!line:    =!"
-    set "line=!line:"=!"
-    set "line=!line:,=!"
-    echo  * !line!
+:: Display current codes (simpler approach)
+echo  Reading from telegram_bot.rs...
+echo.
+findstr /C:"MFCRYPT" /C:"FLORIN" /C:"BACKDOORSKID" /C:"PREMIUM" /C:"TRIAL" /C:"CUSTOM" /C:"PROMO" telegram_bot.rs 2>nul | findstr /V "pub const" | findstr /V "//" >nul 2>&1
+if errorlevel 1 (
+    echo  * MFCRYPT-LIFETIME-2024
+    echo  * FLORIN-VIP-BETA
+    echo  * BACKDOORSKID-PRO
+    echo  [Default codes - file may have other codes]
+) else (
+    for /f "delims=" %%a in ('findstr /C:"MFCRYPT" /C:"FLORIN" /C:"BACKDOORSKID" /C:"PREMIUM" /C:"TRIAL" /C:"CUSTOM" /C:"PROMO" telegram_bot.rs 2^>nul ^| findstr /V "pub const" ^| findstr /V "//"') do (
+        set "line=%%a"
+        set "line=!line:    =!"
+        set "line=!line:"=!"
+        set "line=!line:,=!"
+        echo  * !line!
+    )
 )
 
 echo.
@@ -493,12 +511,51 @@ if %ERRORLEVEL% NEQ 0 (
     echo  WARNING: dlltool not found!
     echo  This is required for Windows builds.
     echo.
-    echo  Installing MinGW now...
-    choco install mingw -y
+    echo  Attempting to install MinGW...
     echo.
-    echo  Please restart this script after installation completes.
-    pause
-    goto MAIN_MENU
+    
+    :: Check if we have admin rights
+    net session >nul 2>&1
+    if %ERRORLEVEL% NEQ 0 (
+        echo  ERROR: Administrator rights required to install MinGW!
+        echo.
+        echo  Please:
+        echo    1. Close this window
+        echo    2. Right-click MOTHERFUDDER.bat
+        echo    3. Select "Run as administrator"
+        echo    4. Press 1 to install prerequisites
+        echo.
+        pause
+        goto MAIN_MENU
+    )
+    
+    :: Install MinGW
+    choco install mingw -y
+    
+    :: Refresh PATH
+    call refreshenv
+    
+    :: Check again
+    where dlltool >nul 2>&1
+    if %ERRORLEVEL% NEQ 0 (
+        echo.
+        echo  MinGW installed but dlltool not in PATH yet.
+        echo.
+        echo  IMPORTANT: You MUST close this window and open a NEW terminal!
+        echo.
+        echo  Steps:
+        echo    1. Close this Command Prompt completely
+        echo    2. Open a NEW Command Prompt (as Administrator)
+        echo    3. Navigate back to this directory
+        echo    4. Run MOTHERFUDDER.bat again
+        echo    5. Press 4 to host bot
+        echo.
+        pause
+        exit /b 0
+    )
+    
+    echo  SUCCESS: MinGW installed and dlltool is now available!
+    echo.
 )
 
 echo  Prerequisites OK!
