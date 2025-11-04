@@ -112,7 +112,11 @@ echo  ================================================================
 echo  Installing Visual Studio Build Tools...
 echo  ================================================================
 echo.
-choco install visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --includeOptional --passive --norestart" -y
+choco install visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.Windows10SDK --includeRecommended --includeOptional --passive --norestart" -y
+
+echo.
+echo  Installing MinGW (includes dlltool)...
+choco install mingw -y
 
 echo.
 echo  ================================================================
@@ -223,16 +227,21 @@ echo  =         MANAGE SUBSCRIPTION CODES                            =
 echo  ================================================================
 echo.
 
-cd /d "%~dp0MfBuilder\src"
+:: Get the script directory and navigate to MfBuilder\src
+set "SCRIPT_DIR=%~dp0"
+cd /d "%SCRIPT_DIR%"
 
-if not exist "telegram_bot.rs" (
+if not exist "MfBuilder\src\telegram_bot.rs" (
     echo  ERROR: telegram_bot.rs not found!
-    echo  Make sure you're in the correct directory.
+    echo  Location: %SCRIPT_DIR%MfBuilder\src\telegram_bot.rs
     echo.
-    cd ..\..
+    echo  Make sure you're running this from the project root directory.
+    echo.
     pause
     goto MAIN_MENU
 )
+
+cd /d "%SCRIPT_DIR%MfBuilder\src"
 
 :MANAGE_CODES_MENU
 cls
@@ -271,7 +280,7 @@ if "%code_choice%"=="2" goto ADD_CODE
 if "%code_choice%"=="3" goto REMOVE_CODE
 if "%code_choice%"=="4" goto RESET_CODES
 if "%code_choice%"=="5" (
-    cd ..\..
+    cd /d "%SCRIPT_DIR%"
     goto MAIN_MENU
 )
 
@@ -458,6 +467,43 @@ echo  ================================================================
 echo  =         HOST TELEGRAM BOT                                    =
 echo  ================================================================
 echo.
+
+echo  Checking prerequisites...
+echo.
+
+:: Check for Rust/Cargo
+where cargo >nul 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo  ERROR: Cargo not found!
+    echo.
+    echo  Please install Rust first:
+    echo    1. Press 9 to exit
+    echo    2. Run MOTHERFUDDER.bat as Administrator
+    echo    3. Press 1 to install prerequisites
+    echo    4. Close this window and open a NEW terminal
+    echo    5. Run MOTHERFUDDER.bat again
+    echo.
+    pause
+    goto MAIN_MENU
+)
+
+:: Check for MinGW/dlltool
+where dlltool >nul 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo  WARNING: dlltool not found!
+    echo  This is required for Windows builds.
+    echo.
+    echo  Installing MinGW now...
+    choco install mingw -y
+    echo.
+    echo  Please restart this script after installation completes.
+    pause
+    goto MAIN_MENU
+)
+
+echo  Prerequisites OK!
+echo.
+
 echo  Choose hosting mode:
 echo.
 echo   [1] Foreground (Current window - Easy testing)
@@ -475,18 +521,6 @@ if not exist ".env" (
     echo.
     echo  ERROR: Bot not configured!
     echo  Please run option '2' first to configure the bot.
-    echo.
-    cd ..
-    pause
-    goto MAIN_MENU
-)
-
-:: Check for cargo
-where cargo >nul 2>&1
-if %ERRORLEVEL% NEQ 0 (
-    echo.
-    echo  ERROR: Cargo not found!
-    echo  Please install Rust by running option '1' first.
     echo.
     cd ..
     pause
