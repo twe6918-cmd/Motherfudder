@@ -605,13 +605,49 @@ if "%host_mode%"=="1" (
     echo  ================================================================
     echo.
     
-    cargo run --release -- --bot
+    echo  Testing compilation first...
+    cargo build --release 2>&1
+    
+    if %ERRORLEVEL% NEQ 0 (
+        echo.
+        echo  ================================================================
+        echo  COMPILATION FAILED!
+        echo  ================================================================
+        echo.
+        echo  Saving detailed error to build_error.log...
+        cargo build --release > build_error.log 2>&1
+        echo.
+        echo  Check MfBuilder\build_error.log for details!
+        echo.
+        cd ..
+        pause
+        goto MAIN_MENU
+    )
+    
+    echo.
+    echo  Compilation OK! Starting bot...
+    echo.
+    
+    cargo run --release -- --bot 2>&1
+    
+    set BOT_EXIT_CODE=%ERRORLEVEL%
     
     echo.
     echo  ================================================================
-    echo  Bot stopped.
+    echo  Bot stopped. Exit code: %BOT_EXIT_CODE%
     echo  ================================================================
     echo.
+    
+    if %BOT_EXIT_CODE% NEQ 0 (
+        echo  ERROR: Bot crashed!
+        echo.
+        echo  Common issues:
+        echo    1. Invalid bot token in .env file
+        echo    2. Network connection problem
+        echo    3. Telegram API down
+        echo.
+    )
+    
     cd ..
     pause
     goto MAIN_MENU
